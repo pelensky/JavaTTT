@@ -1,8 +1,6 @@
 package com.pelensky.tictactoe;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,8 +28,8 @@ class Board {
         return availableSpaces;
     }
 
-    List<String> isGameOver(){
-        return splitRightDiagonal();
+    List<ArrayList> isGameOver(){
+        return winningCombinations();
     }
 
     private boolean isSpaceTaken(String space) {
@@ -80,12 +78,13 @@ class Board {
        return rightDiagonal;
    }
 
-
-
-
-
-
-
-
+   private List<ArrayList> winningCombinations() {
+       List<ArrayList> winningCombinations = new ArrayList<>();
+       winningCombinations.addAll(splitRows());
+       winningCombinations.addAll(splitColumns());
+       winningCombinations.add((ArrayList) splitLeftDiagonal());
+       winningCombinations.add((ArrayList) splitRightDiagonal());
+       return winningCombinations;
+   }
 
 }
