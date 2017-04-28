@@ -28,6 +28,10 @@ class Board {
         return availableSpaces;
     }
 
+    List<ArrayList> isGameOver(){
+        return splitColumns();
+    }
+
     private boolean isSpaceTaken(String space) {
         return !Objects.equals(space, "X") && !Objects.equals(space, "O");
     }
@@ -37,6 +41,29 @@ class Board {
             getSpaces().add(String.valueOf(i));
         }
    }
+
+   private List<ArrayList> splitRows() {
+       List<ArrayList> splitRows = new ArrayList<>();
+       for (int i = 0; i < numberOfRows; i++){
+           splitRows.add(new ArrayList<>(getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
+       }
+    return splitRows;
+   }
+
+   private List<ArrayList> splitColumns() {
+    List<ArrayList> splitColumns = new ArrayList<>();
+    for (int i = 0; i < numberOfRows; i++){
+        ArrayList<String> column = new ArrayList<>();
+        for (int j = 0; j < numberOfRows; j++){
+            column.add((String) splitRows().get(j).get(i));
+        }
+       splitColumns.add(column);
+    }
+    return splitColumns;
+   }
+
+
+
 
 
 

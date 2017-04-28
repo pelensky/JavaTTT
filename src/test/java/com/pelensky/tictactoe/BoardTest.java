@@ -23,8 +23,15 @@ public class BoardTest {
     public void allSpacesAreAvailableWhenBoardIsInitialized() {
         assertEquals(9, board.getAvailableSpaces().size());
     }
-
-
-
+//    @Test
+//    public void checkForWinHorizontal() {
+//        board.spaces = new ArrayList<>(Arrays.asList("X", "X", "X", "3", "4", "5", "6", "7", "8"));
+//        assertTrue(board.isGameOver());
+//    }
+//
+//    @Test
+//    public void checkHorizontal() {
+//        assertEquals("Dan", board.isGameOver());
+//    }
 
 }
