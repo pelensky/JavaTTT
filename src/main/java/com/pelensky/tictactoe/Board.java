@@ -2,15 +2,16 @@ package com.pelensky.tictactoe;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 class Board {
     private int numberOfRows;
+    private int totalSpaces;
     List<String> spaces;
 
     Board(int numberOfRows) {
         this.numberOfRows = numberOfRows;
-        this.spaces = new ArrayList<>(9);
+        this.totalSpaces = numberOfRows * numberOfRows;
+        this.spaces = new ArrayList<>();
         assignValues();
     }
 
@@ -21,18 +22,19 @@ class Board {
     List<Integer> getAvailableSpaces() {
         List<Integer> availableSpaces = new ArrayList<>();
         for (int i = 0; i < getSpaces().size(); i++) {
-            if (isSpaceTaken(getSpaces().get(i))) {
+            if (isSpaceAvailable(i)) {
                 availableSpaces.add(i);
             }
         }
         return availableSpaces;
     }
-
-    boolean isGameOver(String marker) {
-        return isGameWon(marker);
+    
+    //TODO Remove hard coding of X and O
+    boolean isGameOver() {
+        return isGameWon("X") || isGameWon("O") || isGameTied();
     }
 
-    boolean isGameWon(String marker) {
+    private boolean isGameWon(String marker) {
         for (int i = 0; i < winningCombinations().size(); i++) {
             if (winningCombinations().get(i)
                     .stream()
@@ -42,12 +44,12 @@ class Board {
         return false;
     }
 
-    private boolean isSpaceTaken(String space) {
-        return !Objects.equals(space, "X") && !Objects.equals(space, "O");
+    private boolean isGameTied() {
+     return getAvailableSpaces().size() == 0 && !isGameWon("X") && !isGameWon("O");
     }
 
-    private void assignValues() {
-        for (int i = 0; i < numberOfRows * numberOfRows; i++) {
+   private void assignValues() {
+        for (int i = 0; i < totalSpaces; i++) {
             getSpaces().add(String.valueOf(i));
         }
     }
@@ -97,5 +99,8 @@ class Board {
         return winningCombinations;
     }
 
+    private boolean isSpaceAvailable(int i){
+        return getSpaces().get(i).equals(String.valueOf(i));
+    }
 
 }
