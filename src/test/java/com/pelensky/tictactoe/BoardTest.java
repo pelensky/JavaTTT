@@ -42,6 +42,13 @@ public class BoardTest {
     }
 
     @Test
+    public void cantPutAMarkerSomewhereTaken(){
+        board.takeTurn(1, "X");
+        board.takeTurn(1, "O");
+        assertEquals("X", board.getSpaces().get(1));
+    }
+
+      @Test
     public void checkForWinHorizontalA() {
         board.spaces = new ArrayList<>(Arrays.asList("X", "X", "X", "3", "4", "5", "6", "7", "8"));
         assertTrue(board.isGameOver());

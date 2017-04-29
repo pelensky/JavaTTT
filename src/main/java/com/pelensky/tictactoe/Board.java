@@ -16,7 +16,9 @@ class Board {
     }
     
     void takeTurn(int space, String marker){
-        getSpaces().set(space, marker);
+        if (isSpaceAvailable(space)) {
+            getSpaces().set(space, marker);
+        }
     }
 
     List<String> getSpaces() {
@@ -40,9 +42,7 @@ class Board {
 
     private boolean isGameWon(String marker) {
         for (int i = 0; i < winningCombinations().size(); i++) {
-            if (winningCombinations().get(i)
-                    .stream()
-                    .filter(space -> space.equals(marker))
+            if (winningCombinations().get(i).stream().filter(space -> space.equals(marker))
                     .count() == numberOfRows) return true;
         }
         return false;
