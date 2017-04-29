@@ -14,6 +14,10 @@ class Board {
         this.spaces = new ArrayList<>();
         assignValues();
     }
+    
+    void takeTurn(int space, String marker){
+        getSpaces().set(space, marker);
+    }
 
     List<String> getSpaces() {
         return spaces;

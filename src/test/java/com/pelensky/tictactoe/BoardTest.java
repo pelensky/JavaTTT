@@ -36,6 +36,12 @@ public class BoardTest {
     }
 
     @Test
+    public void takeTurn() {
+        board.takeTurn(0, "X");
+        assertEquals("X", board.getSpaces().get(0));
+    }
+
+    @Test
     public void checkForWinHorizontalA() {
         board.spaces = new ArrayList<>(Arrays.asList("X", "X", "X", "3", "4", "5", "6", "7", "8"));
         assertTrue(board.isGameOver());
