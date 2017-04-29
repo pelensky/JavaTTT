@@ -6,7 +6,7 @@ import java.util.Objects;
 
 class Board {
     private int numberOfRows;
-    private List<String> spaces;
+    List<String> spaces;
 
     Board(int numberOfRows) {
         this.numberOfRows = numberOfRows;
@@ -20,71 +20,82 @@ class Board {
 
     List<Integer> getAvailableSpaces() {
         List<Integer> availableSpaces = new ArrayList<>();
-        for (int i = 0; i < getSpaces().size(); i++){
-            if (isSpaceTaken(getSpaces().get(i))){
+        for (int i = 0; i < getSpaces().size(); i++) {
+            if (isSpaceTaken(getSpaces().get(i))) {
                 availableSpaces.add(i);
             }
         }
         return availableSpaces;
     }
 
-    List<ArrayList> isGameOver(){
-        return winningCombinations();
+    boolean isGameOver(String marker) {
+        return isGameWon(marker);
+    }
+
+    boolean isGameWon(String marker) {
+        for (int i = 0; i < winningCombinations().size(); i++) {
+            if (winningCombinations().get(i)
+                    .stream()
+                    .filter(space -> space.equals(marker))
+                    .count() == numberOfRows) return true;
+        }
+        return false;
     }
 
     private boolean isSpaceTaken(String space) {
         return !Objects.equals(space, "X") && !Objects.equals(space, "O");
     }
 
-   private void assignValues(){
-        for (int i = 0; i < numberOfRows * numberOfRows; i++){
+    private void assignValues() {
+        for (int i = 0; i < numberOfRows * numberOfRows; i++) {
             getSpaces().add(String.valueOf(i));
         }
-   }
-
-   private List<ArrayList> splitRows() {
-       List<ArrayList> splitRows = new ArrayList<>();
-       for (int i = 0; i < numberOfRows; i++){
-           splitRows.add(new ArrayList<>(getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
-       }
-    return splitRows;
-   }
-
-   private List<ArrayList> splitColumns() {
-    List<ArrayList> splitColumns = new ArrayList<>();
-    for (int i = 0; i < numberOfRows; i++){
-        ArrayList<String> column = new ArrayList<>();
-        for (int j = 0; j < numberOfRows; j++){
-            column.add((String) splitRows().get(j).get(i));
-        }
-       splitColumns.add(column);
     }
-    return splitColumns;
-   }
 
-   private List<String> splitLeftDiagonal() {
-       ArrayList<String> leftDiagonal = new ArrayList<>();
-       for (int i = 0; i < numberOfRows; i ++){
-           leftDiagonal.add((String) splitRows().get(i).get(i));
-       }
-       return leftDiagonal;
-   }
+    private List<ArrayList> splitRows() {
+        List<ArrayList> splitRows = new ArrayList<>();
+        for (int i = 0; i < numberOfRows; i++) {
+            splitRows.add(new ArrayList<>(getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
+        }
+        return splitRows;
+    }
 
-   private List<String> splitRightDiagonal() {
-       ArrayList<String> rightDiagonal = new ArrayList<>();
-       for (int i = 0; i < numberOfRows; i++){
-           rightDiagonal.add((String) splitRows().get(i).get(numberOfRows - ( i + 1)));
-       }
-       return rightDiagonal;
-   }
+    private List<ArrayList> splitColumns() {
+        List<ArrayList> splitColumns = new ArrayList<>();
+        for (int i = 0; i < numberOfRows; i++) {
+            ArrayList<String> column = new ArrayList<>();
+            for (int j = 0; j < numberOfRows; j++) {
+                column.add((String) splitRows().get(j).get(i));
+            }
+            splitColumns.add(column);
+        }
+        return splitColumns;
+    }
 
-   private List<ArrayList> winningCombinations() {
-       List<ArrayList> winningCombinations = new ArrayList<>();
-       winningCombinations.addAll(splitRows());
-       winningCombinations.addAll(splitColumns());
-       winningCombinations.add((ArrayList) splitLeftDiagonal());
-       winningCombinations.add((ArrayList) splitRightDiagonal());
-       return winningCombinations;
-   }
+    private List<String> splitLeftDiagonal() {
+        ArrayList<String> leftDiagonal = new ArrayList<>();
+        for (int i = 0; i < numberOfRows; i++) {
+            leftDiagonal.add((String) splitRows().get(i).get(i));
+        }
+        return leftDiagonal;
+    }
+
+    private List<String> splitRightDiagonal() {
+        ArrayList<String> rightDiagonal = new ArrayList<>();
+        for (int i = 0; i < numberOfRows; i++) {
+            rightDiagonal.add((String) splitRows().get(i).get(numberOfRows - (i + 1)));
+        }
+        return rightDiagonal;
+    }
+
+    private List<ArrayList> winningCombinations() {
+        List<ArrayList> winningCombinations = new ArrayList<>();
+        winningCombinations.addAll(splitRows());
+        winningCombinations.addAll(splitColumns());
+        winningCombinations.add((ArrayList) splitLeftDiagonal());
+        winningCombinations.add((ArrayList) splitRightDiagonal());
+        return winningCombinations;
+    }
+
 
 }
