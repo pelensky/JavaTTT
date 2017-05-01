@@ -18,6 +18,8 @@ class Board {
     void takeTurn(int space, String marker){
         if (isSpaceAvailable(space)) {
             getSpaces().set(space, marker);
+        } else {
+            throw new IllegalMoveException();
         }
     }
 

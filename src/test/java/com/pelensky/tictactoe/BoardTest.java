@@ -41,11 +41,10 @@ public class BoardTest {
         assertEquals("X", board.getSpaces().get(0));
     }
 
-    @Test
+    @Test(expected = IllegalMoveException.class)
     public void cantPutAMarkerSomewhereTaken(){
         board.takeTurn(1, "X");
         board.takeTurn(1, "O");
-        assertEquals("X", board.getSpaces().get(1));
     }
 
       @Test
@@ -107,8 +106,5 @@ public class BoardTest {
         board.spaces = new ArrayList<>(Arrays.asList("O", "X", "O", "X", "O", "X", "X", "O", "X"));
         assertTrue(board.isGameOver());
     }
-
-
-
 
 }
