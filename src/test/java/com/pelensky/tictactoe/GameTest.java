@@ -3,9 +3,6 @@ package com.pelensky.tictactoe;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static org.junit.Assert.assertEquals;
 
 public class GameTest {
@@ -29,6 +26,21 @@ public class GameTest {
         assertEquals(player2, game.player2);
         assertEquals(board, game.board);
     }
+
+    @Test
+    public void player1StartsTheGame() {
+        assertEquals(player1, game.currentPlayer);
+    }
+
+    @Test
+    public void currentPlayerChangesAfterTurn() {
+        game.takeTurn(0);
+        assertEquals(player2, game.currentPlayer);
+    }
+
+
+
+
 
 
 }
