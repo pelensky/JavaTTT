@@ -52,5 +52,4 @@ class Board {
         return numberOfRows;
     }
 
-
 }
