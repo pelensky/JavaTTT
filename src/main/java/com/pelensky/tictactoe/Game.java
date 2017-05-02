@@ -96,6 +96,4 @@ class Game {
     private List<String> getSpaces() {
         return board.getSpaces();
     }
-
-
 }
