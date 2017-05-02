@@ -4,7 +4,7 @@ public class HumanPlayer implements Player {
 
     private String marker;
 
-    HumanPlayer(String marker){
+    public HumanPlayer(String marker){
         this.marker = marker;
     }
 
@@ -17,6 +17,4 @@ public class HumanPlayer implements Player {
     public void takeTurn(Board board, int space) {
         board.takeTurn(space, marker);
     }
-
-
 }

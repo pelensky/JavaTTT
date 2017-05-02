@@ -36,8 +36,27 @@ public class AppRunnerTest {
     @Test
     public void selectGameType() {
         run("4");
-        assertThat(out.toString(), containsString("1) Human VS Human" + System.lineSeparator() + "2) Human VS Computer" +  System.lineSeparator() + "3) Computer VS Computer" + System.lineSeparator() + "4) Quit" ));
+        assertThat(out.toString(), containsString("1) Human VS Human" + System.lineSeparator() + "2) Human VS Computer" + System.lineSeparator() + "3) Computer VS Computer" + System.lineSeparator() + "4) Quit"));
     }
+
+    @Test
+    public void quitGame() {
+        run("4");
+        assertThat(out.toString(), containsString("Exiting"));
+    }
+
+    @Test
+    public void humanVShuman() {
+        run("1\n0\n4\n2\n8\n1\n4\n");
+        assertThat(out.toString(), containsString("X is the winner"));
+    }
+
+    @Test
+    public void computerVScomputer(){
+        run("3\n4\n");
+        assertThat(out.toString(), containsString("Exiting"));
+    }
+
 
 
 }

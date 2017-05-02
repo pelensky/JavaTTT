@@ -3,13 +3,13 @@ package com.pelensky.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
-class Board {
+public class Board {
 
     private int numberOfRows;
     private int totalSpaces;
     List<String> spaces;
 
-    Board(int numberOfRows) {
+    public Board(int numberOfRows) {
         this.numberOfRows = numberOfRows;
         this.totalSpaces = numberOfRows * numberOfRows;
         this.spaces = new ArrayList<>();

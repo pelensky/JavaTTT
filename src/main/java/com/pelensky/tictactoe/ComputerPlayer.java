@@ -7,7 +7,7 @@ public class ComputerPlayer implements Player {
 
     private String marker;
 
-    ComputerPlayer(String marker){
+    public ComputerPlayer(String marker){
         this.marker = marker;
     }
 
@@ -21,7 +21,7 @@ public class ComputerPlayer implements Player {
         board.takeTurn(space, marker);
     }
 
-    int selectRandomAvailableSpace(Board board){
+      int selectRandomAvailableSpace(Board board){
         List<Integer> spaces = board.getAvailableSpaces();
         return spaces.get(new Random().nextInt(spaces.size()));
     }
