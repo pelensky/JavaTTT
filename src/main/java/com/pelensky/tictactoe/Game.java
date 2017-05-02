@@ -3,15 +3,16 @@ package com.pelensky.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
-class Game {
+public class Game {
 
     Board board;
     Player player1;
     Player player2;
     Player currentPlayer;
     private int numberOfRows;
+    private Player winner;
 
-    Game(Board board, Player player1, Player player2) {
+    public Game(Board board, Player player1, Player player2) {
         this.board = board;
         this.player1 = player1;
         this.player2 = player2;
@@ -32,10 +33,17 @@ class Game {
         return isGameWonBy(player1) || isGameWonBy(player2) || isGameTied();
     }
 
+    Player getWinner() {
+        return winner;
+    }
+
     private boolean isGameWonBy(Player player) {
         for (int i = 0; i < winningCombinations().size(); i++) {
             if (winningCombinations().get(i).stream().filter(space -> space.equals(player.getMarker()))
-                    .count() == numberOfRows) return true;
+                    .count() == numberOfRows) {
+                this.winner = player;
+                return true;
+            }
         }
         return false;
     }
@@ -93,9 +101,7 @@ class Game {
         return board.getAvailableSpaces();
     }
 
-    private List<String> getSpaces() {
+    List<String> getSpaces() {
         return board.getSpaces();
     }
-
-
 }

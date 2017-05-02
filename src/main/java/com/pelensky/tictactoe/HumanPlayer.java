@@ -4,7 +4,7 @@ public class HumanPlayer implements Player {
 
     private String marker;
 
-    HumanPlayer(String marker){
+    public HumanPlayer(String marker){
         this.marker = marker;
     }
 
@@ -18,5 +18,8 @@ public class HumanPlayer implements Player {
         board.takeTurn(space, marker);
     }
 
-
+    @Override
+    public String playerType() {
+        return "Human";
+    }
 }

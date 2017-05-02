@@ -5,10 +5,12 @@ import java.util.Random;
 
 public class ComputerPlayer implements Player {
 
+    private Random random;
     private String marker;
 
-    ComputerPlayer(String marker){
+    public ComputerPlayer(String marker, Random random){
         this.marker = marker;
+        this.random = random;
     }
 
     @Override
@@ -21,9 +23,14 @@ public class ComputerPlayer implements Player {
         board.takeTurn(space, marker);
     }
 
+    @Override
+    public String playerType() {
+        return "Computer";
+    }
+
     int selectRandomAvailableSpace(Board board){
         List<Integer> spaces = board.getAvailableSpaces();
-        return spaces.get(new Random().nextInt(spaces.size()));
+        return spaces.get(random.nextInt(spaces.size()));
     }
 }
 
