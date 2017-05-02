@@ -29,8 +29,16 @@ public class AppRunnerTest {
 
     @Test
     public void welcomesUser() {
-        run("5");
-        assertThat(out.toString(), containsString("Tic Tac Toe"));
+        run("4");
+        assertThat(out.toString(), containsString("Tic Tac Toe" + System.lineSeparator() + "Select Game Type"));
     }
+
+    @Test
+    public void selectGameType() {
+        run("4");
+        assertThat(out.toString(), containsString("1) Human VS Human" + System.lineSeparator() + "2) Human VS Computer" +  System.lineSeparator() + "3) Computer VS Computer" + System.lineSeparator() + "4) Quit" ));
+    }
+
+
 }
 
