@@ -4,15 +4,18 @@ import com.pelensky.tictactoe.GameTypes.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class AppRunner {
 
     private IO io;
     private boolean appRunning;
     private Game game;
+    private Random random;
 
-    public AppRunner(IO io) {
+    public AppRunner(IO io, Random random) {
         this.io = io;
+        this.random = random;
         this.appRunning = true;
     }
 
@@ -50,7 +53,7 @@ public class AppRunner {
     private List<GameType> gameTypes() {
         return Arrays.asList(
                 new HumanVSHuman(),
-                new HumanVSComputer(),
+                new HumanVSComputer(io, random),
                 new ComputerVSComputer(),
                 new Quit(this));
     }

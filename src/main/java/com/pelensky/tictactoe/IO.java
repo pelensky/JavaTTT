@@ -13,11 +13,11 @@ public class IO {
         this.output = output;
     }
 
-    String getInput() {
+    public String getInput() {
         return input.nextLine().trim();
     }
 
-    void print(String text) {
+    public void print(String text) {
         output.println(text);
     }
 }

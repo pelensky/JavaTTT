@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,7 +16,7 @@ public class ComputerPlayerTest {
 
     @Before
     public void setUp() {
-        computer = new ComputerPlayer("O");
+        computer = new ComputerPlayer("O", new Random());
         board = new Board(3);
     }
 

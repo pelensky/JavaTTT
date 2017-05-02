@@ -17,4 +17,9 @@ public class HumanPlayer implements Player {
     public void takeTurn(Board board, int space) {
         board.takeTurn(space, marker);
     }
+
+    @Override
+    public String playerType() {
+        return "Human";
+    }
 }
