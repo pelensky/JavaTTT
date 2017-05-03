@@ -17,14 +17,14 @@ public class Board {
     }
     
     public void takeTurn(int space, String marker){
-        if (isMoveLegal(space)) {
+        if (isMoveAllowed(space)) {
             getSpaces().set(space, marker);
         } else {
             throw new IllegalMoveException();
         }
     }
 
-    boolean isMoveLegal(int space){
+    boolean isMoveAllowed(int space){
         return (isSpaceOnBoard(space) && isSpaceAvailable(space));
     }
 
@@ -55,6 +55,7 @@ public class Board {
     private boolean isSpaceOnBoard(int space){
         return (space >= 0 && space <= getSpaces().size());
     }
+
     int getNumberOfRows() {
         return numberOfRows;
     }

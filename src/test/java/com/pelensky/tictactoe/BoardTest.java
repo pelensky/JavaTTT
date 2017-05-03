@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class BoardTest {
 
@@ -49,13 +48,13 @@ public class BoardTest {
 
     @Test
     public void cantChooseSomewhereOutsideBoard() {
-        assertFalse(board.isMoveLegal(10));
+        assertFalse(board.isMoveAllowed(10));
     }
 
     @Test
     public void cantChooseSomewhereTaken() {
         board.takeTurn(2, "0");
-        assertFalse(board.isMoveLegal(2));
+        assertFalse(board.isMoveAllowed(2));
     }
 
 

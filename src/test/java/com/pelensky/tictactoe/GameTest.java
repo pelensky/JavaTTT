@@ -44,7 +44,7 @@ public class GameTest {
         assertEquals(player2, game.currentPlayer);
     }
 
-    @Test(expected = IllegalMoveException.class)
+    @Test
     public void doesNotChangeCurrentPlayerAfterIllegalMove() {
         game.takeTurn(1);
         game.takeTurn(1);

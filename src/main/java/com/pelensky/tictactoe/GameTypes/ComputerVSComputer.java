@@ -8,6 +8,7 @@ import com.pelensky.tictactoe.Players.Player;
 import java.util.Random;
 
 public class ComputerVSComputer implements GameType{
+
     @Override
     public Game execute() {
         Player player1 = new ComputerPlayer("X", new Random());

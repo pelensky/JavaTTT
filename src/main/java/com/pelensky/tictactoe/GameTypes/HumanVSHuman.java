@@ -6,6 +6,7 @@ import com.pelensky.tictactoe.Players.Player;
 import com.pelensky.tictactoe.Board;
 
 public class HumanVSHuman implements GameType {
+
     @Override
     public Game execute() {
         Player player1 = new HumanPlayer("X");

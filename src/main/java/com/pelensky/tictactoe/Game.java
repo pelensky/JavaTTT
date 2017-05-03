@@ -23,12 +23,14 @@ public class Game {
     }
 
     public void takeTurn(int space) {
-        board.takeTurn(space, currentPlayer.getMarker());
-        changeCurrentPlayer();
+        if (isMoveAllowed(space)) {
+            board.takeTurn(space, currentPlayer.getMarker());
+            changeCurrentPlayer();
+        }
     }
 
-    public boolean isMoveLegal(int space) {
-        return board.isMoveLegal(space);
+    public boolean isMoveAllowed(int space) {
+        return board.isMoveAllowed(space);
     }
 
     private void changeCurrentPlayer() {
@@ -45,8 +47,7 @@ public class Game {
 
     private boolean isGameWonBy(Player player) {
         for (int i = 0; i < winningCombinations().size(); i++) {
-            if (winningCombinations().get(i).stream().filter(space -> space.equals(player.getMarker()))
-                    .count() == numberOfRows) {
+            if (winningCombinations().get(i).stream().filter(space -> space.equals(player.getMarker())).count() == numberOfRows) {
                 this.winner = player;
                 return true;
             }
