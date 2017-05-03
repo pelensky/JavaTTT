@@ -1,6 +1,6 @@
 package com.pelensky.tictactoe.GameTypes;
 
-import com.pelensky.tictactoe.AppRunner;
+import com.pelensky.tictactoe.App.AppRunner;
 import com.pelensky.tictactoe.Game;
 
 public class Quit implements GameType {

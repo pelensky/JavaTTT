@@ -1,11 +1,11 @@
 package com.pelensky.tictactoe.GameTypes;
 
 import com.pelensky.tictactoe.Game;
-import com.pelensky.tictactoe.HumanPlayer;
-import com.pelensky.tictactoe.ComputerPlayer;
-import com.pelensky.tictactoe.Player;
+import com.pelensky.tictactoe.Players.HumanPlayer;
+import com.pelensky.tictactoe.Players.ComputerPlayer;
+import com.pelensky.tictactoe.Players.Player;
 import com.pelensky.tictactoe.Board;
-import com.pelensky.tictactoe.IO;
+import com.pelensky.tictactoe.App.IO;
 
 import java.util.Arrays;
 import java.util.List;

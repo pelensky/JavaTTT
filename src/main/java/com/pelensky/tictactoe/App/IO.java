@@ -1,4 +1,4 @@
-package com.pelensky.tictactoe;
+package com.pelensky.tictactoe.App;
 
 import java.io.PrintStream;
 import java.util.Scanner;

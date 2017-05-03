@@ -1,5 +1,7 @@
 package com.pelensky.tictactoe;
 
+import com.pelensky.tictactoe.App.AppRunner;
+import com.pelensky.tictactoe.App.IO;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -74,6 +76,17 @@ public class AppRunnerTest {
         assertThat(out.toString(), containsString("Exiting"));
     }
 
+    @Test
+    public void humanTriesAnIllegalMove() {
+        run("1\n0\n4\n10\n2\n8\n1\n4\n");
+        assertThat(out.toString(), containsString("Try again"));
+    }
+
+    @Test
+    public void invalidSelection() {
+        run("10\n4\n");
+        assertThat(out.toString(), containsString("Invalid selection"));
+    }
 
 }
 

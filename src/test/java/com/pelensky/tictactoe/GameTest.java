@@ -1,5 +1,6 @@
 package com.pelensky.tictactoe;
 
+import com.pelensky.tictactoe.Players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,7 +44,7 @@ public class GameTest {
         assertEquals(player2, game.currentPlayer);
     }
 
-    @Test(expected = IllegalMoveException.class)
+    @Test
     public void doesNotChangeCurrentPlayerAfterIllegalMove() {
         game.takeTurn(1);
         game.takeTurn(1);
@@ -109,5 +110,4 @@ public class GameTest {
         board.spaces = new ArrayList<>(Arrays.asList("O", "X", "O", "X", "O", "X", "X", "O", "X"));
         assertTrue(game.isGameOver());
     }
-
 }

@@ -1,7 +1,6 @@
-package com.pelensky.tictactoe;
+package com.pelensky.tictactoe.Players;
 
 public interface Player {
     String getMarker();
-    void takeTurn(Board board, int space);
     String playerType();
 }

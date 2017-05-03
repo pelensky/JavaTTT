@@ -1,7 +1,5 @@
 package com.pelensky.tictactoe.App;
 
-import com.pelensky.tictactoe.*;
-
 import java.io.PrintStream;
 import java.util.Random;
 import java.util.Scanner;

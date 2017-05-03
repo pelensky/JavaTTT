@@ -1,11 +1,12 @@
 package com.pelensky.tictactoe.GameTypes;
 
 import com.pelensky.tictactoe.Game;
-import com.pelensky.tictactoe.HumanPlayer;
-import com.pelensky.tictactoe.Player;
+import com.pelensky.tictactoe.Players.HumanPlayer;
+import com.pelensky.tictactoe.Players.Player;
 import com.pelensky.tictactoe.Board;
 
 public class HumanVSHuman implements GameType {
+
     @Override
     public Game execute() {
         Player player1 = new HumanPlayer("X");

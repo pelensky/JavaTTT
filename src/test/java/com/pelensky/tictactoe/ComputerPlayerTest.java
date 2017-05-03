@@ -1,5 +1,6 @@
 package com.pelensky.tictactoe;
 
+import com.pelensky.tictactoe.Players.ComputerPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,12 +24,6 @@ public class ComputerPlayerTest {
     @Test
     public void markerIsStored() {
         assertEquals("O", computer.getMarker());
-    }
-
-    @Test
-    public void userTakesTurn() {
-        computer.takeTurn(board, 3);
-        assertEquals("O", board.getSpaces().get(3));
     }
 
     @Test

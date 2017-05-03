@@ -1,14 +1,16 @@
 package com.pelensky.tictactoe;
 
+import com.pelensky.tictactoe.Players.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
 
-    Board board;
+    public Board board;
     Player player1;
     Player player2;
-    Player currentPlayer;
+    public Player currentPlayer;
     private int numberOfRows;
     private Player winner;
 
@@ -20,28 +22,33 @@ public class Game {
         this.numberOfRows = board.getNumberOfRows();
     }
 
-    void takeTurn(int space) {
-        board.takeTurn(space, currentPlayer.getMarker());
-        changeCurrentPlayer();
+    public void takeTurn(int space) {
+        if (isMoveAllowed(space)) {
+            board.takeTurn(space, currentPlayer.getMarker());
+            changeCurrentPlayer();
+        }
+    }
+
+    public boolean isMoveAllowed(int space) {
+        return board.isMoveAllowed(space);
     }
 
     private void changeCurrentPlayer() {
         currentPlayer = (currentPlayer.equals(player1)) ? (currentPlayer = player2) : (currentPlayer = player1);
     }
 
-    boolean isGameOver() {
+    public boolean isGameOver() {
         return isGameWonBy(player1) || isGameWonBy(player2) || isGameTied();
     }
 
-    Player getWinner() {
+    public Player getWinner() {
         return winner;
     }
 
     private boolean isGameWonBy(Player player) {
         for (int i = 0; i < winningCombinations().size(); i++) {
-            if (winningCombinations().get(i).stream().filter(space -> space.equals(player.getMarker()))
-                    .count() == numberOfRows) {
-                this.winner = player;
+            if (winningCombinations().get(i).stream().filter(space -> space.equals(player.getMarker())).count() == numberOfRows) {
+                winner = player;
                 return true;
             }
         }
@@ -52,30 +59,30 @@ public class Game {
         return getAvailableSpaces().size() == 0 && !isGameWonBy(player1) && !isGameWonBy(player2);
     }
 
-    private List<ArrayList> splitBoardIntoRows() {
-        List<ArrayList> splitRows = new ArrayList<>();
+    private List<ArrayList> getRows() {
+        List<ArrayList> rows = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
-            splitRows.add(new ArrayList<>(getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
+            rows.add(new ArrayList<>(getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
         }
-        return splitRows;
+        return rows;
     }
 
-    private List<ArrayList> splitBoardIntoColumns() {
-        List<ArrayList> splitColumns = new ArrayList<>();
+    private List<ArrayList> getColumns() {
+        List<ArrayList> columns = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
             ArrayList<String> column = new ArrayList<>();
             for (int j = 0; j < numberOfRows; j++) {
-                column.add((String) splitBoardIntoRows().get(j).get(i));
+                column.add((String) getRows().get(j).get(i));
             }
-            splitColumns.add(column);
+            columns.add(column);
         }
-        return splitColumns;
+        return columns;
     }
 
     private List<String> getLeftDiagonal() {
         ArrayList<String> leftDiagonal = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
-            leftDiagonal.add((String) splitBoardIntoRows().get(i).get(i));
+            leftDiagonal.add((String) getRows().get(i).get(i));
         }
         return leftDiagonal;
     }
@@ -83,15 +90,15 @@ public class Game {
     private List<String> getRightDiagonal() {
         ArrayList<String> rightDiagonal = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
-            rightDiagonal.add((String) splitBoardIntoRows().get(i).get(numberOfRows - (i + 1)));
+            rightDiagonal.add((String) getRows().get(i).get(numberOfRows - (i + 1)));
         }
         return rightDiagonal;
     }
 
     private List<ArrayList> winningCombinations() {
         List<ArrayList> winningCombinations = new ArrayList<>();
-        winningCombinations.addAll(splitBoardIntoRows());
-        winningCombinations.addAll(splitBoardIntoColumns());
+        winningCombinations.addAll(getRows());
+        winningCombinations.addAll(getColumns());
         winningCombinations.add((ArrayList) getLeftDiagonal());
         winningCombinations.add((ArrayList) getRightDiagonal());
         return winningCombinations;
@@ -101,7 +108,7 @@ public class Game {
         return board.getAvailableSpaces();
     }
 
-    List<String> getSpaces() {
+    public List<String> getSpaces() {
         return board.getSpaces();
     }
 }
