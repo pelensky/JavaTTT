@@ -1,9 +1,9 @@
-package com.pelensky.tictactoe.GameTypes;
+package com.pelensky.tictactoe.Commands;
 
 import com.pelensky.tictactoe.*;
 
 
-public interface GameType {
+public interface Command {
     Game execute();
     String instruction();
 }

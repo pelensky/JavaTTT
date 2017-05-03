@@ -1,8 +1,7 @@
 package com.pelensky.tictactoe.App;
 
-import com.pelensky.tictactoe.Players.ComputerPlayer;
 import com.pelensky.tictactoe.Game;
-import com.pelensky.tictactoe.GameTypes.*;
+import com.pelensky.tictactoe.Commands.*;
 import com.pelensky.tictactoe.Players.Player;
 
 import java.util.Arrays;
@@ -62,7 +61,7 @@ public class AppRunner {
         return instructions.toString().trim();
     }
 
-    private List<GameType> gameTypes() {
+    private List<Command> gameTypes() {
         return Arrays.asList(
                 new HumanVSHuman(io),
                 new HumanVSComputer(io, random),
@@ -75,7 +74,7 @@ public class AppRunner {
     }
 
     private Game startNewGame(int choice) {
-        GameType newGame = gameTypes().get(choice - 1);
+        Command newGame = gameTypes().get(choice - 1);
         return newGame.execute();
     }
 

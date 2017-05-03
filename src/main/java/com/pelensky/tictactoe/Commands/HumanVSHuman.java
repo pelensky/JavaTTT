@@ -1,4 +1,4 @@
-package com.pelensky.tictactoe.GameTypes;
+package com.pelensky.tictactoe.Commands;
 
 import com.pelensky.tictactoe.App.IO;
 import com.pelensky.tictactoe.Game;
@@ -6,7 +6,7 @@ import com.pelensky.tictactoe.Players.HumanPlayer;
 import com.pelensky.tictactoe.Players.Player;
 import com.pelensky.tictactoe.Board;
 
-public class HumanVSHuman implements GameType {
+public class HumanVSHuman implements Command {
 
     private IO io;
 

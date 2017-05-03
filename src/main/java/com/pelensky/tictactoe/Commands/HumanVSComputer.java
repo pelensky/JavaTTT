@@ -1,4 +1,4 @@
-package com.pelensky.tictactoe.GameTypes;
+package com.pelensky.tictactoe.Commands;
 
 import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Players.HumanPlayer;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class HumanVSComputer implements GameType {
+public class HumanVSComputer implements Command {
 
     private IO io;
     private Random random;
