@@ -1,14 +1,16 @@
 package com.pelensky.tictactoe;
 
+import com.pelensky.tictactoe.Players.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
 
-    Board board;
+    public Board board;
     Player player1;
     Player player2;
-    Player currentPlayer;
+    public Player currentPlayer;
     private int numberOfRows;
     private Player winner;
 
@@ -20,20 +22,24 @@ public class Game {
         this.numberOfRows = board.getNumberOfRows();
     }
 
-    void takeTurn(int space) {
+    public void takeTurn(int space) {
         board.takeTurn(space, currentPlayer.getMarker());
         changeCurrentPlayer();
+    }
+
+    public boolean isMoveLegal(int space) {
+        return board.isMoveLegal(space);
     }
 
     private void changeCurrentPlayer() {
         currentPlayer = (currentPlayer.equals(player1)) ? (currentPlayer = player2) : (currentPlayer = player1);
     }
 
-    boolean isGameOver() {
+    public boolean isGameOver() {
         return isGameWonBy(player1) || isGameWonBy(player2) || isGameTied();
     }
 
-    Player getWinner() {
+    public Player getWinner() {
         return winner;
     }
 
@@ -101,7 +107,7 @@ public class Game {
         return board.getAvailableSpaces();
     }
 
-    List<String> getSpaces() {
+    public List<String> getSpaces() {
         return board.getSpaces();
     }
 }

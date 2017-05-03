@@ -1,4 +1,6 @@
-package com.pelensky.tictactoe;
+package com.pelensky.tictactoe.Players;
+
+import com.pelensky.tictactoe.Board;
 
 import java.util.List;
 import java.util.Random;
@@ -28,7 +30,7 @@ public class ComputerPlayer implements Player {
         return "Computer";
     }
 
-    int selectRandomAvailableSpace(Board board){
+    public int selectRandomAvailableSpace(Board board){
         List<Integer> spaces = board.getAvailableSpaces();
         return spaces.get(random.nextInt(spaces.size()));
     }

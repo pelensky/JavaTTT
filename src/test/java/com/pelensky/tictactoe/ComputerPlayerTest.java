@@ -1,5 +1,6 @@
 package com.pelensky.tictactoe;
 
+import com.pelensky.tictactoe.Players.ComputerPlayer;
 import org.junit.Before;
 import org.junit.Test;
 

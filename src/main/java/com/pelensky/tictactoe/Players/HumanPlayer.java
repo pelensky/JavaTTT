@@ -1,4 +1,6 @@
-package com.pelensky.tictactoe;
+package com.pelensky.tictactoe.Players;
+
+import com.pelensky.tictactoe.Board;
 
 public class HumanPlayer implements Player {
 

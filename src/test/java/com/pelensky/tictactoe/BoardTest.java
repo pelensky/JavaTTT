@@ -47,6 +47,17 @@ public class BoardTest {
         board.takeTurn(1, "O");
     }
 
+    @Test
+    public void cantChooseSomewhereOutsideBoard() {
+        assertFalse(board.isMoveLegal(10));
+    }
+
+    @Test
+    public void cantChooseSomewhereTaken() {
+        board.takeTurn(2, "0");
+        assertFalse(board.isMoveLegal(2));
+    }
+
 
 
 }

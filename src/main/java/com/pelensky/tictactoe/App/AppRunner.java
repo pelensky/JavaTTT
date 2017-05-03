@@ -1,5 +1,7 @@
-package com.pelensky.tictactoe;
+package com.pelensky.tictactoe.App;
 
+import com.pelensky.tictactoe.Players.ComputerPlayer;
+import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.GameTypes.*;
 
 import java.util.Arrays;
@@ -80,10 +82,23 @@ public class AppRunner {
         io.print(game.currentPlayer.getMarker() + " select a space");
         io.print(showBoard());
         if (game.currentPlayer instanceof ComputerPlayer) {
-            game.takeTurn(((ComputerPlayer) game.currentPlayer).selectRandomAvailableSpace(game.board));
+            computerTurn();
         } else {
-            game.takeTurn(Integer.valueOf(io.getInput()));
+            humanTurn();
         }
+    }
+
+    private void humanTurn() {
+        int proposedSpace = Integer.valueOf(io.getInput());
+        if (game.isMoveLegal(proposedSpace)) {
+            game.takeTurn(proposedSpace);
+        } else {
+            io.print("Try again");
+        }
+    }
+
+    private void computerTurn() {
+        game.takeTurn(((ComputerPlayer) game.currentPlayer).selectRandomAvailableSpace(game.board));
     }
 
     private void endOfGame() {
