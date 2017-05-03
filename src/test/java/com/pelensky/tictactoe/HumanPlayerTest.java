@@ -9,12 +9,10 @@ import static org.junit.Assert.assertEquals;
 public class HumanPlayerTest {
 
     private HumanPlayer human;
-    private Board board;
 
     @Before
     public void setUp(){
         human = new HumanPlayer("X");
-        board = new Board(3);
     }
 
     @Test
