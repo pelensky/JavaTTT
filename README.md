@@ -9,7 +9,7 @@ This is a Tic Tac Toe game built in Java, with three game types:
 2. Human VS Computer
 3. Computer VS Computer
 
-At this stage, the computer player selects a random available space. This is not implement the Minimax algorithm.
+At this stage, the computer player selects a random available space. This does not implement the Minimax algorithm.
 
 #### Running instructions
 1. Clone the repository
