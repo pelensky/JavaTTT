@@ -47,7 +47,8 @@ public class Game {
 
     private boolean isGameWonBy(Player player) {
         for (int i = 0; i < winningCombinations().size(); i++) {
-            if (winningCombinations().get(i).stream().filter(space -> space.equals(player.getMarker())).count() == numberOfRows) {
+            ArrayList<String> line = winningCombinations().get(i);
+            if (line.stream().allMatch(space -> space.equals(player.getMarker()))) {
                 winner = player;
                 return true;
             }
@@ -59,48 +60,48 @@ public class Game {
         return getAvailableSpaces().size() == 0 && !isGameWonBy(player1) && !isGameWonBy(player2);
     }
 
-    private List<ArrayList> getRows() {
-        List<ArrayList> rows = new ArrayList<>();
+    private ArrayList<ArrayList<String>> getRows() {
+        ArrayList<ArrayList<String>> rows = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
             rows.add(new ArrayList<>(getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
         }
         return rows;
     }
 
-    private List<ArrayList> getColumns() {
-        List<ArrayList> columns = new ArrayList<>();
+    private ArrayList<ArrayList<String>> getColumns() {
+        ArrayList<ArrayList<String>> columns = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
             ArrayList<String> column = new ArrayList<>();
             for (int j = 0; j < numberOfRows; j++) {
-                column.add((String) getRows().get(j).get(i));
+                column.add(getRows().get(j).get(i));
             }
             columns.add(column);
         }
         return columns;
     }
 
-    private List<String> getLeftDiagonal() {
+    private ArrayList<String> getLeftDiagonal() {
         ArrayList<String> leftDiagonal = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
-            leftDiagonal.add((String) getRows().get(i).get(i));
+            leftDiagonal.add(getRows().get(i).get(i));
         }
         return leftDiagonal;
     }
 
-    private List<String> getRightDiagonal() {
+    private ArrayList<String> getRightDiagonal() {
         ArrayList<String> rightDiagonal = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
-            rightDiagonal.add((String) getRows().get(i).get(numberOfRows - (i + 1)));
+            rightDiagonal.add(getRows().get(i).get(numberOfRows - (i + 1)));
         }
         return rightDiagonal;
     }
 
-    private List<ArrayList> winningCombinations() {
-        List<ArrayList> winningCombinations = new ArrayList<>();
+    private ArrayList<ArrayList<String>> winningCombinations() {
+        ArrayList<ArrayList<String>> winningCombinations = new ArrayList<>();
         winningCombinations.addAll(getRows());
         winningCombinations.addAll(getColumns());
-        winningCombinations.add((ArrayList) getLeftDiagonal());
-        winningCombinations.add((ArrayList) getRightDiagonal());
+        winningCombinations.add(getLeftDiagonal());
+        winningCombinations.add(getRightDiagonal());
         return winningCombinations;
     }
 
