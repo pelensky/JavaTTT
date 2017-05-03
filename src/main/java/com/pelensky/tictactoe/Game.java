@@ -48,7 +48,7 @@ public class Game {
     private boolean isGameWonBy(Player player) {
         for (int i = 0; i < winningCombinations().size(); i++) {
             if (winningCombinations().get(i).stream().filter(space -> space.equals(player.getMarker())).count() == numberOfRows) {
-                this.winner = player;
+                winner = player;
                 return true;
             }
         }
@@ -59,30 +59,30 @@ public class Game {
         return getAvailableSpaces().size() == 0 && !isGameWonBy(player1) && !isGameWonBy(player2);
     }
 
-    private List<ArrayList> splitBoardIntoRows() {
-        List<ArrayList> splitRows = new ArrayList<>();
+    private List<ArrayList> getRows() {
+        List<ArrayList> rows = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
-            splitRows.add(new ArrayList<>(getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
+            rows.add(new ArrayList<>(getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
         }
-        return splitRows;
+        return rows;
     }
 
-    private List<ArrayList> splitBoardIntoColumns() {
-        List<ArrayList> splitColumns = new ArrayList<>();
+    private List<ArrayList> getColumns() {
+        List<ArrayList> columns = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
             ArrayList<String> column = new ArrayList<>();
             for (int j = 0; j < numberOfRows; j++) {
-                column.add((String) splitBoardIntoRows().get(j).get(i));
+                column.add((String) getRows().get(j).get(i));
             }
-            splitColumns.add(column);
+            columns.add(column);
         }
-        return splitColumns;
+        return columns;
     }
 
     private List<String> getLeftDiagonal() {
         ArrayList<String> leftDiagonal = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
-            leftDiagonal.add((String) splitBoardIntoRows().get(i).get(i));
+            leftDiagonal.add((String) getRows().get(i).get(i));
         }
         return leftDiagonal;
     }
@@ -90,15 +90,15 @@ public class Game {
     private List<String> getRightDiagonal() {
         ArrayList<String> rightDiagonal = new ArrayList<>();
         for (int i = 0; i < numberOfRows; i++) {
-            rightDiagonal.add((String) splitBoardIntoRows().get(i).get(numberOfRows - (i + 1)));
+            rightDiagonal.add((String) getRows().get(i).get(numberOfRows - (i + 1)));
         }
         return rightDiagonal;
     }
 
     private List<ArrayList> winningCombinations() {
         List<ArrayList> winningCombinations = new ArrayList<>();
-        winningCombinations.addAll(splitBoardIntoRows());
-        winningCombinations.addAll(splitBoardIntoColumns());
+        winningCombinations.addAll(getRows());
+        winningCombinations.addAll(getColumns());
         winningCombinations.add((ArrayList) getLeftDiagonal());
         winningCombinations.add((ArrayList) getRightDiagonal());
         return winningCombinations;

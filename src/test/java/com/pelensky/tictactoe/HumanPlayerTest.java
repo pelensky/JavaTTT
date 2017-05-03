@@ -22,10 +22,4 @@ public class HumanPlayerTest {
      assertEquals("X", human.getMarker());
     }
 
-    @Test
-    public void userTakesTurn(){
-        human.takeTurn(board, 8);
-        assertEquals("X", board.getSpaces().get(8));
-    }
-
 }

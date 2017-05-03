@@ -110,5 +110,4 @@ public class GameTest {
         board.spaces = new ArrayList<>(Arrays.asList("O", "X", "O", "X", "O", "X", "X", "O", "X"));
         assertTrue(game.isGameOver());
     }
-
 }

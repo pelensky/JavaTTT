@@ -27,12 +27,6 @@ public class ComputerPlayerTest {
     }
 
     @Test
-    public void userTakesTurn() {
-        computer.takeTurn(board, 3);
-        assertEquals("O", board.getSpaces().get(3));
-    }
-
-    @Test
     public void computerSelectsOnlyAvailableSpot() {
         board.spaces = new ArrayList<>(Arrays.asList("O", "X", "O", "X", "4", "X", "X", "O", "X"));
         assertEquals(4, computer.selectRandomAvailableSpace(board));

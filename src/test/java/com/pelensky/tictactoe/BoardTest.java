@@ -56,7 +56,4 @@ public class BoardTest {
         board.takeTurn(2, "0");
         assertFalse(board.isMoveAllowed(2));
     }
-
-
-
 }

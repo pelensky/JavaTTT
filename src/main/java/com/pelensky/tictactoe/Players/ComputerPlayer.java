@@ -21,11 +21,6 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public void takeTurn(Board board, int space) {
-        board.takeTurn(space, marker);
-    }
-
-    @Override
     public String playerType() {
         return "Computer";
     }
