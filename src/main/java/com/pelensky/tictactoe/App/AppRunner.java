@@ -34,14 +34,12 @@ public class AppRunner {
     }
 
     private String showBoard() {
-        String betweenSpaces = " | ";
-        String line = "-----------";
-        String offset = " ";
-        return offset + getSpace(0) + betweenSpaces + getSpace(1) + betweenSpaces + getSpace(2) +
-                System.lineSeparator() + line + System.lineSeparator() +
-                offset + getSpace(3) + betweenSpaces + getSpace(4) + betweenSpaces + getSpace(5) +
-                System.lineSeparator() + line + System.lineSeparator() +
-                offset + getSpace(6) + betweenSpaces + getSpace(7) + betweenSpaces + getSpace(8);
+        String line = System.lineSeparator() + "-----------" + System.lineSeparator();
+        return getRow(0, 1, 2) + line + getRow(3, 4, 5) + line + getRow(6, 7, 8) + System.lineSeparator();
+    }
+
+    private String getRow(int a, int b, int c) {
+        return " " + getSpace(a) + " | " + getSpace(b) + " | " + getSpace(c);
     }
 
     private String getSpace(int index) {
@@ -75,7 +73,16 @@ public class AppRunner {
     private void startGame() {
         io.print(welcome());
         io.print(instructions());
-        game = startNewGame(select());
+        int selection = select();
+        if (isValidSelection(selection)) {
+            game = startNewGame(selection);
+        } else {
+            io.print("Invalid selection");
+        }
+    }
+
+    private boolean isValidSelection(int selection) {
+        return (selection <= gameTypes().size() && selection > 0);
     }
 
     private void gameLoop() {

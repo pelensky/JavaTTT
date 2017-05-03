@@ -82,5 +82,11 @@ public class AppRunnerTest {
         assertThat(out.toString(), containsString("Try again"));
     }
 
+    @Test
+    public void invalidSelection() {
+        run("10\n4\n");
+        assertThat(out.toString(), containsString("Invalid selection"));
+    }
+
 }
 
