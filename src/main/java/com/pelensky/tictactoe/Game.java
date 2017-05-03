@@ -47,7 +47,7 @@ public class Game {
 
     private boolean isGameWonBy(Player player) {
         for (int i = 0; i < winningCombinations().size(); i++) {
-            if (winningCombinations().get(i).stream().filter(space -> space.equals(player.getMarker())).count() == numberOfRows) {
+            if (winningCombinations().get(i).stream().allMatch(space -> space.equals(player.getMarker()))) {
                 winner = player;
                 return true;
             }
