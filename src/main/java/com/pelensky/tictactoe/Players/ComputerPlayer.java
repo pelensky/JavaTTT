@@ -1,6 +1,7 @@
 package com.pelensky.tictactoe.Players;
 
 import com.pelensky.tictactoe.Board;
+import com.pelensky.tictactoe.Game;
 
 import java.util.List;
 import java.util.Random;
@@ -18,6 +19,11 @@ public class ComputerPlayer implements Player {
     @Override
     public String getMarker() {
         return marker;
+    }
+
+    @Override
+    public void takeTurn(Game game) {
+        game.takeTurn(selectRandomAvailableSpace(game.board));
     }
 
     @Override

@@ -1,11 +1,14 @@
 package com.pelensky.tictactoe;
 
+import com.pelensky.tictactoe.App.IO;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -20,8 +23,9 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        player1 = new HumanPlayer("X");
-        player2 = new HumanPlayer("O");
+        IO io = new IO(new Scanner(System.in), new PrintStream(System.out));
+        player1 = new HumanPlayer(io, "X");
+        player2 = new HumanPlayer(io, "O");
         board = new Board(3);
         game = new Game(board, player1, player2);
     }

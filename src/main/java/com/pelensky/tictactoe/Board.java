@@ -12,11 +12,11 @@ public class Board {
     public Board(int numberOfRows) {
         this.numberOfRows = numberOfRows;
         this.totalSpaces = numberOfRows * numberOfRows;
-        this.spaces = new ArrayList<>();
+        this.spaces = new ArrayList<>(totalSpaces);
         assignValues();
     }
     
-    public void takeTurn(int space, String marker){
+    void takeTurn(int space, String marker){
         if (isMoveAllowed(space)) {
             getSpaces().set(space, marker);
         } else {

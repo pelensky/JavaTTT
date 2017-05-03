@@ -47,7 +47,7 @@ public class Game {
 
     private boolean isGameWonBy(Player player) {
         for (int i = 0; i < winningCombinations().size(); i++) {
-            ArrayList<String> line = winningCombinations().get(i);
+            List<String> line = winningCombinations().get(i);
             if (line.stream().allMatch(space -> space.equals(player.getMarker()))) {
                 winner = player;
                 return true;
@@ -61,7 +61,7 @@ public class Game {
     }
 
     private ArrayList<ArrayList<String>> getRows() {
-        ArrayList<ArrayList<String>> rows = new ArrayList<>();
+        ArrayList<ArrayList<String>> rows = new ArrayList<>(numberOfRows);
         for (int i = 0; i < numberOfRows; i++) {
             rows.add(new ArrayList<>(getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
         }
@@ -69,9 +69,9 @@ public class Game {
     }
 
     private ArrayList<ArrayList<String>> getColumns() {
-        ArrayList<ArrayList<String>> columns = new ArrayList<>();
+        ArrayList<ArrayList<String>> columns = new ArrayList<>(numberOfRows);
         for (int i = 0; i < numberOfRows; i++) {
-            ArrayList<String> column = new ArrayList<>();
+            ArrayList<String> column = new ArrayList<>(numberOfRows);
             for (int j = 0; j < numberOfRows; j++) {
                 column.add(getRows().get(j).get(i));
             }
@@ -81,7 +81,7 @@ public class Game {
     }
 
     private ArrayList<String> getLeftDiagonal() {
-        ArrayList<String> leftDiagonal = new ArrayList<>();
+        ArrayList<String> leftDiagonal = new ArrayList<>(numberOfRows);
         for (int i = 0; i < numberOfRows; i++) {
             leftDiagonal.add(getRows().get(i).get(i));
         }
@@ -89,7 +89,7 @@ public class Game {
     }
 
     private ArrayList<String> getRightDiagonal() {
-        ArrayList<String> rightDiagonal = new ArrayList<>();
+        ArrayList<String> rightDiagonal = new ArrayList<>(numberOfRows);
         for (int i = 0; i < numberOfRows; i++) {
             rightDiagonal.add(getRows().get(i).get(numberOfRows - (i + 1)));
         }

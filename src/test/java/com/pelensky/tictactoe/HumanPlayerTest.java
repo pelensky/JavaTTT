@@ -1,8 +1,12 @@
 package com.pelensky.tictactoe;
 
+import com.pelensky.tictactoe.App.IO;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +16,8 @@ public class HumanPlayerTest {
 
     @Before
     public void setUp(){
-        human = new HumanPlayer("X");
+        IO io = new IO(new Scanner(System.in), new PrintStream(System.out));
+        human = new HumanPlayer(io, "X");
     }
 
     @Test

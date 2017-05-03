@@ -3,6 +3,7 @@ package com.pelensky.tictactoe.App;
 import com.pelensky.tictactoe.Players.ComputerPlayer;
 import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.GameTypes.*;
+import com.pelensky.tictactoe.Players.Player;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +43,7 @@ public class AppRunner {
         io.print(welcome());
         io.print(instructions());
         int selection = select();
-        if (isValidSelection(selection)) {
+        if (isSelectionValid(selection)) {
             game = startNewGame(selection);
         } else {
             io.print("Invalid selection");
@@ -63,13 +64,13 @@ public class AppRunner {
 
     private List<GameType> gameTypes() {
         return Arrays.asList(
-                new HumanVSHuman(),
+                new HumanVSHuman(io),
                 new HumanVSComputer(io, random),
                 new ComputerVSComputer(),
                 new Quit(this));
     }
 
-    private boolean isValidSelection(int selection) {
+    private boolean isSelectionValid(int selection) {
         return (selection <= gameTypes().size() && selection > 0);
     }
 
@@ -83,26 +84,13 @@ public class AppRunner {
     }
 
     private void gameLoop() {
-        io.print(game.currentPlayer.getMarker() + " select a space");
+        io.print(getCurrentPlayer().getMarker() + " select a space");
         io.print(showBoard());
-        if (game.currentPlayer instanceof ComputerPlayer) {
-            computerTurn();
-        } else {
-            humanTurn();
-        }
+        getCurrentPlayer().takeTurn(game);
     }
 
-    private void computerTurn() {
-        game.takeTurn(((ComputerPlayer) game.currentPlayer).selectRandomAvailableSpace(game.board));
-    }
-
-    private void humanTurn() {
-        int proposedSpace = Integer.valueOf(io.getInput());
-        if (game.isMoveAllowed(proposedSpace)) {
-            game.takeTurn(proposedSpace);
-        } else {
-            io.print("Try again");
-        }
+    private Player getCurrentPlayer() {
+        return game.currentPlayer;
     }
 
     private void endOfGame() {

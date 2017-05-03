@@ -50,7 +50,7 @@ public class HumanVSComputer implements GameType {
 
     private List<Player> playerTypes() {
         return Arrays.asList(
-                new HumanPlayer("X"),
+                new HumanPlayer(io, "X"),
                 new ComputerPlayer("X", random));
     }
 
@@ -62,7 +62,7 @@ public class HumanVSComputer implements GameType {
         if (player1 instanceof HumanPlayer) {
             return new ComputerPlayer("O", random);
         } else {
-            return new HumanPlayer("O");
+            return new HumanPlayer(io, "O");
         }
     }
 }
