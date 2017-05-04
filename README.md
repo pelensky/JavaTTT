@@ -9,15 +9,16 @@ This is a Tic Tac Toe game built in Java, with three game types:
 2. Human VS Computer
 3. Computer VS Computer
 
-At this stage, the computer player selects a random available space. This does not implement the Minimax algorithm.
+At this stage, the computer player selects a random available space, it does not implement the Minimax algorithm.
 
 #### Running instructions
-1. Clone the repository
-2. CD into the repository
-3. Build the app by running `$ gradle build`
-4. Run the tests by running `$ gradle test`
-4. Play the game by running `$ gradle --console plain run`
-5. Enjoy!
+1. Clone the repository by clicking on the green "Clone or Download" button
+2. Select Download Zip
+3. Double click the zip file to unzip it
+4. In terminal, CD into the repository
+5. Build the app by running `$ gradle build`
+6. Run the tests by running `$ gradle test`
+7. Play the game by running `$ gradle --console plain run`
 
 #### The Rules
 
