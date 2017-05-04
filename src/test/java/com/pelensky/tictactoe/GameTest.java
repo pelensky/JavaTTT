@@ -43,19 +43,6 @@ public class GameTest {
     }
 
     @Test
-    public void currentPlayerChangesAfterTurn() {
-        game.takeTurn(0);
-        assertEquals(player2, game.currentPlayer);
-    }
-
-    @Test
-    public void doesNotChangeCurrentPlayerAfterIllegalMove() {
-        game.takeTurn(1);
-        game.takeTurn(1);
-        assertEquals(player2, game.currentPlayer);
-    }
-
-    @Test
     public void checkForWinHorizontalA() {
         board.spaces = new ArrayList<>(Arrays.asList("X", "X", "X", "3", "4", "5", "6", "7", "8"));
         assertTrue(game.isGameOver());

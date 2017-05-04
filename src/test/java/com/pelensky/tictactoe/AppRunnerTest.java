@@ -82,14 +82,8 @@ public class AppRunnerTest {
 
     @Test
     public void humanVScomputerComputerFirst(){
-        run("2\n2\n6\n7\n8\n2\n");
+        run("2\n2\n8\n7\n2\n");
         assertThat(out.toString(), containsString("Exiting"));
-    }
-
-    @Test
-    public void humanTriesAnIllegalMove() {
-        run("1\n0\n4\n10\n2\n8\n1\n2\n");
-        assertThat(out.toString(), containsString("Try again"));
     }
 
     @Test

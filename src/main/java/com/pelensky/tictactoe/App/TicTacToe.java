@@ -1,6 +1,9 @@
 package com.pelensky.tictactoe.App;
 
-import com.pelensky.tictactoe.Commands.*;
+import com.pelensky.tictactoe.Commands.Command;
+import com.pelensky.tictactoe.Commands.ComputerVSComputer;
+import com.pelensky.tictactoe.Commands.HumanVSComputer;
+import com.pelensky.tictactoe.Commands.HumanVSHuman;
 
 import java.io.PrintStream;
 import java.util.Arrays;
