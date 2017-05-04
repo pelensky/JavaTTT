@@ -74,13 +74,13 @@ public class AppRunner {
     }
 
     private void makeMove() {
-        io.print(getCurrentPlayer().getMarker() + " select a space");
+        io.print(getCurrentPlayerMarker() + " select a space");
         io.print(showBoard());
         game.takeTurn();
     }
 
-    private Player getCurrentPlayer() {
-        return game.currentPlayer;
+    private String getCurrentPlayerMarker() {
+        return game.currentPlayer.getMarker();
     }
 
     private void endOfGame() {
