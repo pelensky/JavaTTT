@@ -8,22 +8,22 @@ import com.pelensky.tictactoe.Board;
 
 public class HumanVSHuman implements Command {
 
-    private IO io;
+  private final IO io;
 
-    public HumanVSHuman(IO io) {
-        this.io = io;
-    }
+  public HumanVSHuman(IO io) {
+    this.io = io;
+  }
 
-    @Override
-    public Game execute() {
-        Player player1 = new HumanPlayer(io, "X");
-        Player player2 = new HumanPlayer(io, "O");
-        Board board = new Board(3);
-        return new Game(board, player1, player2);
-}
+  @Override
+  public Game execute() {
+    Player player1 = new HumanPlayer(io, "X");
+    Player player2 = new HumanPlayer(io, "O");
+    Board board = new Board(3);
+    return new Game(board, player1, player2);
+  }
 
-    @Override
-    public String instruction() {
-        return "Human VS Human";
-    }
+  @Override
+  public String instruction() {
+    return "Human VS Human";
+  }
 }

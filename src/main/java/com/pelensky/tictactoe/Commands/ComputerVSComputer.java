@@ -9,16 +9,16 @@ import java.util.Random;
 
 public class ComputerVSComputer implements Command {
 
-    @Override
-    public Game execute() {
-        Player player1 = new ComputerPlayer("X", new Random());
-        Player player2 = new ComputerPlayer("O", new Random());
-        Board board = new Board(3);
-        return new Game(board, player1, player2);
-    }
+  @Override
+  public Game execute() {
+    Player player1 = new ComputerPlayer("X", new Random());
+    Player player2 = new ComputerPlayer("O", new Random());
+    Board board = new Board(3);
+    return new Game(board, player1, player2);
+  }
 
-    @Override
-    public String instruction() {
-        return "Computer VS Computer";
-    }
+  @Override
+  public String instruction() {
+    return "Computer VS Computer";
+  }
 }

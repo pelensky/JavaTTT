@@ -14,22 +14,20 @@ import static org.junit.Assert.assertThat;
 
 public class ComputerPlayerTest {
 
-    private ComputerPlayer computer;
-    private Board board;
+  private ComputerPlayer computer;
 
-    @Before
-    public void setUp() {
-        computer = new ComputerPlayer("O", new Random());
-        board = new Board(3);
-    }
+  @Before
+  public void setUp() {
+    computer = new ComputerPlayer("O", new Random());
+  }
 
-    @Test
-    public void markerIsStored() {
-        assertEquals("O", computer.getMarker());
-    }
+  @Test
+  public void markerIsStored() {
+    assertEquals("O", computer.getMarker());
+  }
 
-    @Test
-    public void computerSelectsASpot() {
-       assertThat(computer.getMove(9), instanceOf(Integer.class));
-    }
+  @Test
+  public void computerSelectsASpot() {
+    assertThat(computer.getMove(9), instanceOf(Integer.class));
+  }
 }
