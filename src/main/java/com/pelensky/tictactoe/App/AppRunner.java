@@ -97,8 +97,6 @@ public class AppRunner {
     int selection = select();
     if (isSelectionValid(selection, playCommands())) {
       playAgainCommand(selection);
-    } else {
-      io.print("Invalid selection");
     }
   }
 

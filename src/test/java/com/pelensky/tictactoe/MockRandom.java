@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class MockRandom extends Random {
 
-    private int number;
+  private int number;
 
-    MockRandom(){
-        this.number = 0;
-    }
+  MockRandom() {
+    this.number = 0;
+  }
 
-    @Override
-    public int nextInt(int bound){
-        return number++;
-    }
+  @Override
+  public int nextInt(int bound) {
+    return number++;
+  }
 }

@@ -12,17 +12,16 @@ import static org.junit.Assert.assertEquals;
 
 public class HumanPlayerTest {
 
-    private HumanPlayer human;
+  private HumanPlayer human;
 
-    @Before
-    public void setUp(){
-        IO io = new IO(new Scanner(System.in), new PrintStream(System.out));
-        human = new HumanPlayer(io, "X");
-    }
+  @Before
+  public void setUp() {
+    IO io = new IO(new Scanner(System.in), new PrintStream(System.out));
+    human = new HumanPlayer(io, "X");
+  }
 
-    @Test
-    public void  markerIsStored(){
-     assertEquals("X", human.getMarker());
-    }
-
+  @Test
+  public void markerIsStored() {
+    assertEquals("X", human.getMarker());
+  }
 }
