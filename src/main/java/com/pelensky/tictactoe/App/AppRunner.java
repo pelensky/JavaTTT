@@ -2,7 +2,6 @@ package com.pelensky.tictactoe.App;
 
 import com.pelensky.tictactoe.Commands.*;
 import com.pelensky.tictactoe.Game;
-import com.pelensky.tictactoe.Players.Player;
 
 import java.util.Arrays;
 import java.util.List;
@@ -86,16 +85,23 @@ public class AppRunner {
     private void endOfGame() {
         printOutcome();
         io.print(showBoard());
+        playAgain();
+    }
+
+    private void playAgain() {
         io.print("Play again?");
         io.print((instructions(playCommands())));
         int selection = select();
         if (isSelectionValid(selection, playCommands())) {
-            Command playOrQuit = playCommands().get(selection - 1);
-            playOrQuit.execute();
+            playAgainCommand(selection);
         } else {
             io.print("Invalid selection");
         }
+    }
 
+    private void playAgainCommand(int selection) {
+        Command playOrQuit = playCommands().get(selection - 1);
+        playOrQuit.execute();
     }
 
     private List<Command> playCommands() {

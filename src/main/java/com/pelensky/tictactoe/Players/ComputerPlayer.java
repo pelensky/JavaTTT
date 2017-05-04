@@ -19,7 +19,7 @@ public class ComputerPlayer implements Player {
 
     @Override
     public int getMove(int numberOfSpaces){
-        return selectRandomSpace(numberOfSpaces);
+        return random.nextInt(numberOfSpaces);
     }
 
     @Override
@@ -27,8 +27,5 @@ public class ComputerPlayer implements Player {
         return "Computer";
     }
 
-    private int selectRandomSpace(int numberOfSpaces){
-        return random.nextInt(numberOfSpaces);
-    }
 }
 
