@@ -47,8 +47,7 @@ public class Game {
     }
 
     private boolean isGameWonBy(Player player) {
-        for (int i = 0; i < winningCombinations().size(); i++) {
-            List<String> line = winningCombinations().get(i);
+        for (ArrayList<String> line : winningCombinations()){
             if (line.stream().allMatch(space -> space.equals(player.getMarker()))) {
                 winner = player;
                 return true;
