@@ -6,7 +6,6 @@ import com.pelensky.tictactoe.Commands.Command;
 import com.pelensky.tictactoe.Commands.ComputerVSComputer;
 import com.pelensky.tictactoe.Commands.HumanVSComputer;
 import com.pelensky.tictactoe.Commands.HumanVSHuman;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;

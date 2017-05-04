@@ -1,7 +1,6 @@
 package com.pelensky.tictactoe.Players;
 
 import com.pelensky.tictactoe.App.IO;
-import com.pelensky.tictactoe.Game;
 
 public class HumanPlayer implements Player {
 
@@ -19,13 +18,8 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public void takeTurn(Game game) {
-        int proposedSpace = Integer.valueOf(io.getInput());
-        if (game.isMoveAllowed(proposedSpace)) {
-            game.takeTurn(proposedSpace);
-        } else {
-            io.print("Try again" + System.lineSeparator());
-        }
+    public int getMove(int numberOfSpaces) {
+        return Integer.valueOf(io.getInput());
     }
 
     @Override

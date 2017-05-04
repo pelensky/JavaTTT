@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Game {
 
-    public Board board;
+    Board board;
     Player player1;
     Player player2;
     public Player currentPlayer;
@@ -22,14 +22,15 @@ public class Game {
         this.numberOfRows = board.getNumberOfRows();
     }
 
-    public void takeTurn(int space) {
+    public void takeTurn() {
+        int space = currentPlayer.getMove(numberOfRows * numberOfRows);
         if (isMoveAllowed(space)) {
             board.takeTurn(space, currentPlayer.getMarker());
             changeCurrentPlayer();
         }
     }
 
-    public boolean isMoveAllowed(int space) {
+    private boolean isMoveAllowed(int space) {
         return board.isMoveAllowed(space);
     }
 

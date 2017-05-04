@@ -76,7 +76,7 @@ public class AppRunner {
     private void makeMove() {
         io.print(getCurrentPlayer().getMarker() + " select a space");
         io.print(showBoard());
-        getCurrentPlayer().takeTurn(game);
+        game.takeTurn();
     }
 
     private Player getCurrentPlayer() {
@@ -100,7 +100,7 @@ public class AppRunner {
 
     private List<Command> playCommands() {
         return Arrays.asList(
-               new PlayAgain(this),
+                new PlayAgain(),
                 new Quit(this));
     }
 
