@@ -5,59 +5,58 @@ import java.util.List;
 
 public class Board {
 
-    private int numberOfRows;
-    private int totalSpaces;
-    List<String> spaces;
+  private final int numberOfRows;
+  private final int totalSpaces;
+  List<String> spaces;
 
-    public Board(int numberOfRows) {
-        this.numberOfRows = numberOfRows;
-        this.totalSpaces = numberOfRows * numberOfRows;
-        this.spaces = new ArrayList<>();
-        assignValues();
-    }
-    
-    public void takeTurn(int space, String marker){
-        if (isMoveAllowed(space)) {
-            getSpaces().set(space, marker);
-        } else {
-            throw new IllegalMoveException();
-        }
-    }
+  public Board(int numberOfRows) {
+    this.numberOfRows = numberOfRows;
+    this.totalSpaces = numberOfRows * numberOfRows;
+    this.spaces = new ArrayList<>(totalSpaces);
+    assignValues();
+  }
 
-    boolean isMoveAllowed(int space){
-        return (isSpaceOnBoard(space) && isSpaceAvailable(space));
+  void takeTurn(int space, String marker) {
+    if (isMoveAllowed(space)) {
+      getSpaces().set(space, marker);
+    } else {
+      throw new IllegalMoveException();
     }
+  }
 
-    List<String> getSpaces() {
-        return spaces;
-    }
+  boolean isMoveAllowed(int space) {
+    return (isSpaceOnBoard(space) && isSpaceAvailable(space));
+  }
 
-    public List<Integer> getAvailableSpaces() {
-        List<Integer> availableSpaces = new ArrayList<>();
-        for (int i = 0; i < getSpaces().size(); i++) {
-            if (isSpaceAvailable(i)) {
-                availableSpaces.add(i);
-            }
-        }
-        return availableSpaces;
-    }
+  List<String> getSpaces() {
+    return spaces;
+  }
 
-    private void assignValues() {
-        for (int i = 0; i < totalSpaces; i++) {
-            getSpaces().add(String.valueOf(i));
-        }
+  List<Integer> getAvailableSpaces() {
+    List<Integer> availableSpaces = new ArrayList<>();
+    for (int i = 0; i < getSpaces().size(); i++) {
+      if (isSpaceAvailable(i)) {
+        availableSpaces.add(i);
+      }
     }
-    
-    private boolean isSpaceAvailable(int space){
-        return getSpaces().get(space).equals(String.valueOf(space));
-    }
+    return availableSpaces;
+  }
 
-    private boolean isSpaceOnBoard(int space){
-        return (space >= 0 && space <= getSpaces().size());
+  private void assignValues() {
+    for (int i = 0; i < totalSpaces; i++) {
+      getSpaces().add(String.valueOf(i));
     }
+  }
 
-    int getNumberOfRows() {
-        return numberOfRows;
-    }
+  private boolean isSpaceAvailable(int space) {
+    return getSpaces().get(space).equals(String.valueOf(space));
+  }
 
+  private boolean isSpaceOnBoard(int space) {
+    return (space >= 0 && space < totalSpaces);
+  }
+
+  int getNumberOfRows() {
+    return numberOfRows;
+  }
 }

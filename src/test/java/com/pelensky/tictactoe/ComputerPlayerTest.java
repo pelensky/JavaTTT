@@ -8,27 +8,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class ComputerPlayerTest {
 
-    private ComputerPlayer computer;
-    private Board board;
+  private ComputerPlayer computer;
 
-    @Before
-    public void setUp() {
-        computer = new ComputerPlayer("O", new Random());
-        board = new Board(3);
-    }
+  @Before
+  public void setUp() {
+    computer = new ComputerPlayer("O", new Random());
+  }
 
-    @Test
-    public void markerIsStored() {
-        assertEquals("O", computer.getMarker());
-    }
+  @Test
+  public void markerIsStored() {
+    assertEquals("O", computer.getMarker());
+  }
 
-    @Test
-    public void computerSelectsOnlyAvailableSpot() {
-        board.spaces = new ArrayList<>(Arrays.asList("O", "X", "O", "X", "4", "X", "X", "O", "X"));
-        assertEquals(4, computer.selectRandomAvailableSpace(board));
-    }
+  @Test
+  public void computerSelectsASpot() {
+    assertThat(computer.getMove(9), instanceOf(Integer.class));
+  }
 }

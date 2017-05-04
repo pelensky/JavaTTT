@@ -1,138 +1,141 @@
 package com.pelensky.tictactoe.App;
 
-import com.pelensky.tictactoe.Players.ComputerPlayer;
+import com.pelensky.tictactoe.Commands.*;
 import com.pelensky.tictactoe.Game;
-import com.pelensky.tictactoe.GameTypes.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class AppRunner {
 
-    private IO io;
-    private Random random;
-    private boolean appRunning = true;
-    private Game game;
+  private final IO io;
+  private final List<Command> commands;
+  private Game game;
+  private boolean appRunning = true;
 
+  public AppRunner(IO io, List<Command> commands) {
+    this.io = io;
+    this.commands = commands;
+  }
 
-    public AppRunner(IO io, Random random) {
-        this.io = io;
-        this.random = random;
-    }
-
-    public void run() {
-        while (appRunning) {
-            startGame();
-            if (game != null) {
-                while (gameInProgress()) {
-                    gameLoop();
-                }
-                endOfGame();
-            }
+  public void run() {
+    while (appRunning) {
+      startGame();
+      if (game != null) {
+        while (gameInProgress()) {
+          makeMove();
         }
+        endOfGame();
+      }
     }
+  }
 
-    public void quitApp() {
-        this.appRunning = false;
-        io.print("Exiting");
-    }
+  public void quitApp() {
+    appRunning = false;
+    io.print("Exiting");
+  }
 
-    private void startGame() {
-        io.print(welcome());
-        io.print(instructions());
-        int selection = select();
-        if (isValidSelection(selection)) {
-            game = startNewGame(selection);
-        } else {
-            io.print("Invalid selection");
-        }
+  private void startGame() {
+    io.print(welcome());
+    io.print(instructions(commands));
+    int selection = select();
+    if (isSelectionValid(selection, commands)) {
+      game = startNewGame(selection);
+    } else {
+      io.print("Invalid selection");
     }
+  }
 
-    private String welcome() {
-        return "Tic Tac Toe" + System.lineSeparator() + "Select Game Type";
-    }
+  private String welcome() {
+    return "Tic Tac Toe" + System.lineSeparator() + "Select Game Type";
+  }
 
-    private String instructions() {
-        StringBuilder instructions = new StringBuilder();
-        for (int i = 0; i < gameTypes().size(); i++) {
-            instructions.append(i + 1).append(") ").append(gameTypes().get(i).instruction()).append(System.lineSeparator());
-        }
-        return instructions.toString().trim();
+  private String instructions(List<Command> options) {
+    StringBuilder instructions = new StringBuilder();
+    for (int i = 0; i < options.size(); i++) {
+      instructions
+          .append(i + 1)
+          .append(") ")
+          .append(options.get(i).instruction())
+          .append(System.lineSeparator());
     }
+    return instructions.toString().trim();
+  }
 
-    private List<GameType> gameTypes() {
-        return Arrays.asList(
-                new HumanVSHuman(),
-                new HumanVSComputer(io, random),
-                new ComputerVSComputer(),
-                new Quit(this));
-    }
+  private boolean isSelectionValid(int selection, List<Command> options) {
+    return (selection <= options.size() && selection > 0);
+  }
 
-    private boolean isValidSelection(int selection) {
-        return (selection <= gameTypes().size() && selection > 0);
-    }
+  private Game startNewGame(int choice) {
+    Command newGame = commands.get(choice - 1);
+    return newGame.execute();
+  }
 
-    private Game startNewGame(int choice) {
-        GameType newGame = gameTypes().get(choice - 1);
-        return newGame.execute();
-    }
+  private boolean gameInProgress() {
+    return !game.isGameOver();
+  }
 
-    private boolean gameInProgress() {
-        return !game.isGameOver();
-    }
+  private void makeMove() {
+    io.print(getCurrentPlayerMarker() + " select a space");
+    io.print(showBoard());
+    game.takeTurn();
+  }
 
-    private void gameLoop() {
-        io.print(game.currentPlayer.getMarker() + " select a space");
-        io.print(showBoard());
-        if (game.currentPlayer instanceof ComputerPlayer) {
-            computerTurn();
-        } else {
-            humanTurn();
-        }
-    }
+  private String getCurrentPlayerMarker() {
+    return game.currentPlayer.getMarker();
+  }
 
-    private void computerTurn() {
-        game.takeTurn(((ComputerPlayer) game.currentPlayer).selectRandomAvailableSpace(game.board));
-    }
+  private void endOfGame() {
+    printOutcome();
+    io.print(showBoard());
+    playAgain();
+  }
 
-    private void humanTurn() {
-        int proposedSpace = Integer.valueOf(io.getInput());
-        if (game.isMoveAllowed(proposedSpace)) {
-            game.takeTurn(proposedSpace);
-        } else {
-            io.print("Try again");
-        }
+  private void playAgain() {
+    io.print("Play again?");
+    io.print((instructions(playCommands())));
+    int selection = select();
+    if (isSelectionValid(selection, playCommands())) {
+      playAgainCommand(selection);
     }
+  }
 
-    private void endOfGame() {
-        printOutcome();
-        io.print(showBoard());
-        io.print("-----------------------");
-    }
+  private void playAgainCommand(int selection) {
+    Command playOrQuit = playCommands().get(selection - 1);
+    playOrQuit.execute();
+  }
 
-    private void printOutcome() {
-        if (game.getWinner() != null) {
-            io.print(game.getWinner().getMarker() + " is the winner");
-        } else {
-            io.print("Game tied");
-        }
-    }
+  private List<Command> playCommands() {
+    return Arrays.asList(new PlayAgain(), new Quit(this));
+  }
 
-    private String showBoard() {
-        String line = System.lineSeparator() + "-----------" + System.lineSeparator();
-        return getRow(0, 1, 2) + line + getRow(3, 4, 5) + line + getRow(6, 7, 8) + System.lineSeparator();
+  private void printOutcome() {
+    if (game.getWinner() != null) {
+      io.print(game.getWinner().getMarker() + " is the winner");
+    } else {
+      io.print("Game tied");
     }
+  }
 
-    private String getRow(int a, int b, int c) {
-        return " " + getSpace(a) + " | " + getSpace(b) + " | " + getSpace(c);
-    }
+  private String showBoard() {
+    String line = System.lineSeparator() + "-----------" + System.lineSeparator();
+    return getRow(0, 1, 2)
+        + line
+        + getRow(3, 4, 5)
+        + line
+        + getRow(6, 7, 8)
+        + System.lineSeparator();
+  }
 
-    private String getSpace(int index) {
-        return game.getSpaces().get(index);
-    }
+  private String getRow(int a, int b, int c) {
+    return " " + getSpace(a) + " | " + getSpace(b) + " | " + getSpace(c);
+  }
 
-    private int select() {
-        return Integer.parseInt(io.getInput());
-    }
+  private String getSpace(int index) {
+    return game.getSpaces().get(index);
+  }
+
+  private int select() {
+    return Integer.parseInt(io.getInput());
+  }
 }
