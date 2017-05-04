@@ -53,7 +53,7 @@ public class Board {
     }
 
     private boolean isSpaceOnBoard(int space){
-        return (space >= 0 && space <= getSpaces().size());
+        return (space >= 0 && space < totalSpaces);
     }
 
     int getNumberOfRows() {

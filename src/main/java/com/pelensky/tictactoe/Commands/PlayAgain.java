@@ -3,22 +3,20 @@ package com.pelensky.tictactoe.Commands;
 import com.pelensky.tictactoe.App.AppRunner;
 import com.pelensky.tictactoe.Game;
 
-public class Quit implements Command {
-
+public class PlayAgain implements Command {
     private AppRunner appRunner;
 
-    public Quit(AppRunner appRunner){
+    public PlayAgain(AppRunner appRunner){
         this.appRunner = appRunner;
     }
 
     @Override
     public Game execute() {
-        appRunner.quitApp();
         return null;
     }
 
     @Override
     public String instruction() {
-        return "No";
+        return "Yes";
     }
 }

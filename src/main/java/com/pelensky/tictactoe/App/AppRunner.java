@@ -1,24 +1,23 @@
 package com.pelensky.tictactoe.App;
 
-import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Commands.*;
+import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Players.Player;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class AppRunner {
 
     private IO io;
-    private Random random;
+    private List<Command> commands;
     private boolean appRunning = true;
     private Game game;
 
 
-    public AppRunner(IO io, Random random) {
+    public AppRunner(IO io, List<Command> commands) {
         this.io = io;
-        this.random = random;
+        this.commands = commands;
     }
 
     public void run() {
@@ -26,7 +25,7 @@ public class AppRunner {
             startGame();
             if (game != null) {
                 while (gameInProgress()) {
-                    gameLoop();
+                    makeMove();
                 }
                 endOfGame();
             }
@@ -34,15 +33,15 @@ public class AppRunner {
     }
 
     public void quitApp() {
-        this.appRunning = false;
+        appRunning = false;
         io.print("Exiting");
     }
 
     private void startGame() {
         io.print(welcome());
-        io.print(instructions());
+        io.print(instructions(commands));
         int selection = select();
-        if (isSelectionValid(selection)) {
+        if (isSelectionValid(selection, commands)) {
             game = startNewGame(selection);
         } else {
             io.print("Invalid selection");
@@ -53,28 +52,20 @@ public class AppRunner {
         return "Tic Tac Toe" + System.lineSeparator() + "Select Game Type";
     }
 
-    private String instructions() {
+    private String instructions(List<Command> options) {
         StringBuilder instructions = new StringBuilder();
-        for (int i = 0; i < gameTypes().size(); i++) {
-            instructions.append(i + 1).append(") ").append(gameTypes().get(i).instruction()).append(System.lineSeparator());
+        for (int i = 0; i < options.size(); i++) {
+            instructions.append(i + 1).append(") ").append(options.get(i).instruction()).append(System.lineSeparator());
         }
         return instructions.toString().trim();
     }
 
-    private List<Command> gameTypes() {
-        return Arrays.asList(
-                new HumanVSHuman(io),
-                new HumanVSComputer(io, random),
-                new ComputerVSComputer(),
-                new Quit(this));
-    }
-
-    private boolean isSelectionValid(int selection) {
-        return (selection <= gameTypes().size() && selection > 0);
+    private boolean isSelectionValid(int selection, List<Command> options) {
+        return (selection <= options.size() && selection > 0);
     }
 
     private Game startNewGame(int choice) {
-        Command newGame = gameTypes().get(choice - 1);
+        Command newGame = commands.get(choice - 1);
         return newGame.execute();
     }
 
@@ -82,7 +73,7 @@ public class AppRunner {
         return !game.isGameOver();
     }
 
-    private void gameLoop() {
+    private void makeMove() {
         io.print(getCurrentPlayer().getMarker() + " select a space");
         io.print(showBoard());
         getCurrentPlayer().takeTurn(game);
@@ -95,7 +86,22 @@ public class AppRunner {
     private void endOfGame() {
         printOutcome();
         io.print(showBoard());
-        io.print("-----------------------");
+        io.print("Play again?");
+        io.print((instructions(playCommands())));
+        int selection = select();
+        if (isSelectionValid(selection, playCommands())) {
+            Command playOrQuit = playCommands().get(selection - 1);
+            playOrQuit.execute();
+        } else {
+            io.print("Invalid selection");
+        }
+
+    }
+
+    private List<Command> playCommands() {
+        return Arrays.asList(
+               new PlayAgain(this),
+                new Quit(this));
     }
 
     private void printOutcome() {

@@ -1,13 +1,12 @@
 package com.pelensky.tictactoe.Players;
 
-import com.pelensky.tictactoe.Board;
-import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.App.IO;
+import com.pelensky.tictactoe.Game;
 
 public class HumanPlayer implements Player {
 
-    private String marker;
-    private IO io;
+    private final String marker;
+    private final IO io;
 
     public HumanPlayer(IO io, String marker){
         this.marker = marker;
@@ -25,7 +24,7 @@ public class HumanPlayer implements Player {
         if (game.isMoveAllowed(proposedSpace)) {
             game.takeTurn(proposedSpace);
         } else {
-            io.print("Try again");
+            io.print("Try again" + System.lineSeparator());
         }
     }
 
