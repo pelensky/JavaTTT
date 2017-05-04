@@ -119,15 +119,15 @@ public class AppRunner {
 
   private String showBoard() {
     String line = System.lineSeparator() + "-----------" + System.lineSeparator();
-    return getRow(0, 1, 2)
+    return formatRow(0, 1, 2)
         + line
-        + getRow(3, 4, 5)
+        + formatRow(3, 4, 5)
         + line
-        + getRow(6, 7, 8)
+        + formatRow(6, 7, 8)
         + System.lineSeparator();
   }
 
-  private String getRow(int a, int b, int c) {
+  private String formatRow(int a, int b, int c) {
     return " " + getSpace(a) + " | " + getSpace(b) + " | " + getSpace(c);
   }
 
