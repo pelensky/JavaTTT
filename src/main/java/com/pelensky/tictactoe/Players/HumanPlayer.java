@@ -1,9 +1,9 @@
 package com.pelensky.tictactoe.Players;
 
 import com.pelensky.tictactoe.App.IO;
-import com.pelensky.tictactoe.App.UI;
+import com.pelensky.tictactoe.App.Input;
 
-public class HumanPlayer extends UI implements Player {
+public class HumanPlayer extends Input implements Player {
 
   private final String marker;
   private final IO io;

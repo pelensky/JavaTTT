@@ -4,30 +4,31 @@ import com.pelensky.tictactoe.Commands.Command;
 import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Players.Player;
 
+import java.io.PrintStream;
 import java.util.List;
 
 public class UI {
 
-    private final IO io;
+    private final PrintStream output;
 
-    public UI(IO io) {
-        this.io = io;
+    public UI(PrintStream output) {
+        this.output = output;
     }
 
-    void welcome() {
-        io.print("Tic Tac Toe" + System.lineSeparator() + "Select Game Type");
+    void printWelcome() {
+        output.println("Tic Tac Toe" + System.lineSeparator() + "Select Game Type");
     }
 
-    protected void printWhoPlaysFirst() {
-        io.print("Who plays first?");
+    public void printWhoPlaysFirst() {
+        output.println("Who plays first?");
     }
 
     void printInvalidSelection() {
-        io.print("Invalid selection");
+        output.println("Invalid selection");
     }
 
-    void printExiting() {
-        io.print("Exiting");
+   void printExiting() {
+        output.println("Exiting");
     }
 
     void printOptions(List<Command> options) {
@@ -39,10 +40,10 @@ public class UI {
                     .append(options.get(i).instruction())
                     .append(System.lineSeparator());
         }
-        io.print(instructions.toString().trim());
+        output.println(instructions.toString().trim());
     }
 
-    protected void printSelection(List<Player> playerTypes) {
+    public void printSelection(List<Player> playerTypes) {
         StringBuilder instructions = new StringBuilder();
         for (int i = 0; i < playerTypes.size(); i++) {
             instructions
@@ -51,16 +52,16 @@ public class UI {
                     .append(playerTypes.get(i).playerType())
                     .append(System.lineSeparator());
         }
-        io.print(instructions.toString().trim());
+        output.println(instructions.toString().trim());
     }
 
     void printSelectSpace(Game game) {
-        io.print(game.currentPlayer.getMarker() + " select a space");
+        output.println(game.currentPlayer.getMarker() + " select a space");
     }
 
     void printBoard(Game game) {
         String line = System.lineSeparator() + "-----------" + System.lineSeparator();
-        io.print(formatRow(game, 0, 1, 2)
+        output.println(formatRow(game, 0, 1, 2)
                 + line
                 + formatRow(game, 3, 4, 5)
                 + line
@@ -78,35 +79,14 @@ public class UI {
 
     void printOutcome(Game game) {
         if (game.getWinner() != null) {
-            io.print(game.getWinner().getMarker() + " is the winner");
+            output.println(game.getWinner().getMarker() + " is the winner");
         } else {
-            io.print("Game tied");
+            output.println("Game tied");
         }
     }
 
     void printPlayAgain() {
-        io.print("Play again?");
+        output.println("Play again?");
     }
 
-    protected int getInteger() {
-        int integer = -1;
-        while (integer < 0) {
-            String selection = io.getInput();
-            if (validateInput(selection)) {
-                integer = Integer.parseInt(selection);
-            } else {
-                io.print("Please select an integer");
-            }
-        }
-        return integer;
-    }
-
-    private boolean validateInput(String text) {
-        try {
-            Integer.parseInt(text);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 }

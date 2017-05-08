@@ -6,15 +6,17 @@ import com.pelensky.tictactoe.Game;
 import java.util.Arrays;
 import java.util.List;
 
-public class AppRunner extends UI {
+public class AppRunner extends Input {
 
     private final List<Command> commands;
     private Game game;
+    private UI ui;
     private boolean appRunning = true;
 
-    public AppRunner(IO io, List<Command> commands) {
+    public AppRunner(IO io, UI ui, List<Command> commands) {
         super(io);
         this.commands = commands;
+        this.ui = ui;
     }
 
     public void run() {
@@ -31,17 +33,17 @@ public class AppRunner extends UI {
 
     public void quitApp() {
         appRunning = false;
-        printExiting();
+        ui.printExiting();
     }
 
     private void startGame() {
-        welcome();
-        printOptions(commands);
+        ui.printWelcome();
+        ui.printOptions(commands);
         int selection = getInteger();
         if (isSelectionValid(selection, commands)) {
             game = startNewGame(selection);
         } else {
-            printInvalidSelection();
+            ui.printInvalidSelection();
         }
     }
 
@@ -59,20 +61,20 @@ public class AppRunner extends UI {
     }
 
     private void makeMove() {
-        printSelectSpace(game);
-        printBoard(game);
+        ui.printSelectSpace(game);
+        ui.printBoard(game);
         game.takeTurn();
     }
 
     private void endOfGame() {
-        printOutcome(game);
-        printBoard(game);
+        ui.printOutcome(game);
+        ui.printBoard(game);
         playAgain();
     }
 
     private void playAgain() {
-        printPlayAgain();
-        printOptions(playCommands());
+        ui.printPlayAgain();
+        ui.printOptions(playCommands());
         int selection = getInteger();
         if (isSelectionValid(selection, playCommands())) {
             playAgainCommand(selection);

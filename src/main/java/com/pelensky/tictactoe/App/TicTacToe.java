@@ -15,17 +15,19 @@ public class TicTacToe {
 
   private static IO io;
   private static AppRunner appRunner;
+  private static UI ui;
   private static Random random;
 
   public static void main(String[] args) {
     io = new IO(new Scanner(System.in), new PrintStream(System.out));
+    ui = new UI(new PrintStream(System.out));
     random = new Random();
-    appRunner = new AppRunner(io, commands());
+    appRunner = new AppRunner(io, ui, commands());
     appRunner.run();
   }
 
   private static List<Command> commands() {
     return Arrays.asList(
-        new HumanVSHuman(io), new HumanVSComputer(io, random), new ComputerVSComputer());
+        new HumanVSHuman(io), new HumanVSComputer(io, ui, random), new ComputerVSComputer());
   }
 }
