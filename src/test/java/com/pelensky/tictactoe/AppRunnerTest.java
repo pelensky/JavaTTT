@@ -92,7 +92,7 @@ public class AppRunnerTest {
 
   @Test
   public void humanVScomputerHumanFirst() {
-    run("2\n1\n6\n7\n8\n2\n");
+    run("2\n1\n6\n7\n8\n1\n3\n2\n");
     assertThat(
         out.toString(),
         containsString(

@@ -36,4 +36,4 @@ The rules of tic-tac-toe are as follows:
 * This was built for later extendability in mind
     * The board can be initialized with number of rows (3 is passed in as an argument when the game is created)
     * Players markers can be any string (X and O are assigned when an instance of the game is created)   
-* While the application does not currently allow for bigger game or use different markers, this would be an easy change later if required
+* While the application does not currently support bigger game or use different markers, this would be an easy change later if required
