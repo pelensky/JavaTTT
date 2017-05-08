@@ -1,14 +1,13 @@
 package com.pelensky.tictactoe.Players;
 
 import com.pelensky.tictactoe.App.Input;
-import com.pelensky.tictactoe.App.UI;
 
 public class HumanPlayer implements Player {
 
   private final String marker;
   private final Input input;
 
-  public HumanPlayer(Input input, UI ui, String marker) {
+  public HumanPlayer(Input input, String marker) {
     this.marker = marker;
     this.input = input;
   }

@@ -2,7 +2,7 @@ package com.pelensky.tictactoe;
 
 import com.pelensky.tictactoe.App.AppRunner;
 import com.pelensky.tictactoe.App.Input;
-import com.pelensky.tictactoe.App.UI;
+import com.pelensky.tictactoe.App.Print;
 import com.pelensky.tictactoe.Commands.Command;
 import com.pelensky.tictactoe.Commands.ComputerVSComputer;
 import com.pelensky.tictactoe.Commands.HumanVSComputer;
@@ -22,21 +22,21 @@ public class AppRunnerTest {
 
   private ByteArrayOutputStream out;
   private Input input;
-  private UI ui;
+  private Print print;
 
   private void run(String text) {
     out = new ByteArrayOutputStream();
     Scanner scanner = new Scanner(text);
     PrintStream output = new PrintStream(out);
-    ui = new UI(output);
-    input = new Input(scanner, ui);
-    AppRunner appRunner = new AppRunner(input, ui, commands());
+    print = new Print(output);
+    input = new Input(scanner, print);
+    AppRunner appRunner = new AppRunner(input, print, commands());
     appRunner.run();
   }
 
   private List<Command> commands() {
     return Arrays.asList(
-        new HumanVSHuman(input, ui), new HumanVSComputer(input, ui, new MockRandom()), new ComputerVSComputer());
+        new HumanVSHuman(input, print), new HumanVSComputer(input, print, new MockRandom()), new ComputerVSComputer());
   }
 
   @Test

@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Input {
 
   private final Scanner input;
-  private final UI ui;
+  private final Print print;
 
-  public Input(Scanner input, UI ui) {
+  public Input(Scanner input, Print print) {
     this.input = input;
-    this.ui = ui;
+    this.print = print;
   }
 
   public int getInteger() {
@@ -19,7 +19,7 @@ public class Input {
       if (validateInput(selection)) {
         integer = Integer.parseInt(selection);
       } else {
-        ui.printInvalidSelection();
+        print.invalidSelection();
       }
     }
     return integer;

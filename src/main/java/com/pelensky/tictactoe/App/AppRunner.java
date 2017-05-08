@@ -10,14 +10,14 @@ public class AppRunner {
 
     private final List<Command> commands;
     private Game game;
-    private UI ui;
     private Input input;
+    private Print print;
     private boolean appRunning = true;
 
-    public AppRunner(Input input, UI ui, List<Command> commands) {
+    public AppRunner(Input input, Print print, List<Command> commands) {
         this.input = input;
+        this.print = print;
         this.commands = commands;
-        this.ui = ui;
     }
 
     public void run() {
@@ -34,17 +34,17 @@ public class AppRunner {
 
     public void quitApp() {
         appRunning = false;
-        ui.printExiting();
+        print.exiting();
     }
 
     private void startGame() {
-        ui.printWelcome();
-        ui.printOptions(commands);
+        print.welcome();
+        print.options(commands);
         int selection = input.getInteger();
         if (isSelectionValid(selection, commands)) {
             game = startNewGame(selection);
         } else {
-            ui.printInvalidSelection();
+            print.invalidSelection();
         }
     }
 
@@ -62,20 +62,20 @@ public class AppRunner {
     }
 
     private void makeMove() {
-        ui.printSelectSpace(game);
-        ui.printBoard(game);
+        print.selectSpace(game);
+        print.board(game);
         game.takeTurn();
     }
 
     private void endOfGame() {
-        ui.printOutcome(game);
-        ui.printBoard(game);
+        print.outcome(game);
+        print.board(game);
         playAgain();
     }
 
     private void playAgain() {
-        ui.printPlayAgain();
-        ui.printOptions(playCommands());
+        print.playAgain();
+        print.options(playCommands());
         int selection = input.getInteger();
         if (isSelectionValid(selection, playCommands())) {
             playAgainCommand(selection);

@@ -7,31 +7,31 @@ import com.pelensky.tictactoe.Players.Player;
 import java.io.PrintStream;
 import java.util.List;
 
-public class UI {
+public class Print {
 
     private final PrintStream output;
 
-    public UI(PrintStream output) {
+    public Print(PrintStream output) {
         this.output = output;
     }
 
-    void printWelcome() {
+    void welcome() {
         output.println("Tic Tac Toe" + System.lineSeparator() + "Select Game Type");
     }
 
-    public void printWhoPlaysFirst() {
+    public void whoPlaysFirst() {
         output.println("Who plays first?");
     }
 
-    void printInvalidSelection() {
+    void invalidSelection() {
         output.println("Invalid selection");
     }
 
-   void printExiting() {
+    void exiting() {
         output.println("Exiting");
     }
 
-    void printOptions(List<Command> options) {
+    void options(List<Command> options) {
         StringBuilder instructions = new StringBuilder();
         for (int i = 0; i < options.size(); i++) {
             instructions
@@ -43,7 +43,7 @@ public class UI {
         output.println(instructions.toString().trim());
     }
 
-    public void printSelection(List<Player> playerTypes) {
+    public void selection(List<Player> playerTypes) {
         StringBuilder instructions = new StringBuilder();
         for (int i = 0; i < playerTypes.size(); i++) {
             instructions
@@ -55,11 +55,11 @@ public class UI {
         output.println(instructions.toString().trim());
     }
 
-    void printSelectSpace(Game game) {
+    void selectSpace(Game game) {
         output.println(game.currentPlayer.getMarker() + " select a space");
     }
 
-    void printBoard(Game game) {
+    void board(Game game) {
         String line = System.lineSeparator() + "-----------" + System.lineSeparator();
         output.println(formatRow(game, 0, 1, 2)
                 + line
@@ -77,7 +77,7 @@ public class UI {
         return game.getSpaces().get(index);
     }
 
-    void printOutcome(Game game) {
+    void outcome(Game game) {
         if (game.getWinner() != null) {
             output.println(game.getWinner().getMarker() + " is the winner");
         } else {
@@ -85,7 +85,7 @@ public class UI {
         }
     }
 
-    void printPlayAgain() {
+    void playAgain() {
         output.println("Play again?");
     }
 }
