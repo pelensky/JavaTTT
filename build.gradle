@@ -23,6 +23,12 @@ run{
     standardInput = System.in
 }
 
+test {
+    testLogging {
+        events "PASSED", "STARTED", "FAILED", "SKIPPED"
+    }
+}
+
 jacocoTestReport {
     reports {
         xml.enabled = true // coveralls plugin depends on xml format report
@@ -34,3 +40,5 @@ jacocoTestReport {
         })
     }
 }
+
+

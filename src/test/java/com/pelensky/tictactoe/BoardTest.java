@@ -40,12 +40,6 @@ public class BoardTest {
     assertEquals("X", board.getSpaces().get(0));
   }
 
-  @Test(expected = IllegalMoveException.class)
-  public void cantPutAMarkerSomewhereTaken() {
-    board.takeTurn(1, "X");
-    board.takeTurn(1, "O");
-  }
-
   @Test
   public void cantChooseSomewhereOutsideBoard() {
     assertFalse(board.isMoveAllowed(10));

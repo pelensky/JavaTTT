@@ -1,11 +1,12 @@
 package com.pelensky.tictactoe.Commands;
 
+import com.pelensky.tictactoe.App.Input;
+import com.pelensky.tictactoe.App.Print;
 import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 import com.pelensky.tictactoe.Players.ComputerPlayer;
 import com.pelensky.tictactoe.Players.Player;
 import com.pelensky.tictactoe.Board;
-import com.pelensky.tictactoe.App.IO;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,11 +14,13 @@ import java.util.Random;
 
 public class HumanVSComputer implements Command {
 
-  private final IO io;
+  private final Input input;
+  private final Print print;
   private final Random random;
 
-  public HumanVSComputer(IO io, Random random) {
-    this.io = io;
+  public HumanVSComputer(Input input, Print print, Random random) {
+    this.input = input;
+    this.print = print;
     this.random = random;
   }
 
@@ -35,36 +38,20 @@ public class HumanVSComputer implements Command {
   }
 
   private Player selectFirstPlayer() {
-    io.print("Who plays first?");
-    io.print(selection());
-    return playerTypes().get(select() - 1);
-  }
-
-  private String selection() {
-    StringBuilder instructions = new StringBuilder();
-    for (int i = 0; i < playerTypes().size(); i++) {
-      instructions
-          .append(i + 1)
-          .append(") ")
-          .append(playerTypes().get(i).playerType())
-          .append(System.lineSeparator());
-    }
-    return instructions.toString().trim();
+    print.whoPlaysFirst();
+    print.selection(playerTypes());
+    return playerTypes().get(input.getInteger() - 1);
   }
 
   private List<Player> playerTypes() {
-    return Arrays.asList(new HumanPlayer(io, "X"), new ComputerPlayer("X", random));
-  }
-
-  private int select() {
-    return Integer.parseInt(io.getInput());
+    return Arrays.asList(new HumanPlayer(input,  "X"), new ComputerPlayer("X", random));
   }
 
   private Player setPlayer2(Player player1) {
     if (player1 instanceof HumanPlayer) {
       return new ComputerPlayer("O", random);
     } else {
-      return new HumanPlayer(io, "O");
+      return new HumanPlayer(input,  "O");
     }
   }
 }

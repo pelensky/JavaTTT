@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/pelensky/JavaTTT.svg?branch=master)](https://travis-ci.org/pelensky/JavaTTT)
-[![Coverage Status](https://coveralls.io/repos/github/pelensky/JavaTTT/badge.svg?branch=master)](https://coveralls.io/github/pelensky/JavaTTT?branch=master)
+[![Coverage Status](https://coveralls.input/repos/github/pelensky/JavaTTT/badge.svg?branch=master)](https://coveralls.input/github/pelensky/JavaTTT?branch=master)
 
 ## Java Tic Tac Toe 
 
@@ -17,7 +17,7 @@ At this stage, the computer player selects a random available space, it does not
 3. Double click the zip file to unzip it
 4. In terminal, CD into the repository
 5. Build the app by running `$ gradle build`
-6. Run the tests by running `$ gradle test`
+6. Run the tests by running `$ gradle cleanTest test`
 7. Play the game by running `$ gradle --console plain run`
 
 #### The Rules
@@ -33,7 +33,7 @@ The rules of tic-tac-toe are as follows:
 * A game is over when all fields are taken
 
 #### Note
-* This was built with extendability in mind
+* This was built for later extendability in mind
     * The board can be initialized with number of rows (3 is passed in as an argument when the game is created)
     * Players markers can be any string (X and O are assigned when an instance of the game is created)   
-* While the user does not currently have the options to create a bigger game or use different markers in the Command Line Application, this would be an easy change later if required
+* While the application does not currently support bigger game or use different markers, this would be an easy change later if required

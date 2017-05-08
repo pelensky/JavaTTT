@@ -1,6 +1,7 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.App.IO;
+import com.pelensky.tictactoe.App.Input;
+import com.pelensky.tictactoe.App.Print;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +17,9 @@ public class HumanPlayerTest {
 
   @Before
   public void setUp() {
-    IO io = new IO(new Scanner(System.in), new PrintStream(System.out));
-    human = new HumanPlayer(io, "X");
+    Print print = new Print(new PrintStream(System.out));
+    Input input = new Input(new Scanner(System.in), print);
+    human = new HumanPlayer(input,  "X");
   }
 
   @Test

@@ -13,19 +13,21 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
-  private static IO io;
+  private static Input input;
   private static AppRunner appRunner;
+  private static Print print;
   private static Random random;
 
   public static void main(String[] args) {
-    io = new IO(new Scanner(System.in), new PrintStream(System.out));
+    print = new Print(new PrintStream(System.out));
+    input = new Input(new Scanner(System.in), print);
     random = new Random();
-    appRunner = new AppRunner(io, commands());
+    appRunner = new AppRunner(input, print, commands());
     appRunner.run();
   }
 
   private static List<Command> commands() {
     return Arrays.asList(
-        new HumanVSHuman(io), new HumanVSComputer(io, random), new ComputerVSComputer());
+        new HumanVSHuman(input, print), new HumanVSComputer(input, print, random), new ComputerVSComputer());
   }
 }

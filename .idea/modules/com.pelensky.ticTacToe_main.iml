@@ -9,6 +9,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="com.pelensky.ticTacToe_test" />
   </component>
 </module>
