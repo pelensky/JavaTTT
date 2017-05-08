@@ -6,15 +6,16 @@ import com.pelensky.tictactoe.Game;
 import java.util.Arrays;
 import java.util.List;
 
-public class AppRunner extends Input {
+public class AppRunner {
 
     private final List<Command> commands;
     private Game game;
     private UI ui;
+    private Input input;
     private boolean appRunning = true;
 
-    public AppRunner(IO io, UI ui, List<Command> commands) {
-        super(io);
+    public AppRunner(Input input, UI ui, List<Command> commands) {
+        this.input = input;
         this.commands = commands;
         this.ui = ui;
     }
@@ -39,7 +40,7 @@ public class AppRunner extends Input {
     private void startGame() {
         ui.printWelcome();
         ui.printOptions(commands);
-        int selection = getInteger();
+        int selection = input.getInteger();
         if (isSelectionValid(selection, commands)) {
             game = startNewGame(selection);
         } else {
@@ -75,7 +76,7 @@ public class AppRunner extends Input {
     private void playAgain() {
         ui.printPlayAgain();
         ui.printOptions(playCommands());
-        int selection = getInteger();
+        int selection = input.getInteger();
         if (isSelectionValid(selection, playCommands())) {
             playAgainCommand(selection);
         }

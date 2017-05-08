@@ -1,17 +1,16 @@
 package com.pelensky.tictactoe.Players;
 
-import com.pelensky.tictactoe.App.IO;
 import com.pelensky.tictactoe.App.Input;
+import com.pelensky.tictactoe.App.UI;
 
-public class HumanPlayer extends Input implements Player {
+public class HumanPlayer implements Player {
 
   private final String marker;
-  private final IO io;
+  private final Input input;
 
-  public HumanPlayer(IO io, String marker) {
-    super(io);
+  public HumanPlayer(Input input, UI ui, String marker) {
     this.marker = marker;
-    this.io = io;
+    this.input = input;
   }
 
   @Override
@@ -21,7 +20,7 @@ public class HumanPlayer extends Input implements Player {
 
   @Override
   public int getMove(int numberOfSpaces) {
-    return getInteger();
+    return input.getInteger();
   }
 
   @Override

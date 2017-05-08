@@ -1,27 +1,25 @@
 package com.pelensky.tictactoe.Commands;
 
-import com.pelensky.tictactoe.App.UI;
 import com.pelensky.tictactoe.App.Input;
+import com.pelensky.tictactoe.App.UI;
 import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 import com.pelensky.tictactoe.Players.ComputerPlayer;
 import com.pelensky.tictactoe.Players.Player;
 import com.pelensky.tictactoe.Board;
-import com.pelensky.tictactoe.App.IO;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class HumanVSComputer extends Input implements Command {
+public class HumanVSComputer implements Command {
 
-  private final IO io;
+  private final Input input;
   private final UI ui;
   private final Random random;
 
-  public HumanVSComputer(IO io, UI ui, Random random) {
-    super(io);
-    this.io = io;
+  public HumanVSComputer(Input input, UI ui, Random random) {
+    this.input = input;
     this.ui = ui;
     this.random = random;
   }
@@ -42,18 +40,18 @@ public class HumanVSComputer extends Input implements Command {
   private Player selectFirstPlayer() {
     ui.printWhoPlaysFirst();
     ui.printSelection(playerTypes());
-    return playerTypes().get(getInteger() - 1);
+    return playerTypes().get(input.getInteger() - 1);
   }
 
   private List<Player> playerTypes() {
-    return Arrays.asList(new HumanPlayer(io, "X"), new ComputerPlayer("X", random));
+    return Arrays.asList(new HumanPlayer(input, ui, "X"), new ComputerPlayer("X", random));
   }
 
   private Player setPlayer2(Player player1) {
     if (player1 instanceof HumanPlayer) {
       return new ComputerPlayer("O", random);
     } else {
-      return new HumanPlayer(io, "O");
+      return new HumanPlayer(input, ui, "O");
     }
   }
 }

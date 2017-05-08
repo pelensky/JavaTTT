@@ -88,5 +88,4 @@ public class UI {
     void printPlayAgain() {
         output.println("Play again?");
     }
-
 }

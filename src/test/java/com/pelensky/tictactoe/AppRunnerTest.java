@@ -1,7 +1,7 @@
 package com.pelensky.tictactoe;
 
 import com.pelensky.tictactoe.App.AppRunner;
-import com.pelensky.tictactoe.App.IO;
+import com.pelensky.tictactoe.App.Input;
 import com.pelensky.tictactoe.App.UI;
 import com.pelensky.tictactoe.Commands.Command;
 import com.pelensky.tictactoe.Commands.ComputerVSComputer;
@@ -21,22 +21,22 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class AppRunnerTest {
 
   private ByteArrayOutputStream out;
-  private IO io;
+  private Input input;
   private UI ui;
 
-  private void run(String input) {
+  private void run(String text) {
     out = new ByteArrayOutputStream();
-    Scanner scanner = new Scanner(input);
+    Scanner scanner = new Scanner(text);
     PrintStream output = new PrintStream(out);
-    io = new IO(scanner, output);
     ui = new UI(output);
-    AppRunner appRunner = new AppRunner(io, ui, commands());
+    input = new Input(scanner, ui);
+    AppRunner appRunner = new AppRunner(input, ui, commands());
     appRunner.run();
   }
 
   private List<Command> commands() {
     return Arrays.asList(
-        new HumanVSHuman(io), new HumanVSComputer(io, ui, new MockRandom()), new ComputerVSComputer());
+        new HumanVSHuman(input, ui), new HumanVSComputer(input, ui, new MockRandom()), new ComputerVSComputer());
   }
 
   @Test
@@ -121,6 +121,6 @@ public class AppRunnerTest {
   @Test
   public void stringSelected() {
     run("dan\n3\n2\n");
-    assertThat(out.toString(), containsString("Please select an integer"));
+    assertThat(out.toString(), containsString("Invalid selection"));
   }
 }
