@@ -6,7 +6,7 @@ import com.pelensky.tictactoe.Game;
 import java.util.Arrays;
 import java.util.List;
 
-public class AppRunner {
+public class AppRunner extends UI {
 
   private final IO io;
   private final List<Command> commands;
@@ -14,6 +14,7 @@ public class AppRunner {
   private boolean appRunning = true;
 
   public AppRunner(IO io, List<Command> commands) {
+    super(io);
     this.io = io;
     this.commands = commands;
   }
@@ -38,7 +39,7 @@ public class AppRunner {
   private void startGame() {
     io.print(welcome());
     io.print(instructions(commands));
-    int selection = select();
+    int selection = getInteger();
     if (isSelectionValid(selection, commands)) {
       game = startNewGame(selection);
     } else {
@@ -54,10 +55,10 @@ public class AppRunner {
     StringBuilder instructions = new StringBuilder();
     for (int i = 0; i < options.size(); i++) {
       instructions
-          .append(i + 1)
-          .append(") ")
-          .append(options.get(i).instruction())
-          .append(System.lineSeparator());
+              .append(i + 1)
+              .append(") ")
+              .append(options.get(i).instruction())
+              .append(System.lineSeparator());
     }
     return instructions.toString().trim();
   }
@@ -94,7 +95,7 @@ public class AppRunner {
   private void playAgain() {
     io.print("Play again?");
     io.print((instructions(playCommands())));
-    int selection = select();
+    int selection = getInteger();
     if (isSelectionValid(selection, playCommands())) {
       playAgainCommand(selection);
     }
@@ -120,11 +121,11 @@ public class AppRunner {
   private String showBoard() {
     String line = System.lineSeparator() + "-----------" + System.lineSeparator();
     return formatRow(0, 1, 2)
-        + line
-        + formatRow(3, 4, 5)
-        + line
-        + formatRow(6, 7, 8)
-        + System.lineSeparator();
+            + line
+            + formatRow(3, 4, 5)
+            + line
+            + formatRow(6, 7, 8)
+            + System.lineSeparator();
   }
 
   private String formatRow(int a, int b, int c) {
@@ -134,8 +135,5 @@ public class AppRunner {
   private String getSpace(int index) {
     return game.getSpaces().get(index);
   }
-
-  private int select() {
-    return Integer.parseInt(io.getInput());
-  }
 }
+

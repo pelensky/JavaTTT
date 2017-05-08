@@ -1,5 +1,6 @@
 package com.pelensky.tictactoe.Commands;
 
+import com.pelensky.tictactoe.App.UI;
 import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 import com.pelensky.tictactoe.Players.ComputerPlayer;
@@ -11,12 +12,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class HumanVSComputer implements Command {
+public class HumanVSComputer extends UI implements Command {
 
   private final IO io;
   private final Random random;
 
   public HumanVSComputer(IO io, Random random) {
+    super(io);
     this.io = io;
     this.random = random;
   }
@@ -37,7 +39,7 @@ public class HumanVSComputer implements Command {
   private Player selectFirstPlayer() {
     io.print("Who plays first?");
     io.print(selection());
-    return playerTypes().get(select() - 1);
+    return playerTypes().get(getInteger() - 1);
   }
 
   private String selection() {
@@ -54,10 +56,6 @@ public class HumanVSComputer implements Command {
 
   private List<Player> playerTypes() {
     return Arrays.asList(new HumanPlayer(io, "X"), new ComputerPlayer("X", random));
-  }
-
-  private int select() {
-    return Integer.parseInt(io.getInput());
   }
 
   private Player setPlayer2(Player player1) {
