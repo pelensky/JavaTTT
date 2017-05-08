@@ -37,21 +37,9 @@ public class HumanVSComputer extends UI implements Command {
   }
 
   private Player selectFirstPlayer() {
-    io.print("Who plays first?");
-    io.print(selection());
+    printWhoPlaysFirst();
+    printSelection(playerTypes());
     return playerTypes().get(getInteger() - 1);
-  }
-
-  private String selection() {
-    StringBuilder instructions = new StringBuilder();
-    for (int i = 0; i < playerTypes().size(); i++) {
-      instructions
-          .append(i + 1)
-          .append(") ")
-          .append(playerTypes().get(i).playerType())
-          .append(System.lineSeparator());
-    }
-    return instructions.toString().trim();
   }
 
   private List<Player> playerTypes() {

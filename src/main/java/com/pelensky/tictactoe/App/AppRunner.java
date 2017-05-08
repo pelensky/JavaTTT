@@ -8,132 +8,83 @@ import java.util.List;
 
 public class AppRunner extends UI {
 
-  private final IO io;
-  private final List<Command> commands;
-  private Game game;
-  private boolean appRunning = true;
+    private final List<Command> commands;
+    private Game game;
+    private boolean appRunning = true;
 
-  public AppRunner(IO io, List<Command> commands) {
-    super(io);
-    this.io = io;
-    this.commands = commands;
-  }
+    public AppRunner(IO io, List<Command> commands) {
+        super(io);
+        this.commands = commands;
+    }
 
-  public void run() {
-    while (appRunning) {
-      startGame();
-      if (game != null) {
-        while (gameInProgress()) {
-          makeMove();
+    public void run() {
+        while (appRunning) {
+            startGame();
+            if (game != null) {
+                while (gameInProgress()) {
+                    makeMove();
+                }
+                endOfGame();
+            }
         }
-        endOfGame();
-      }
     }
-  }
 
-  public void quitApp() {
-    appRunning = false;
-    io.print("Exiting");
-  }
-
-  private void startGame() {
-    io.print(welcome());
-    io.print(instructions(commands));
-    int selection = getInteger();
-    if (isSelectionValid(selection, commands)) {
-      game = startNewGame(selection);
-    } else {
-      io.print("Invalid selection");
+    public void quitApp() {
+        appRunning = false;
+        printExiting();
     }
-  }
 
-  private String welcome() {
-    return "Tic Tac Toe" + System.lineSeparator() + "Select Game Type";
-  }
-
-  private String instructions(List<Command> options) {
-    StringBuilder instructions = new StringBuilder();
-    for (int i = 0; i < options.size(); i++) {
-      instructions
-              .append(i + 1)
-              .append(") ")
-              .append(options.get(i).instruction())
-              .append(System.lineSeparator());
+    private void startGame() {
+        welcome();
+        printOptions(commands);
+        int selection = getInteger();
+        if (isSelectionValid(selection, commands)) {
+            game = startNewGame(selection);
+        } else {
+            printInvalidSelection();
+        }
     }
-    return instructions.toString().trim();
-  }
 
-  private boolean isSelectionValid(int selection, List<Command> options) {
-    return (selection <= options.size() && selection > 0);
-  }
-
-  private Game startNewGame(int choice) {
-    Command newGame = commands.get(choice - 1);
-    return newGame.execute();
-  }
-
-  private boolean gameInProgress() {
-    return !game.isGameOver();
-  }
-
-  private void makeMove() {
-    io.print(getCurrentPlayerMarker() + " select a space");
-    io.print(showBoard());
-    game.takeTurn();
-  }
-
-  private String getCurrentPlayerMarker() {
-    return game.currentPlayer.getMarker();
-  }
-
-  private void endOfGame() {
-    printOutcome();
-    io.print(showBoard());
-    playAgain();
-  }
-
-  private void playAgain() {
-    io.print("Play again?");
-    io.print((instructions(playCommands())));
-    int selection = getInteger();
-    if (isSelectionValid(selection, playCommands())) {
-      playAgainCommand(selection);
+    private boolean isSelectionValid(int selection, List<Command> options) {
+        return (selection <= options.size() && selection > 0);
     }
-  }
 
-  private void playAgainCommand(int selection) {
-    Command playOrQuit = playCommands().get(selection - 1);
-    playOrQuit.execute();
-  }
-
-  private List<Command> playCommands() {
-    return Arrays.asList(new PlayAgain(), new Quit(this));
-  }
-
-  private void printOutcome() {
-    if (game.getWinner() != null) {
-      io.print(game.getWinner().getMarker() + " is the winner");
-    } else {
-      io.print("Game tied");
+    private Game startNewGame(int choice) {
+        Command newGame = commands.get(choice - 1);
+        return newGame.execute();
     }
-  }
 
-  private String showBoard() {
-    String line = System.lineSeparator() + "-----------" + System.lineSeparator();
-    return formatRow(0, 1, 2)
-            + line
-            + formatRow(3, 4, 5)
-            + line
-            + formatRow(6, 7, 8)
-            + System.lineSeparator();
-  }
+    private boolean gameInProgress() {
+        return !game.isGameOver();
+    }
 
-  private String formatRow(int a, int b, int c) {
-    return " " + getSpace(a) + " | " + getSpace(b) + " | " + getSpace(c);
-  }
+    private void makeMove() {
+        printSelectSpace(game);
+        printBoard(game);
+        game.takeTurn();
+    }
 
-  private String getSpace(int index) {
-    return game.getSpaces().get(index);
-  }
+    private void endOfGame() {
+        printOutcome(game);
+        printBoard(game);
+        playAgain();
+    }
+
+    private void playAgain() {
+        printPlayAgain();
+        printOptions(playCommands());
+        int selection = getInteger();
+        if (isSelectionValid(selection, playCommands())) {
+            playAgainCommand(selection);
+        }
+    }
+
+    private void playAgainCommand(int selection) {
+        Command playOrQuit = playCommands().get(selection - 1);
+        playOrQuit.execute();
+    }
+
+    private List<Command> playCommands() {
+        return Arrays.asList(new PlayAgain(), new Quit(this));
+    }
 }
-

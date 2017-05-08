@@ -114,4 +114,10 @@ public class AppRunnerTest {
     run("10\n3\n2\n");
     assertThat(out.toString(), containsString("Invalid selection"));
   }
+
+  @Test
+  public void stringSelected() {
+    run("dan\n3\n2\n");
+    assertThat(out.toString(), containsString("Please select an integer"));
+  }
 }

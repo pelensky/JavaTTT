@@ -17,11 +17,7 @@ public class Board {
   }
 
   void takeTurn(int space, String marker) {
-    if (isMoveAllowed(space)) {
       getSpaces().set(space, marker);
-    } else {
-      throw new IllegalMoveException();
-    }
   }
 
   boolean isMoveAllowed(int space) {
