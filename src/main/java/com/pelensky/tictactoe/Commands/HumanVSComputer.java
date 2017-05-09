@@ -38,6 +38,7 @@ public class HumanVSComputer implements Command {
   }
 
   private Player selectFirstPlayer() {
+    print.clearScreen();
     print.whoPlaysFirst();
     print.selection(playerTypes());
     return playerTypes().get(input.getInteger() - 1);
