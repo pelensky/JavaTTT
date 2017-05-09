@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/pelensky/JavaTTT.svg?branch=master)](https://travis-ci.org/pelensky/JavaTTT)
-[![Coverage Status](https://coveralls.input/repos/github/pelensky/JavaTTT/badge.svg?branch=master)](https://coveralls.input/github/pelensky/JavaTTT?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/pelensky/JavaTTT/badge.svg?branch=master)](https://coveralls.input/github/pelensky/JavaTTT?branch=master)
 
 ## Java Tic Tac Toe 
 
