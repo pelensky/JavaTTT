@@ -47,12 +47,12 @@ public class Board {
 
   private void assignValues() {
     for (int i = 0; i < totalSpaces; i++) {
-      getSpaces().add(String.valueOf(i));
+      getSpaces().add(String.valueOf(i + offset));
     }
   }
 
   private boolean isSpaceAvailable(int space) {
-    return getSpaces().get(space).equals(String.valueOf(space));
+    return getSpaces().get(space).equals(String.valueOf(space + offset));
   }
 
   private boolean isSpaceOnBoard(int space) {

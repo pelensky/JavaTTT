@@ -77,13 +77,13 @@ public class AppRunnerTest {
 
   @Test
   public void humanVShuman() {
-    run("1\n0\n4\n2\n8\n1\n2\n");
+    run("1\n1\n5\n3\n9\n2\n2\n");
     assertThat(out.toString(), containsString("X is the winner"));
   }
 
   @Test
   public void humanVShumanTiedGame() {
-    run("1\n0\n4\n2\n1\n7\n3\n5\n8\n6\n2\n");
+    run("1\n1\n5\n3\n2\n8\n4\n6\n9\n7\n2\n");
     assertThat(out.toString(), containsString("Game tied"));
   }
 

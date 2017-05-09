@@ -6,10 +6,12 @@ public class ComputerPlayer implements Player {
 
   private final Random random;
   private final String marker;
+  private final int offset;
 
   public ComputerPlayer(String marker, Random random) {
     this.marker = marker;
     this.random = random;
+    this.offset = 1;
   }
 
   @Override
@@ -19,7 +21,7 @@ public class ComputerPlayer implements Player {
 
   @Override
   public int getMove(int numberOfSpaces) {
-    return random.nextInt(numberOfSpaces);
+    return random.nextInt(numberOfSpaces + offset);
   }
 
   @Override

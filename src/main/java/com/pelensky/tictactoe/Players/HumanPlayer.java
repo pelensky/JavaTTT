@@ -19,7 +19,7 @@ public class HumanPlayer implements Player {
 
   @Override
   public int getMove(int numberOfSpaces) {
-    return input.getInteger();
+    return input.getInteger() - 1;
   }
 
   @Override
