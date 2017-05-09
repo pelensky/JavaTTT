@@ -88,4 +88,9 @@ public class Print {
     void playAgain() {
         output.println("Play again?");
     }
+
+    public void clearScreen(){
+            output.print("\033[H\033[2J");
+            output.flush();
+        }
 }

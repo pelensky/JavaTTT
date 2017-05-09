@@ -38,6 +38,7 @@ public class AppRunner {
     }
 
     private void startGame() {
+        print.clearScreen();
         print.welcome();
         print.options(commands);
         int selection = input.getInteger();
@@ -62,12 +63,14 @@ public class AppRunner {
     }
 
     private void makeMove() {
+        print.clearScreen();
         print.selectSpace(game);
         print.board(game);
         game.takeTurn();
     }
 
     private void endOfGame() {
+        print.clearScreen();
         print.outcome(game);
         print.board(game);
         playAgain();
