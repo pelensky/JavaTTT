@@ -1,7 +1,7 @@
 package com.pelensky.tictactoe.Commands;
 
-import com.pelensky.tictactoe.App.Input;
-import com.pelensky.tictactoe.App.Print;
+import com.pelensky.tictactoe.Input;
+import com.pelensky.tictactoe.Print;
 import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 import com.pelensky.tictactoe.Players.Player;

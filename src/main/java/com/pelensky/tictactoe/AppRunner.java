@@ -1,7 +1,6 @@
-package com.pelensky.tictactoe.App;
+package com.pelensky.tictactoe;
 
 import com.pelensky.tictactoe.Commands.*;
-import com.pelensky.tictactoe.Game;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,13 +13,13 @@ public class AppRunner {
     private Print print;
     private boolean appRunning = true;
 
-    public AppRunner(Input input, Print print, List<Command> commands) {
+    AppRunner(Input input, Print print, List<Command> commands) {
         this.input = input;
         this.print = print;
         this.commands = commands;
     }
 
-    public void run() {
+    void run() {
         while (appRunning) {
             startGame();
             if (game != null) {

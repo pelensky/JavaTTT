@@ -1,7 +1,6 @@
-package com.pelensky.tictactoe.App;
+package com.pelensky.tictactoe;
 
 import com.pelensky.tictactoe.Commands.Command;
-import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Players.Player;
 
 import java.io.PrintStream;
@@ -11,7 +10,7 @@ public class Print {
 
     private final PrintStream output;
 
-    public Print(PrintStream output) {
+    Print(PrintStream output) {
         this.output = output;
     }
 

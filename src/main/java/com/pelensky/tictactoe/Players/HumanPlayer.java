@@ -1,6 +1,6 @@
 package com.pelensky.tictactoe.Players;
 
-import com.pelensky.tictactoe.App.Input;
+import com.pelensky.tictactoe.Input;
 
 public class HumanPlayer implements Player {
 
