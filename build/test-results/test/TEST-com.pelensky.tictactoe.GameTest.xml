@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.pelensky.tictactoe.GameTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2017-05-09T10:02:08" hostname="Dans-MBP" time="0.011">
+  <properties/>
+  <testcase name="checkForWinVerticalA" classname="com.pelensky.tictactoe.GameTest" time="0.001"/>
+  <testcase name="checkForWinVerticalB" classname="com.pelensky.tictactoe.GameTest" time="0.0"/>
+  <testcase name="checkForWinVerticalC" classname="com.pelensky.tictactoe.GameTest" time="0.0"/>
+  <testcase name="player1StartsTheGame" classname="com.pelensky.tictactoe.GameTest" time="0.0"/>
+  <testcase name="gameAcceptsTwoPlayersAndABoard" classname="com.pelensky.tictactoe.GameTest" time="0.0"/>
+  <testcase name="checkForWinRightDiagonal" classname="com.pelensky.tictactoe.GameTest" time="0.001"/>
+  <testcase name="checkForWinLeftDiagonal" classname="com.pelensky.tictactoe.GameTest" time="0.001"/>
+  <testcase name="checkGameNotWon" classname="com.pelensky.tictactoe.GameTest" time="0.001"/>
+  <testcase name="checkForWinHorizontalA" classname="com.pelensky.tictactoe.GameTest" time="0.001"/>
+  <testcase name="checkForWinHorizontalB" classname="com.pelensky.tictactoe.GameTest" time="0.001"/>
+  <testcase name="checkForWinHorizontalC" classname="com.pelensky.tictactoe.GameTest" time="0.001"/>
+  <testcase name="isGameTied" classname="com.pelensky.tictactoe.GameTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
