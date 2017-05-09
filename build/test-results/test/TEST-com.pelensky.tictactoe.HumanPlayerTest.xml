@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.pelensky.tictactoe.HumanPlayerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-05-09T10:02:08" hostname="Dans-MBP" time="0.0">
-  <properties/>
-  <testcase name="markerIsStored" classname="com.pelensky.tictactoe.HumanPlayerTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
