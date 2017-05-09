@@ -115,12 +115,12 @@ public class AppRunnerTest {
   @Test
   public void invalidSelection() {
     run("10\n3\n2\n");
-    assertThat(out.toString(), containsString("Invalid selection"));
+    assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 
   @Test
   public void stringSelected() {
     run("dan\n3\n2\n");
-    assertThat(out.toString(), containsString("Invalid selection"));
+    assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 }

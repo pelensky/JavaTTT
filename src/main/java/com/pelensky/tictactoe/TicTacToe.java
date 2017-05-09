@@ -1,5 +1,8 @@
-package com.pelensky.tictactoe.App;
+package com.pelensky.tictactoe;
 
+import com.pelensky.tictactoe.App.AppRunner;
+import com.pelensky.tictactoe.App.Input;
+import com.pelensky.tictactoe.App.Print;
 import com.pelensky.tictactoe.Commands.Command;
 import com.pelensky.tictactoe.Commands.ComputerVSComputer;
 import com.pelensky.tictactoe.Commands.HumanVSComputer;

@@ -24,7 +24,7 @@ public class Print {
     }
 
     void invalidSelection() {
-        output.println("Invalid selection");
+        output.println("Select a Valid Number");
     }
 
     void exiting() {
