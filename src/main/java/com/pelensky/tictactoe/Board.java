@@ -7,12 +7,15 @@ public class Board {
 
   private final int numberOfRows;
   private final int totalSpaces;
+
+  private final int offset;
   List<String> spaces;
 
   public Board(int numberOfRows) {
     this.numberOfRows = numberOfRows;
     this.totalSpaces = numberOfRows * numberOfRows;
     this.spaces = new ArrayList<>(totalSpaces);
+    this.offset = 1;
     assignValues();
   }
 
@@ -26,6 +29,10 @@ public class Board {
 
   List<String> getSpaces() {
     return spaces;
+  }
+
+  int getOffset() {
+    return offset;
   }
 
   List<Integer> getAvailableSpaces() {
