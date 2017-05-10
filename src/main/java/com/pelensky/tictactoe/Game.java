@@ -26,15 +26,9 @@ public class Game {
 
   void takeTurn() {
     int space = currentPlayer.getMove(board);
-    if (isMoveAllowed(space)) {
       board.takeTurn(space, currentPlayer.getMarker());
       changeCurrentPlayer();
     }
-  }
-
-  private boolean isMoveAllowed(int space) {
-    return board.isMoveAllowed(space);
-  }
 
   private void changeCurrentPlayer() {
     currentPlayer =
