@@ -1,7 +1,5 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.App.Input;
-import com.pelensky.tictactoe.App.Print;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 
 import org.junit.Before;
@@ -28,8 +26,8 @@ public class GameTest {
   public void setUp() {
     Print print = new Print(new PrintStream(System.out));
     Input input = new Input(new Scanner(System.in), print);
-    player1 = new HumanPlayer(input, "X");
-    player2 = new HumanPlayer(input,   "O");
+    player1 = new HumanPlayer(input, print, "X");
+    player2 = new HumanPlayer(input, print, "O");
     board = new Board(3);
   }
 
@@ -54,55 +52,55 @@ public class GameTest {
 
   @Test
   public void checkForWinHorizontalA() {
-    setSpacesAndCreateGame(Arrays.asList("X", "X", "X", "3", "4", "5", "6", "7", "8"));
+    setSpacesAndCreateGame(Arrays.asList("X", "X", "X", "5", "5", "6", "7", "8", "9"));
     assertTrue(game.isGameOver());
   }
 
   @Test
   public void checkForWinHorizontalB() {
-    setSpacesAndCreateGame(Arrays.asList("0", "1", "2", "O", "O", "O", "6", "7", "8"));
+    setSpacesAndCreateGame(Arrays.asList("1", "2", "3", "O", "O", "O", "7", "8", "9"));
     assertTrue(game.isGameOver());
   }
 
   @Test
   public void checkForWinHorizontalC() {
-    setSpacesAndCreateGame(Arrays.asList("0", "1", "2", "3", "4", "5", "X", "X", "X"));
+    setSpacesAndCreateGame(Arrays.asList("1", "2", "3", "4", "5", "6", "X", "X", "X"));
     assertTrue(game.isGameOver());
   }
 
   @Test
   public void checkForWinVerticalA() {
-    setSpacesAndCreateGame(Arrays.asList("O", "1", "2", "O", "4", "5", "O", "7", "8"));
+    setSpacesAndCreateGame(Arrays.asList("O", "2", "3", "O", "5", "6", "O", "8", "9"));
     assertTrue(game.isGameOver());
   }
 
   @Test
   public void checkForWinVerticalB() {
-    setSpacesAndCreateGame(Arrays.asList("0", "X", "2", "3", "X", "5", "6", "X", "8"));
+    setSpacesAndCreateGame(Arrays.asList("1", "X", "3", "4", "X", "6", "7", "X", "9"));
     assertTrue(game.isGameOver());
   }
 
   @Test
   public void checkForWinVerticalC() {
-    setSpacesAndCreateGame(Arrays.asList("0", "1", "O", "3", "4", "O", "6", "7", "O"));
+    setSpacesAndCreateGame(Arrays.asList("1", "2", "O", "4", "5", "O", "7", "8", "O"));
     assertTrue(game.isGameOver());
   }
 
   @Test
   public void checkForWinLeftDiagonal() {
-    setSpacesAndCreateGame(Arrays.asList("X", "1", "2", "3", "X", "5", "6", "7", "X"));
+    setSpacesAndCreateGame(Arrays.asList("X", "2", "3", "4", "X", "6", "7", "8", "X"));
     assertTrue(game.isGameOver());
   }
 
   @Test
   public void checkForWinRightDiagonal() {
-    setSpacesAndCreateGame(Arrays.asList("0", "1", "O", "3", "O", "5", "O", "7", "8"));
+    setSpacesAndCreateGame(Arrays.asList("1", "2", "O", "4", "O", "6", "O", "8", "9"));
     assertTrue(game.isGameOver());
   }
 
   @Test
   public void checkGameNotWon() {
-    setSpacesAndCreateGame(Arrays.asList("X", "1", "2", "3", "O", "5", "O", "7", "8"));
+    setSpacesAndCreateGame(Arrays.asList("X", "2", "3", "4", "O", "6", "O", "8", "9"));
     assertFalse(game.isGameOver());
   }
 

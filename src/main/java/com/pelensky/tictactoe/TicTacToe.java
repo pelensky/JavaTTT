@@ -1,4 +1,4 @@
-package com.pelensky.tictactoe.App;
+package com.pelensky.tictactoe;
 
 import com.pelensky.tictactoe.Commands.Command;
 import com.pelensky.tictactoe.Commands.ComputerVSComputer;

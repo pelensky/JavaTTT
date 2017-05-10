@@ -7,12 +7,15 @@ public class Board {
 
   private final int numberOfRows;
   private final int totalSpaces;
+
+  private final int offset;
   List<String> spaces;
 
   public Board(int numberOfRows) {
     this.numberOfRows = numberOfRows;
     this.totalSpaces = numberOfRows * numberOfRows;
     this.spaces = new ArrayList<>(totalSpaces);
+    this.offset = 1;
     assignValues();
   }
 
@@ -20,7 +23,7 @@ public class Board {
       getSpaces().set(space, marker);
   }
 
-  boolean isMoveAllowed(int space) {
+  public boolean isMoveAllowed(int space) {
     return (isSpaceOnBoard(space) && isSpaceAvailable(space));
   }
 
@@ -28,7 +31,11 @@ public class Board {
     return spaces;
   }
 
-  List<Integer> getAvailableSpaces() {
+  public int getOffset() {
+    return offset;
+  }
+
+  public List<Integer> getAvailableSpaces() {
     List<Integer> availableSpaces = new ArrayList<>();
     for (int i = 0; i < getSpaces().size(); i++) {
       if (isSpaceAvailable(i)) {
@@ -40,12 +47,12 @@ public class Board {
 
   private void assignValues() {
     for (int i = 0; i < totalSpaces; i++) {
-      getSpaces().add(String.valueOf(i));
+      getSpaces().add(String.valueOf(i + offset));
     }
   }
 
   private boolean isSpaceAvailable(int space) {
-    return getSpaces().get(space).equals(String.valueOf(space));
+    return getSpaces().get(space).equals(String.valueOf(space + offset));
   }
 
   private boolean isSpaceOnBoard(int space) {

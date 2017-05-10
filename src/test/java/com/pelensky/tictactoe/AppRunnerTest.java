@@ -1,8 +1,5 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.App.AppRunner;
-import com.pelensky.tictactoe.App.Input;
-import com.pelensky.tictactoe.App.Print;
 import com.pelensky.tictactoe.Commands.Command;
 import com.pelensky.tictactoe.Commands.ComputerVSComputer;
 import com.pelensky.tictactoe.Commands.HumanVSComputer;
@@ -77,13 +74,19 @@ public class AppRunnerTest {
 
   @Test
   public void humanVShuman() {
-    run("1\n0\n4\n2\n8\n1\n2\n");
+    run("1\n1\n5\n3\n9\n2\n2\n");
     assertThat(out.toString(), containsString("X is the winner"));
   }
 
   @Test
+  public void humanVShumanInvalidSelection() {
+    run("1\n1\n5\n3\n9\n9\n2\n2\n");
+    assertThat(out.toString(), containsString("Select a Valid Number"));
+  }
+
+  @Test
   public void humanVShumanTiedGame() {
-    run("1\n0\n4\n2\n1\n7\n3\n5\n8\n6\n2\n");
+    run("1\n1\n5\n3\n2\n8\n4\n6\n9\n7\n2\n");
     assertThat(out.toString(), containsString("Game tied"));
   }
 
@@ -108,19 +111,19 @@ public class AppRunnerTest {
 
   @Test
   public void humanVScomputerComputerFirst() {
-    run("2\n2\n8\n7\n2\n");
+    run("2\n2\n9\n8\n2\n");
     assertThat(out.toString(), containsString("Exiting"));
   }
 
   @Test
   public void invalidSelection() {
     run("10\n3\n2\n");
-    assertThat(out.toString(), containsString("Invalid selection"));
+    assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 
   @Test
   public void stringSelected() {
     run("dan\n3\n2\n");
-    assertThat(out.toString(), containsString("Invalid selection"));
+    assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 }

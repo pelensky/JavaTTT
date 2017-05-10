@@ -1,4 +1,4 @@
-package com.pelensky.tictactoe.App;
+package com.pelensky.tictactoe;
 
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ public class Input {
     private final Scanner input;
     private final Print print;
 
-    public Input(Scanner input, Print print) {
+    Input(Scanner input, Print print) {
         this.input = input;
         this.print = print;
     }
@@ -15,10 +15,9 @@ public class Input {
     public int getInteger() {
         int integer = -1;
         while (integer < 0) {
-            String selection = input.nextLine().trim();
-            integer = validateInput(selection);
-            if (integer != -1) {
-                return integer;
+            int selection = validateInput(input.nextLine().trim());
+            if (selection != -1) {
+               integer = selection;
             } else {
                 print.invalidSelection();
             }

@@ -11,7 +11,8 @@ public class Game {
   final Player player1;
   final Player player2;
   private final int numberOfRows;
-  public Player currentPlayer;
+  private final int offset;
+  Player currentPlayer;
   private Player winner;
 
   public Game(Board board, Player player1, Player player2) {
@@ -20,30 +21,25 @@ public class Game {
     this.player2 = player2;
     this.currentPlayer = player1;
     this.numberOfRows = board.getNumberOfRows();
+    this.offset = board.getOffset();
   }
 
-  public void takeTurn() {
-    int space = currentPlayer.getMove(numberOfRows * numberOfRows);
-    if (isMoveAllowed(space)) {
+  void takeTurn() {
+    int space = currentPlayer.getMove(board);
       board.takeTurn(space, currentPlayer.getMarker());
       changeCurrentPlayer();
     }
-  }
-
-  private boolean isMoveAllowed(int space) {
-    return board.isMoveAllowed(space);
-  }
 
   private void changeCurrentPlayer() {
     currentPlayer =
         (currentPlayer.equals(player1)) ? (currentPlayer = player2) : (currentPlayer = player1);
   }
 
-  public boolean isGameOver() {
+  boolean isGameOver() {
     return isGameWonBy(player1) || isGameWonBy(player2) || isGameTied();
   }
 
-  public Player getWinner() {
+  Player getWinner() {
     return winner;
   }
 
@@ -112,7 +108,7 @@ public class Game {
     return board.getAvailableSpaces();
   }
 
-  public List<String> getSpaces() {
+  List<String> getSpaces() {
     return board.getSpaces();
   }
 }
