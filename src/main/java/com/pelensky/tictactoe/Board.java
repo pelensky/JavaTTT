@@ -16,14 +16,14 @@ public class Board {
     this.totalSpaces = numberOfRows * numberOfRows;
     this.spaces = new ArrayList<>(totalSpaces);
     this.offset = 1;
-    assignValues();
+    assignValuesToSpaces();
   }
 
-  void takeTurn(int space, String marker) {
+  void placeMarker(int space, String marker) {
       getSpaces().set(space, marker);
   }
 
-  public boolean isMoveAllowed(int space) {
+  public boolean isMarkerAllowed(int space) {
     return (isSpaceOnBoard(space) && isSpaceAvailable(space));
   }
 
@@ -45,7 +45,7 @@ public class Board {
     return availableSpaces;
   }
 
-  private void assignValues() {
+  private void assignValuesToSpaces() {
     for (int i = 0; i < totalSpaces; i++) {
       getSpaces().add(String.valueOf(i + offset));
     }

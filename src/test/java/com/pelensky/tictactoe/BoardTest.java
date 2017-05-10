@@ -36,18 +36,18 @@ public class BoardTest {
 
   @Test
   public void takeTurn() {
-    board.takeTurn(0, "X");
+    board.placeMarker(0, "X");
     assertEquals("X", board.getSpaces().get(0));
   }
 
   @Test
   public void cantChooseSomewhereOutsideBoard() {
-    assertFalse(board.isMoveAllowed(10));
+    assertFalse(board.isMarkerAllowed(10));
   }
 
   @Test
   public void cantChooseSomewhereTaken() {
-    board.takeTurn(2, "0");
-    assertFalse(board.isMoveAllowed(2));
+    board.placeMarker(2, "0");
+    assertFalse(board.isMarkerAllowed(2));
   }
 }

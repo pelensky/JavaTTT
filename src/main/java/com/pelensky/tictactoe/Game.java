@@ -25,7 +25,7 @@ public class Game {
     }
 
     void takeTurn() {
-        board.takeTurn(currentPlayer.getMove(board), currentPlayer.getMarker());
+        board.placeMarker(currentPlayer.getMove(board), currentPlayer.getMarker());
         changeCurrentPlayer();
     }
 

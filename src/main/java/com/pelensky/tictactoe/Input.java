@@ -13,16 +13,16 @@ public class Input {
     }
 
     public int getInteger() {
-        int integer = -1;
-        while (integer < 0) {
-            int selection = validateInput(input.nextLine().trim());
-            if (selection != -1) {
-               integer = selection;
+        int selection = -1;
+        while (selection < 0) {
+            int proposedSelection = validateInput(input.nextLine().trim());
+            if (proposedSelection != -1) {
+               selection = proposedSelection;
             } else {
                 print.invalidSelection();
             }
         }
-        return integer;
+        return selection;
     }
 
     private int validateInput(String text) {
