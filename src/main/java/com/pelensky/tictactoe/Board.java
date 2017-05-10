@@ -23,7 +23,7 @@ public class Board {
       getSpaces().set(space, marker);
   }
 
-  boolean isMoveAllowed(int space) {
+  public boolean isMoveAllowed(int space) {
     return (isSpaceOnBoard(space) && isSpaceAvailable(space));
   }
 

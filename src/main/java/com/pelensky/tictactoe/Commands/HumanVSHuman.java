@@ -19,8 +19,8 @@ public class HumanVSHuman implements Command {
 
   @Override
   public Game execute() {
-    Player player1 = new HumanPlayer(input, "X");
-    Player player2 = new HumanPlayer(input, "O");
+    Player player1 = new HumanPlayer(input, print, "X");
+    Player player2 = new HumanPlayer(input, print, "O");
     Board board = new Board(3);
     return new Game(board, player1, player2);
   }

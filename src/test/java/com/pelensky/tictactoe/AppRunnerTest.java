@@ -79,6 +79,12 @@ public class AppRunnerTest {
   }
 
   @Test
+  public void humanVShumanInvalidSelection() {
+    run("1\n1\n5\n3\n9\n9\n2\n2\n");
+    assertThat(out.toString(), containsString("Select a Valid Number"));
+  }
+
+  @Test
   public void humanVShumanTiedGame() {
     run("1\n1\n5\n3\n2\n8\n4\n6\n9\n7\n2\n");
     assertThat(out.toString(), containsString("Game tied"));
