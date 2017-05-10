@@ -31,11 +31,11 @@ public class Board {
     return spaces;
   }
 
-  int getOffset() {
+  public int getOffset() {
     return offset;
   }
 
-  List<Integer> getAvailableSpaces() {
+  public List<Integer> getAvailableSpaces() {
     List<Integer> availableSpaces = new ArrayList<>();
     for (int i = 0; i < getSpaces().size(); i++) {
       if (isSpaceAvailable(i)) {

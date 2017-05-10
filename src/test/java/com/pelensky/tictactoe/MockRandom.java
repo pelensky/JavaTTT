@@ -12,6 +12,6 @@ public class MockRandom extends Random {
 
   @Override
   public int nextInt(int bound) {
-    return number++;
+    return number;
   }
 }

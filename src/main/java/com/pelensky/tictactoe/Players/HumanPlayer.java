@@ -1,5 +1,6 @@
 package com.pelensky.tictactoe.Players;
 
+import com.pelensky.tictactoe.Board;
 import com.pelensky.tictactoe.Input;
 
 public class HumanPlayer implements Player {
@@ -10,6 +11,7 @@ public class HumanPlayer implements Player {
   public HumanPlayer(Input input, String marker) {
     this.marker = marker;
     this.input = input;
+
   }
 
   @Override
@@ -18,8 +20,8 @@ public class HumanPlayer implements Player {
   }
 
   @Override
-  public int getMove(int numberOfSpaces) {
-    return input.getInteger() - 1;
+  public int getMove(Board board) {
+    return input.getInteger() - board.getOffset();
   }
 
   @Override
