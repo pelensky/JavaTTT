@@ -4,20 +4,19 @@ import com.pelensky.tictactoe.Players.ComputerPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Random;
-
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class ComputerPlayerTest {
 
+  private MockRandom mockRandom;
   private ComputerPlayer computer;
   private Board board;
 
   @Before
   public void setUp() {
-    computer = new ComputerPlayer("O", new Random());
+    mockRandom = new MockRandom();
+    computer = new ComputerPlayer("O", mockRandom);
     board = new Board(3);
   }
 
@@ -28,6 +27,7 @@ public class ComputerPlayerTest {
 
   @Test
   public void computerSelectsASpot() {
-    assertThat(computer.getMove(board), instanceOf(Integer.class));
+    computer.getMove(board);
+    assertTrue(mockRandom.getHasComputerPlayed());
   }
 }
