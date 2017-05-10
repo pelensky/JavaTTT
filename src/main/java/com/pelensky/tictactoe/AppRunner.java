@@ -39,31 +39,23 @@ public class AppRunner {
     private void startGame() {
         print.clearScreen();
         print.welcome();
-        print.options(commands);
+        game = startNewGame(validSelectionLoop(commands));
+    }
+
+
+    private int validSelectionLoop(List<Command> options) {
+        print.options(options);
         int selection = -1;
         while (selection < 0){
             int proposedSelection = input.getInteger();
-            if (isSelectionValid(proposedSelection, commands)) {
+            if (isSelectionValid(proposedSelection, options)) {
                 selection = proposedSelection;
-                game = startNewGame(selection);
             } else {
                 print.invalidSelection();
             }
-        }
+        } return selection;
     }
 
-    private void playAgainLoop() {
-        int selection = -1;
-        while (selection < 0) {
-            int proposedSelection = input.getInteger();
-            if (isSelectionValid(proposedSelection, playCommands())) {
-                selection = proposedSelection;
-                playAgainCommand(selection);
-            } else {
-                print.invalidSelection();
-            }
-        }
-    }
 
     private boolean isSelectionValid(int selection, List<Command> options) {
         return (selection <= options.size() && selection > 0);
@@ -94,11 +86,9 @@ public class AppRunner {
 
     private void playAgain() {
         print.playAgain();
-        print.options(playCommands());
-        playAgainLoop();
+        playAgainCommand(validSelectionLoop(playCommands()));
+
     }
-
-
 
     private void playAgainCommand(int selection) {
         Command playOrQuit = playCommands().get(selection - 1);
