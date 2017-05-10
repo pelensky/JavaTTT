@@ -78,9 +78,15 @@ public class AppRunner {
     private void playAgain() {
         print.playAgain();
         print.options(playCommands());
-        int selection = input.getInteger();
-        if (isSelectionValid(selection, playCommands())) {
-            playAgainCommand(selection);
+        int selection = -1;
+        while (selection < 0) {
+            int proposedSelection = input.getInteger();
+            if (isSelectionValid(proposedSelection, playCommands())) {
+                selection = proposedSelection;
+                playAgainCommand(selection);
+            } else {
+                print.invalidSelection();
+            }
         }
     }
 
