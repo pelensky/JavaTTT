@@ -1,7 +1,10 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.Commands.*;
+import com.pelensky.tictactoe.Commands.Command;
+import com.pelensky.tictactoe.Commands.PlayAgain;
+import com.pelensky.tictactoe.Commands.Quit;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,25 +43,15 @@ public class AppRunner {
         print.clearScreen();
         print.welcome();
         print.options(commands);
-        game = startNewGame(validSelectionLoop(commands));
+        game = startNewGame(input.isSelectionValid(getValidSelections(commands)));
     }
 
-
-    private int validSelectionLoop(List<Command> options) {
-        int selection = -1;
-        while (selection < 0){
-            int proposedSelection = input.getInteger();
-            if (isSelectionValid(proposedSelection, options)) {
-                selection = proposedSelection;
-            } else {
-                print.invalidSelection();
-            }
-        } return selection;
-    }
-
-
-    private boolean isSelectionValid(int selection, List<Command> options) {
-        return (selection <= options.size() && selection > 0);
+    private List<Integer> getValidSelections(List<Command> options){
+        List<Integer> list = new ArrayList<>();
+       for (int i = 1; i < options.size() + 1; i++) {
+           list.add(i);
+        }
+        return list;
     }
 
     private Game startNewGame(int choice) {
@@ -87,7 +80,7 @@ public class AppRunner {
     private void playAgain() {
         print.playAgain();
         print.options(playCommands());
-        playAgainCommand(validSelectionLoop(playCommands()));
+        playAgainCommand(input.isSelectionValid(getValidSelections(playCommands())));
 
     }
 
