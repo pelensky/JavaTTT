@@ -13,24 +13,21 @@ public class Input {
     }
 
     public int getInteger() {
-        int selection = -1;
-        while (selection < 0) {
-            int proposedSelection = validateInput(input.nextLine().trim());
-            if (proposedSelection != -1) {
-               selection = proposedSelection;
-            } else {
-                print.invalidSelection();
-            }
+        String selection = input.nextLine().trim();
+        if (isAValidInput(selection)) {
+            return Integer.parseInt(selection);
+        } else {
+            print.invalidSelection();
+            return getInteger();
         }
-        return selection;
     }
 
-    private int validateInput(String text) {
+    private boolean isAValidInput(String selection) {
         try {
-            return Integer.parseInt(text);
+            Integer.parseInt(selection);
+            return true;
         } catch (NumberFormatException e) {
-            return -1;
+            return false;
         }
     }
-
 }

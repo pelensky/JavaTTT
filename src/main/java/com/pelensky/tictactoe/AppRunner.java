@@ -39,12 +39,12 @@ public class AppRunner {
     private void startGame() {
         print.clearScreen();
         print.welcome();
+        print.options(commands);
         game = startNewGame(validSelectionLoop(commands));
     }
 
 
     private int validSelectionLoop(List<Command> options) {
-        print.options(options);
         int selection = -1;
         while (selection < 0){
             int proposedSelection = input.getInteger();
@@ -86,6 +86,7 @@ public class AppRunner {
 
     private void playAgain() {
         print.playAgain();
+        print.options(playCommands());
         playAgainCommand(validSelectionLoop(playCommands()));
 
     }
