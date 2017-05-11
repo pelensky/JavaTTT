@@ -26,7 +26,7 @@ public class HumanPlayer implements Player {
   public int getMove(Board board) {
    int move = -1;
     while (move < 0) {
-      int proposedMove = input.getInteger() - board.getOffset();
+      int proposedMove = input.getInteger();
       if (board.isMarkerAllowed(proposedMove)){
         move = proposedMove;
       } else {

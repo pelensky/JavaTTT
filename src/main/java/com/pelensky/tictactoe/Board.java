@@ -20,7 +20,7 @@ public class Board {
   }
 
   void placeMarker(int space, String marker) {
-      getSpaces().set(space, marker);
+      getSpaces().set(space - offset, marker);
   }
 
   public boolean isMarkerAllowed(int space) {
@@ -31,13 +31,13 @@ public class Board {
     return spaces;
   }
 
-  public int getOffset() {
+  int getOffset() {
     return offset;
   }
 
   public List<Integer> getAvailableSpaces() {
     List<Integer> availableSpaces = new ArrayList<>();
-    for (int i = 0; i < getSpaces().size(); i++) {
+    for (int i = offset; i < getSpaces().size() + offset; i++) {
       if (isSpaceAvailable(i)) {
         availableSpaces.add(i);
       }
@@ -46,17 +46,17 @@ public class Board {
   }
 
   private void assignValuesToSpaces() {
-    for (int i = 0; i < totalSpaces; i++) {
-      getSpaces().add(String.valueOf(i + offset));
+    for (int i = offset; i < totalSpaces + offset; i++) {
+      getSpaces().add(String.valueOf(i));
     }
   }
 
   private boolean isSpaceAvailable(int space) {
-    return getSpaces().get(space).equals(String.valueOf(space + offset));
+    return getSpaces().get(space - offset).equals(String.valueOf(space));
   }
 
   private boolean isSpaceOnBoard(int space) {
-    return (space >= 0 && space < totalSpaces);
+    return (space > 0 && space <= totalSpaces);
   }
 
   int getNumberOfRows() {
