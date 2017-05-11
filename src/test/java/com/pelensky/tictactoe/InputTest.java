@@ -32,7 +32,7 @@ public class InputTest {
 
     @Test
     public void wontReturnUntilValidInteger(){
-        setUp("dan\n223423\n");
-        assertEquals(223423, input.getInteger());
+        setUp("dan\n2\n");
+        assertEquals(2, input.getInteger());
     }
 }
