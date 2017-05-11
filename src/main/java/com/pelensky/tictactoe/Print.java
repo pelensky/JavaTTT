@@ -73,7 +73,7 @@ public class Print {
     }
 
     private String getSpace(Game game, int index) {
-        return game.getSpaces().get(index);
+        return game.board.getSpaces().get(index);
     }
 
     void outcome(Game game) {

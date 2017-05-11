@@ -14,7 +14,7 @@ public class Input {
         this.print = print;
     }
 
-    public int getInteger() {
+    int getInteger() {
         try {
             return input.nextInt();
         } catch (InputMismatchException e) {

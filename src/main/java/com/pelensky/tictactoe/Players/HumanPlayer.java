@@ -14,7 +14,6 @@ public class HumanPlayer implements Player {
     this.marker = marker;
     this.print = print;
     this.input = input;
-
   }
 
   @Override
