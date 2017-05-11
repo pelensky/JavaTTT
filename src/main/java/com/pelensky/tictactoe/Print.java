@@ -22,7 +22,7 @@ public class Print {
         output.println("Who plays first?");
     }
 
-    public void invalidSelection() {
+    void invalidSelection() {
         output.println("Select a Valid Number");
     }
 
