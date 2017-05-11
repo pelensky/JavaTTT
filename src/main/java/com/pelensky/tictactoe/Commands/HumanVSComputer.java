@@ -8,6 +8,7 @@ import com.pelensky.tictactoe.Players.ComputerPlayer;
 import com.pelensky.tictactoe.Players.Player;
 import com.pelensky.tictactoe.Board;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -41,11 +42,23 @@ public class HumanVSComputer implements Command {
     print.clearScreen();
     print.whoPlaysFirst();
     print.selection(playerTypes());
-    return playerTypes().get(input.getInteger() - 1);
+    return playerTypes().get(getSelection(playerTypes()));
+  }
+
+  private int getSelection( List<Player> options) {
+    return input.isSelectionValid(validSelections(options)) - 1;
   }
 
   private List<Player> playerTypes() {
     return Arrays.asList(new HumanPlayer(input, print,  "X"), new ComputerPlayer("X", random));
+  }
+
+  private List<Integer> validSelections(List<Player> options){
+    List<Integer> list = new ArrayList<>();
+    for (int i = 1; i < options.size() + 1; i++) {
+      list.add(i);
+    }
+    return list;
   }
 
   private Player setPlayer2(Player player1) {

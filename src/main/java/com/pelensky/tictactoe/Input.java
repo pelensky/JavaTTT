@@ -24,7 +24,7 @@ public class Input {
         }
     }
 
-    int isSelectionValid(List<Integer> options){
+    public int isSelectionValid(List<Integer> options){
         int selection = getInteger();
         if (options.contains(selection)){
             return selection;

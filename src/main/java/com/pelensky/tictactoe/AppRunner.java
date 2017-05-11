@@ -34,19 +34,18 @@ public class AppRunner {
         }
     }
 
-    public void quitApp() {
-        appRunning = false;
-        print.exiting();
-    }
-
     private void startGame() {
         print.clearScreen();
         print.welcome();
         print.options(commands);
-        game = startNewGame(input.isSelectionValid(getValidSelections(commands)));
+        game = startNewGame(getSelection(commands));
     }
 
-    private List<Integer> getValidSelections(List<Command> options){
+    private int getSelection(List<Command> options) {
+        return input.isSelectionValid(validSelections(options));
+    }
+
+    private List<Integer> validSelections(List<Command> options){
         List<Integer> list = new ArrayList<>();
        for (int i = 1; i < options.size() + 1; i++) {
            list.add(i);
@@ -80,8 +79,11 @@ public class AppRunner {
     private void playAgain() {
         print.playAgain();
         print.options(playCommands());
-        playAgainCommand(input.isSelectionValid(getValidSelections(playCommands())));
+        playAgainCommand(getSelection(playCommands()));
 
+    }
+    private List<Command> playCommands() {
+        return Arrays.asList(new PlayAgain(), new Quit(this));
     }
 
     private void playAgainCommand(int selection) {
@@ -89,7 +91,8 @@ public class AppRunner {
         playOrQuit.execute();
     }
 
-    private List<Command> playCommands() {
-        return Arrays.asList(new PlayAgain(), new Quit(this));
+    public void quitApp() {
+        appRunning = false;
+        print.exiting();
     }
 }
