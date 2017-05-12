@@ -23,15 +23,6 @@ public class Board {
       getSpaces().set(space - offset, marker);
   }
 
-
-  List<String> getSpaces() {
-    return spaces;
-  }
-
-  int getOffset() {
-    return offset;
-  }
-
   public List<Integer> getAvailableSpaces() {
     List<Integer> availableSpaces = new ArrayList<>();
     for (int i = offset; i < getSpaces().size() + offset; i++) {
@@ -52,8 +43,12 @@ public class Board {
     return getSpaces().get(space - offset).equals(String.valueOf(space));
   }
 
-  private boolean isSpaceOnBoard(int space) {
-    return (space > 0 && space <= totalSpaces);
+  List<String> getSpaces() {
+    return spaces;
+  }
+
+  int getOffset() {
+    return offset;
   }
 
   int getNumberOfRows() {
