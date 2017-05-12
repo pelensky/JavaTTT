@@ -26,7 +26,7 @@ public class ComputerPlayer implements Player {
   }
 
   @Override
-  public String playerType() {
+  public String title() {
     return "Computer";
   }
 

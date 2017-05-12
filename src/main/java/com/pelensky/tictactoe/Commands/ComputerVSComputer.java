@@ -18,7 +18,7 @@ public class ComputerVSComputer implements Command {
   }
 
   @Override
-  public String instruction() {
+  public String title() {
     return "Computer VS Computer";
   }
 }

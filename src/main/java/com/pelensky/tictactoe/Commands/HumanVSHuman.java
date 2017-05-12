@@ -26,7 +26,7 @@ public class HumanVSHuman implements Command {
   }
 
   @Override
-  public String instruction() {
+  public String title() {
     return "Human VS Human";
   }
 }

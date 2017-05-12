@@ -34,14 +34,14 @@ public class HumanVSComputer implements Command {
   }
 
   @Override
-  public String instruction() {
+  public String title() {
     return "Human VS Computer";
   }
 
   private Player selectFirstPlayer() {
     print.clearScreen();
     print.whoPlaysFirst();
-    print.selection(playerTypes());
+    print.options(playerTypes());
     return playerTypes().get(getSelection(playerTypes()));
   }
 

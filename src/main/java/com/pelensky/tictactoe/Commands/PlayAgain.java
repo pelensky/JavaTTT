@@ -10,7 +10,7 @@ public class PlayAgain implements Command {
   }
 
   @Override
-  public String instruction() {
+  public String title() {
     return "Yes";
   }
 }
