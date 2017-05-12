@@ -42,7 +42,7 @@ public class AppRunner {
     }
 
     private int getSelection(List<Command> options) {
-        return input.isSelectionValid(validSelections(options));
+        return input.validateSelection(validSelections(options));
     }
 
     private List<Integer> validSelections(List<Command> options){

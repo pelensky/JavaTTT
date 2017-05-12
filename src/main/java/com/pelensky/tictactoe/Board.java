@@ -23,9 +23,6 @@ public class Board {
       getSpaces().set(space - offset, marker);
   }
 
-  public boolean isMarkerAllowed(int space) {
-    return (isSpaceOnBoard(space) && isSpaceAvailable(space));
-  }
 
   List<String> getSpaces() {
     return spaces;

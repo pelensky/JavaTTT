@@ -46,7 +46,7 @@ public class HumanVSComputer implements Command {
   }
 
   private int getSelection( List<Player> options) {
-    return input.isSelectionValid(validSelections(options)) - 1;
+    return input.validateSelection(validSelections(options)) - 1;
   }
 
   private List<Player> playerTypes() {

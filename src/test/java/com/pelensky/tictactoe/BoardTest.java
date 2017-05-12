@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class BoardTest {
 
@@ -38,16 +37,5 @@ public class BoardTest {
   public void takeTurn() {
     board.placeMarker(1, "X");
     assertEquals("X", board.getSpaces().get(0));
-  }
-
-  @Test
-  public void cantChooseSomewhereOutsideBoard() {
-    assertFalse(board.isMarkerAllowed(10));
-  }
-
-  @Test
-  public void cantChooseSomewhereTaken() {
-    board.placeMarker(3, "0");
-    assertFalse(board.isMarkerAllowed(3));
   }
 }

@@ -24,13 +24,13 @@ public class Input {
         }
     }
 
-    public int isSelectionValid(List<Integer> options){
+    public int validateSelection(List<Integer> options){
         int selection = getInteger();
         if (options.contains(selection)){
             return selection;
         } else {
             print.invalidSelection();
-            return isSelectionValid(options);
+            return validateSelection(options);
         }
     }
 
