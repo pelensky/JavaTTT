@@ -9,14 +9,14 @@ import static org.junit.Assert.assertTrue;
 
 public class ComputerPlayerTest {
 
-  private MockRandom mockRandom;
+  private FakeRandom fakeRandom;
   private ComputerPlayer computer;
   private Board board;
 
   @Before
   public void setUp() {
-    mockRandom = new MockRandom();
-    computer = new ComputerPlayer("O", mockRandom);
+    fakeRandom = new FakeRandom();
+    computer = new ComputerPlayer("O", fakeRandom);
     board = new Board(3);
   }
 
@@ -28,6 +28,6 @@ public class ComputerPlayerTest {
   @Test
   public void computerSelectsASpot() {
     computer.getMove(board);
-    assertTrue(mockRandom.getHasComputerPlayed());
+    assertTrue(fakeRandom.getHasComputerPlayed());
   }
 }
