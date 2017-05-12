@@ -2,13 +2,13 @@ package com.pelensky.tictactoe;
 
 import java.util.Random;
 
-public class MockRandom extends Random {
+public class FakeRandom extends Random {
 
   private int number;
 
   private boolean hasComputerPlayed = false;
 
-  MockRandom() {
+  FakeRandom() {
     this.number = 0;
   }
 

@@ -4,7 +4,6 @@ import com.pelensky.tictactoe.Commands.Command;
 import com.pelensky.tictactoe.Commands.PlayAgain;
 import com.pelensky.tictactoe.Commands.Quit;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,15 +41,7 @@ public class AppRunner {
     }
 
     private int getSelection(List<Command> options) {
-        return input.isSelectionValid(validSelections(options));
-    }
-
-    private List<Integer> validSelections(List<Command> options){
-        List<Integer> list = new ArrayList<>();
-       for (int i = 1; i < options.size() + 1; i++) {
-           list.add(i);
-        }
-        return list;
+        return input.validateSelection(input.validSelections(options));
     }
 
     private Game startNewGame(int choice) {

@@ -43,12 +43,12 @@ public class InputTest {
     @Test
     public void selectionIsValidWhenItExists(){
         setUp("1\n");
-        assertEquals(1, input.isSelectionValid(list));
+        assertEquals(1, input.validateSelection(list));
     }
 
     @Test
     public void selectionInvalidWhenNotOnList(){
         setUp("2\n1\n");
-        assertEquals(1, input.isSelectionValid(list));
+        assertEquals(1, input.validateSelection(list));
     }
 }

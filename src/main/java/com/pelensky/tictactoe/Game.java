@@ -10,7 +10,6 @@ public class Game {
     final Player player1;
     final Player player2;
     private final int numberOfRows;
-    private final int offset;
     Player currentPlayer;
     private Player winner;
 
@@ -20,7 +19,6 @@ public class Game {
         this.player2 = player2;
         this.currentPlayer = player1;
         this.numberOfRows = board.getNumberOfRows();
-        this.offset = board.getOffset();
     }
 
     void takeTurn() {

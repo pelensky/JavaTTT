@@ -1,5 +1,6 @@
 package com.pelensky.tictactoe;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -24,14 +25,21 @@ public class Input {
         }
     }
 
-    public int isSelectionValid(List<Integer> options){
+    public int validateSelection(List<Integer> options){
         int selection = getInteger();
         if (options.contains(selection)){
             return selection;
         } else {
             print.invalidSelection();
-            return isSelectionValid(options);
+            return validateSelection(options);
         }
     }
 
+    public List<Integer> validSelections(List<? extends Menu> options){
+        List<Integer> list = new ArrayList<>();
+       for (int i = 1; i < options.size() + 1; i++) {
+           list.add(i);
+        }
+        return list;
+    }
 }

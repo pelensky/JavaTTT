@@ -1,8 +1,5 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.Commands.Command;
-import com.pelensky.tictactoe.Players.Player;
-
 import java.io.PrintStream;
 import java.util.List;
 
@@ -30,25 +27,13 @@ public class Print {
         output.println("Exiting");
     }
 
-    void options(List<Command> options) {
+    public void options(List<? extends Menu > options) {
         StringBuilder instructions = new StringBuilder();
         for (int i = 0; i < options.size(); i++) {
             instructions
                     .append(i + 1)
                     .append(") ")
-                    .append(options.get(i).instruction())
-                    .append(System.lineSeparator());
-        }
-        output.println(instructions.toString().trim());
-    }
-
-    public void selection(List<Player> playerTypes) {
-        StringBuilder instructions = new StringBuilder();
-        for (int i = 0; i < playerTypes.size(); i++) {
-            instructions
-                    .append(i + 1)
-                    .append(") ")
-                    .append(playerTypes.get(i).playerType())
+                    .append(options.get(i).title())
                     .append(System.lineSeparator());
         }
         output.println(instructions.toString().trim());

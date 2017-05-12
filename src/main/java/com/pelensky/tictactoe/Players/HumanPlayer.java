@@ -23,12 +23,12 @@ public class HumanPlayer implements Player {
 
   @Override
   public int getMove(Board board) {
-    return input.isSelectionValid(board.getAvailableSpaces());
+    return input.validateSelection(board.getAvailableSpaces());
   }
 
 
   @Override
-  public String playerType() {
+  public String title() {
     return "Human";
   }
 }
