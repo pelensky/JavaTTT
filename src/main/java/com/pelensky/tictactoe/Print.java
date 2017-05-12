@@ -28,7 +28,7 @@ public class Print {
         output.println("Exiting");
     }
 
-    public void options(List<? extends Menu > options) {
+    public void options(List<? extends Menu> options) {
         StringBuilder instructions = new StringBuilder();
         for (int i = 0; i < options.size(); i++) {
             instructions
@@ -74,8 +74,8 @@ public class Print {
         output.println("Play again?");
     }
 
-    public void clearScreen(){
-            output.print(CLEAR_SCREEN);
-            output.flush();
-        }
+    public void clearScreen() {
+        output.print(CLEAR_SCREEN);
+        output.flush();
+    }
 }

@@ -73,6 +73,7 @@ public class AppRunner {
         playAgainCommand(getSelection(playCommands()));
 
     }
+
     private List<Command> playCommands() {
         return Arrays.asList(new PlayAgain(), new Quit(this));
     }

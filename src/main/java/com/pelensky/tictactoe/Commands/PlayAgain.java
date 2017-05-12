@@ -4,13 +4,13 @@ import com.pelensky.tictactoe.Game;
 
 public class PlayAgain implements Command {
 
-  @Override
-  public Game execute() {
-    return null;
-  }
+    @Override
+    public Game execute() {
+        return null;
+    }
 
-  @Override
-  public String title() {
-    return "Yes";
-  }
+    @Override
+    public String title() {
+        return "Yes";
+    }
 }

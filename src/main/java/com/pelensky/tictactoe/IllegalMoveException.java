@@ -1,3 +1,4 @@
 package com.pelensky.tictactoe;
 
-class IllegalMoveException extends RuntimeException {}
+class IllegalMoveException extends RuntimeException {
+}

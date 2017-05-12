@@ -5,20 +5,20 @@ import com.pelensky.tictactoe.Game;
 
 public class Quit implements Command {
 
-  private final AppRunner appRunner;
+    private final AppRunner appRunner;
 
-  public Quit(AppRunner appRunner) {
-    this.appRunner = appRunner;
-  }
+    public Quit(AppRunner appRunner) {
+        this.appRunner = appRunner;
+    }
 
-  @Override
-  public Game execute() {
-    appRunner.quitApp();
-    return null;
-  }
+    @Override
+    public Game execute() {
+        appRunner.quitApp();
+        return null;
+    }
 
-  @Override
-  public String title() {
-    return "No";
-  }
+    @Override
+    public String title() {
+        return "No";
+    }
 }

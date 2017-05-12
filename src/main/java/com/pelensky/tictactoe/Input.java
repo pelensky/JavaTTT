@@ -25,9 +25,9 @@ public class Input {
         }
     }
 
-    public int validateSelection(List<Integer> options){
+    public int validateSelection(List<Integer> options) {
         int selection = getInteger();
-        if (options.contains(selection)){
+        if (options.contains(selection)) {
             return selection;
         } else {
             print.invalidSelection();
@@ -35,10 +35,10 @@ public class Input {
         }
     }
 
-    public List<Integer> validSelections(List<? extends Menu> options){
+    public List<Integer> validSelections(List<? extends Menu> options) {
         List<Integer> list = new ArrayList<>();
-       for (int i = 1; i < options.size() + 1; i++) {
-           list.add(i);
+        for (int i = 1; i < options.size() + 1; i++) {
+            list.add(i);
         }
         return list;
     }
