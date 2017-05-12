@@ -3,7 +3,6 @@ package com.pelensky.tictactoe;
 import com.pelensky.tictactoe.Players.Player;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Game {
 
@@ -53,7 +52,7 @@ public class Game {
     }
 
     private boolean isGameTied() {
-        return getAvailableSpaces().size() == 0 && !isGameWonBy(player1) && !isGameWonBy(player2);
+        return board.getAvailableSpaces().size() == 0 && !isGameWonBy(player1) && !isGameWonBy(player2);
     }
 
     private ArrayList<ArrayList<String>> getRows() {
@@ -61,7 +60,7 @@ public class Game {
         for (int i = 0; i < numberOfRows; i++) {
             rows.add(
                     new ArrayList<>(
-                            getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
+                            board.getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
         }
         return rows;
     }
@@ -101,13 +100,5 @@ public class Game {
         winningCombinations.add(getLeftDiagonal());
         winningCombinations.add(getRightDiagonal());
         return winningCombinations;
-    }
-
-    private List<Integer> getAvailableSpaces() {
-        return board.getAvailableSpaces();
-    }
-
-    List<String> getSpaces() {
-        return board.getSpaces();
     }
 }

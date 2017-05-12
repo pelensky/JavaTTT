@@ -1,7 +1,10 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.Commands.*;
+import com.pelensky.tictactoe.Commands.Command;
+import com.pelensky.tictactoe.Commands.PlayAgain;
+import com.pelensky.tictactoe.Commands.Quit;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,34 +34,23 @@ public class AppRunner {
         }
     }
 
-    public void quitApp() {
-        appRunning = false;
-        print.exiting();
-    }
-
     private void startGame() {
         print.clearScreen();
         print.welcome();
-        game = startNewGame(validSelectionLoop(commands));
+        print.options(commands);
+        game = startNewGame(getSelection(commands));
     }
 
-
-    private int validSelectionLoop(List<Command> options) {
-        print.options(options);
-        int selection = -1;
-        while (selection < 0){
-            int proposedSelection = input.getInteger();
-            if (isSelectionValid(proposedSelection, options)) {
-                selection = proposedSelection;
-            } else {
-                print.invalidSelection();
-            }
-        } return selection;
+    private int getSelection(List<Command> options) {
+        return input.isSelectionValid(validSelections(options));
     }
 
-
-    private boolean isSelectionValid(int selection, List<Command> options) {
-        return (selection <= options.size() && selection > 0);
+    private List<Integer> validSelections(List<Command> options){
+        List<Integer> list = new ArrayList<>();
+       for (int i = 1; i < options.size() + 1; i++) {
+           list.add(i);
+        }
+        return list;
     }
 
     private Game startNewGame(int choice) {
@@ -86,8 +78,12 @@ public class AppRunner {
 
     private void playAgain() {
         print.playAgain();
-        playAgainCommand(validSelectionLoop(playCommands()));
+        print.options(playCommands());
+        playAgainCommand(getSelection(playCommands()));
 
+    }
+    private List<Command> playCommands() {
+        return Arrays.asList(new PlayAgain(), new Quit(this));
     }
 
     private void playAgainCommand(int selection) {
@@ -95,7 +91,8 @@ public class AppRunner {
         playOrQuit.execute();
     }
 
-    private List<Command> playCommands() {
-        return Arrays.asList(new PlayAgain(), new Quit(this));
+    public void quitApp() {
+        appRunning = false;
+        print.exiting();
     }
 }

@@ -14,7 +14,6 @@ public class HumanPlayer implements Player {
     this.marker = marker;
     this.print = print;
     this.input = input;
-
   }
 
   @Override
@@ -24,15 +23,7 @@ public class HumanPlayer implements Player {
 
   @Override
   public int getMove(Board board) {
-   int move = -1;
-    while (move < 0) {
-      int proposedMove = input.getInteger() - board.getOffset();
-      if (board.isMarkerAllowed(proposedMove)){
-        move = proposedMove;
-      } else {
-        print.invalidSelection();
-      }
-    } return move;
+    return input.isSelectionValid(board.getAvailableSpaces());
   }
 
 

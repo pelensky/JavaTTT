@@ -36,7 +36,7 @@ public class BoardTest {
 
   @Test
   public void takeTurn() {
-    board.placeMarker(0, "X");
+    board.placeMarker(1, "X");
     assertEquals("X", board.getSpaces().get(0));
   }
 
@@ -47,7 +47,7 @@ public class BoardTest {
 
   @Test
   public void cantChooseSomewhereTaken() {
-    board.placeMarker(2, "0");
-    assertFalse(board.isMarkerAllowed(2));
+    board.placeMarker(3, "0");
+    assertFalse(board.isMarkerAllowed(3));
   }
 }

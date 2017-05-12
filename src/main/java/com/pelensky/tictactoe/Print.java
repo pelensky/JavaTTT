@@ -22,7 +22,7 @@ public class Print {
         output.println("Who plays first?");
     }
 
-    public void invalidSelection() {
+    void invalidSelection() {
         output.println("Select a Valid Number");
     }
 
@@ -73,7 +73,7 @@ public class Print {
     }
 
     private String getSpace(Game game, int index) {
-        return game.getSpaces().get(index);
+        return game.board.getSpaces().get(index);
     }
 
     void outcome(Game game) {

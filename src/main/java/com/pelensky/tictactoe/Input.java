@@ -1,5 +1,7 @@
 package com.pelensky.tictactoe;
 
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Input {
@@ -12,24 +14,23 @@ public class Input {
         this.print = print;
     }
 
-    public int getInteger() {
-        int selection = -1;
-        while (selection < 0) {
-            int proposedSelection = validateInput(input.nextLine().trim());
-            if (proposedSelection != -1) {
-               selection = proposedSelection;
-            } else {
-                print.invalidSelection();
-            }
+    int getInteger() {
+        try {
+            return input.nextInt();
+        } catch (InputMismatchException e) {
+            print.invalidSelection();
+            input.next();
+            return getInteger();
         }
-        return selection;
     }
 
-    private int validateInput(String text) {
-        try {
-            return Integer.parseInt(text);
-        } catch (NumberFormatException e) {
-            return -1;
+    public int isSelectionValid(List<Integer> options){
+        int selection = getInteger();
+        if (options.contains(selection)){
+            return selection;
+        } else {
+            print.invalidSelection();
+            return isSelectionValid(options);
         }
     }
 
