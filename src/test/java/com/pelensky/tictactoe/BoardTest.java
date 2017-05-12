@@ -38,4 +38,10 @@ public class BoardTest {
     board.placeMarker(1, "X");
     assertEquals("X", board.getSpaces().get(0));
   }
+
+  @Test(expected = IllegalMoveException.class)
+  public void cantPutAMarkerSomewhereTaken() {
+    board.placeMarker(1, "X");
+    board.placeMarker(1, "O");
+  }
 }

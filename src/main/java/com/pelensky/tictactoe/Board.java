@@ -20,8 +20,13 @@ public class Board {
   }
 
   void placeMarker(int space, String marker) {
+    if (isMoveAllowed(space)) {
       getSpaces().set(space - offset, marker);
+    } else {
+      throw new IllegalMoveException();
+    }
   }
+
 
   List<String> getSpaces() {
     return spaces;
@@ -50,4 +55,13 @@ public class Board {
   private boolean isSpaceAvailable(int space) {
     return getSpaces().get(space - offset).equals(String.valueOf(space));
   }
+
+  private boolean isSpaceOnBoard(int space) {
+    return (space > 0 && space <= totalSpaces);
+  }
+
+  private boolean isMoveAllowed(int space) {
+    return (isSpaceOnBoard(space) && isSpaceAvailable(space));
+  }
+
 }
