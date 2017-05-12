@@ -27,10 +27,6 @@ public class Board {
     return spaces;
   }
 
-  int getOffset() {
-    return offset;
-  }
-
   int getNumberOfRows() {
     return numberOfRows;
   }
