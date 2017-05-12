@@ -21,6 +21,8 @@ public class GameTest {
   private HumanPlayer player2;
   private Board board;
   private Game game;
+  private Board bigBoard;
+  private Game bigGame;
 
   @Before
   public void setUp() {
@@ -29,11 +31,17 @@ public class GameTest {
     player1 = new HumanPlayer(input, print, "X");
     player2 = new HumanPlayer(input, print, "O");
     board = new Board(3);
+    bigBoard = new Board(4);
   }
 
   private void setSpacesAndCreateGame(List<String> strings){
     board.spaces = new ArrayList<>(strings);
     game = new Game(board, player1, player2);
+  }
+
+  private void setSpacesAndCreateBigGame(List<String> strings){
+    bigBoard.spaces = new ArrayList<>(strings);
+    bigGame = new Game(bigBoard, player1, player2);
   }
 
   @Test
@@ -52,7 +60,7 @@ public class GameTest {
 
   @Test
   public void checkForWinHorizontalA() {
-    setSpacesAndCreateGame(Arrays.asList("X", "X", "X", "5", "5", "6", "7", "8", "9"));
+    setSpacesAndCreateGame(Arrays.asList("X", "X", "X", "4", "5", "6", "7", "8", "9"));
     assertTrue(game.isGameOver());
   }
 
@@ -109,4 +117,31 @@ public class GameTest {
     setSpacesAndCreateGame(Arrays.asList("O", "X", "O", "X", "O", "X", "X", "O", "X"));
     assertTrue(game.isGameOver());
   }
+
+  @Test
+  public void checkForWinHorizontalBig() {
+    setSpacesAndCreateBigGame(Arrays.asList("X", "X", "X", "X", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"));
+    assertTrue(bigGame.isGameOver());
+  }
+
+
+  @Test
+  public void checkForWinVerticalBig() {
+    setSpacesAndCreateBigGame(Arrays.asList("O", "2", "3", "4", "O", "6", "7", "8", "O", "10", "11", "12", "O", "14", "15", "16"));
+    assertTrue(bigGame.isGameOver());
+  }
+
+  @Test
+  public void checkForWinLeftDiagonalBig() {
+    setSpacesAndCreateBigGame(Arrays.asList("X", "2", "3", "4", "5", "X", "7", "8", "9", "10", "X", "12", "13", "14", "15", "X"));
+    assertTrue(bigGame.isGameOver());
+  }
+
+  @Test
+  public void checkForWinRightDiagonalBig() {
+    setSpacesAndCreateBigGame(Arrays.asList("1", "2", "3", "O", "5", "6", "O", "8", "9", "O", "11", "12", "O", "14", "15", "16"));
+    assertTrue(bigGame.isGameOver());
+  }
+
+
 }
