@@ -28,6 +28,6 @@ public class TicTacToe {
 
   private static List<Command> commands() {
     return Arrays.asList(
-        new HumanVSHuman(input, print), new HumanVSComputer(input, print, random), new ComputerVSComputer());
+        new HumanVSHuman(input, print), new HumanVSComputer(input, print, random), new ComputerVSComputer(random));
   }
 }

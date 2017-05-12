@@ -8,17 +8,22 @@ import com.pelensky.tictactoe.Players.Player;
 import java.util.Random;
 
 public class ComputerVSComputer implements Command {
+    private final Random random;
 
-  @Override
-  public Game execute() {
-    Player player1 = new ComputerPlayer("X", new Random());
-    Player player2 = new ComputerPlayer("O", new Random());
-    Board board = new Board(3);
-    return new Game(board, player1, player2);
-  }
+    public ComputerVSComputer(Random random) {
+        this.random = random;
+    }
 
-  @Override
-  public String title() {
-    return "Computer VS Computer";
-  }
+    @Override
+    public Game execute() {
+        Player player1 = new ComputerPlayer("X", random);
+        Player player2 = new ComputerPlayer("O", random);
+        Board board = new Board(3);
+        return new Game(board, player1, player2);
+    }
+
+    @Override
+    public String title() {
+        return "Computer VS Computer";
+    }
 }
