@@ -1,14 +1,13 @@
 package com.pelensky.tictactoe.Commands;
 
-import com.pelensky.tictactoe.Input;
-import com.pelensky.tictactoe.Print;
-import com.pelensky.tictactoe.Game;
-import com.pelensky.tictactoe.Players.HumanPlayer;
-import com.pelensky.tictactoe.Players.ComputerPlayer;
-import com.pelensky.tictactoe.Players.Player;
 import com.pelensky.tictactoe.Board;
+import com.pelensky.tictactoe.Game;
+import com.pelensky.tictactoe.Input;
+import com.pelensky.tictactoe.Players.ComputerPlayer;
+import com.pelensky.tictactoe.Players.HumanPlayer;
+import com.pelensky.tictactoe.Players.Player;
+import com.pelensky.tictactoe.Print;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -46,19 +45,11 @@ public class HumanVSComputer implements Command {
   }
 
   private int getSelection( List<Player> options) {
-    return input.validateSelection(validSelections(options)) - 1;
+    return input.validateSelection(input.validSelections(options)) - 1;
   }
 
   private List<Player> playerTypes() {
     return Arrays.asList(new HumanPlayer(input, print,  "X"), new ComputerPlayer("X", random));
-  }
-
-  private List<Integer> validSelections(List<Player> options){
-    List<Integer> list = new ArrayList<>();
-    for (int i = 1; i < options.size() + 1; i++) {
-      list.add(i);
-    }
-    return list;
   }
 
   private Player setPlayer2(Player player1) {
