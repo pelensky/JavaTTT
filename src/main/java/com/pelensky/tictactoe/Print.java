@@ -46,20 +46,23 @@ public class Print {
     }
 
     void board(Board board) {
-        String line;
+        StringBuilder printedBoard = new StringBuilder();
+        ArrayList<ArrayList<String>> rows = board.getRows();
+        for (ArrayList<String> row : rows) {
+            printedBoard.append(formatRow(row)).append(getLine(board));
+        }
+        printedBoard.append(System.lineSeparator());
+        output.println(printedBoard.substring(0, printedBoard.length() - getLine(board).length()));
+    }
+
+    private String getLine(Board board) {
+        final String line;
         if (board.getRows().size() == 3) {
             line = System.lineSeparator() + "-----------" + System.lineSeparator();
         } else {
             line = System.lineSeparator() + "---------------" + System.lineSeparator();
         }
-        StringBuilder printedBoard = new StringBuilder();
-        ArrayList<ArrayList<String>> rows = board.getRows();
-        for (ArrayList<String> row : rows) {
-            printedBoard.append(formatRow(row)).append(line);
-        }
-        printedBoard.append(System.lineSeparator());
-
-        output.println(printedBoard.substring(0, printedBoard.length() - line.length()));
+        return line;
     }
 
     private String formatRow(List<String> row) {
