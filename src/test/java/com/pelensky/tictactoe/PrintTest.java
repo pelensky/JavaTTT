@@ -12,23 +12,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class PrintTest {
     private ByteArrayOutputStream out;
     private Print print;
-    private Game game;
-    private Game bigGame;
     private Board board;
+    private Board bigBoard;
 
     @Before
     public void setUp(){
-//        Input input = new Input(new Scanner(System.in), print);
         out = new ByteArrayOutputStream();
         PrintStream output = new PrintStream(out);
         print = new Print(output);
-//        final Board board = new Board(3);
-//        final Board bigBoard = new Board(4);
-//        final Player player1 = new HumanPlayer(input, "X");
-//        final Player player2 = new HumanPlayer(input, "O");
-//        game = new Game(board, player1, player2);
-//        bigGame = new Game(bigBoard, player1, player2);
         board = new Fake3X3Board(3);
+        bigBoard = new Fake4X4Board(4);
     }
 
     @Test
@@ -45,7 +38,7 @@ public class PrintTest {
 
     @Test
     public void printBigBoard(){
-        print.board(board);
+        print.board(bigBoard);
         assertThat(
                 out.toString(),
                 containsString(" 1 | 2 | 3 | 4" + System.lineSeparator() +
