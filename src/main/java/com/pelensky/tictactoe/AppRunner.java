@@ -56,14 +56,14 @@ public class AppRunner {
     private void makeMove() {
         print.clearScreen();
         print.selectSpace(game);
-        print.board(game);
+        print.board(game.board);
         game.takeTurn();
     }
 
     private void endOfGame() {
         print.clearScreen();
         print.outcome(game);
-        print.board(game);
+        print.board(game.board);
         playAgain();
     }
 

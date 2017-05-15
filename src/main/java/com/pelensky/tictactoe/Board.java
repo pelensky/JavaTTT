@@ -64,4 +64,41 @@ public class Board {
         return (isSpaceOnBoard(space) && isSpaceAvailable(space));
     }
 
+    ArrayList<ArrayList<String>> getRows() {
+        ArrayList<ArrayList<String>> rows = new ArrayList<>(numberOfRows);
+        for (int i = 0; i < numberOfRows; i++) {
+            rows.add(
+                    new ArrayList<>(
+                            getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
+        }
+        return rows;
+    }
+
+    ArrayList<ArrayList<String>> getColumns() {
+        ArrayList<ArrayList<String>> columns = new ArrayList<>(numberOfRows);
+        for (int i = 0; i < numberOfRows; i++) {
+            ArrayList<String> column = new ArrayList<>(numberOfRows);
+            for (int j = 0; j < numberOfRows; j++) {
+                column.add(getRows().get(j).get(i));
+            }
+            columns.add(column);
+        }
+        return columns;
+    }
+
+    ArrayList<String> getLeftDiagonal() {
+        ArrayList<String> leftDiagonal = new ArrayList<>(numberOfRows);
+        for (int i = 0; i < numberOfRows; i++) {
+            leftDiagonal.add(getRows().get(i).get(i));
+        }
+        return leftDiagonal;
+    }
+
+    ArrayList<String> getRightDiagonal() {
+        ArrayList<String> rightDiagonal = new ArrayList<>(numberOfRows);
+        for (int i = 0; i < numberOfRows; i++) {
+            rightDiagonal.add(getRows().get(i).get(numberOfRows - (i + 1)));
+        }
+        return rightDiagonal;
+    }
 }

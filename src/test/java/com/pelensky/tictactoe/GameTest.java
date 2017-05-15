@@ -28,8 +28,8 @@ public class GameTest {
     public void setUp() {
         Print print = new Print(new PrintStream(System.out));
         Input input = new Input(new Scanner(System.in), print);
-        player1 = new HumanPlayer(input, print, "X");
-        player2 = new HumanPlayer(input, print, "O");
+        player1 = new HumanPlayer(input, "X");
+        player2 = new HumanPlayer(input, "O");
         board = new Board(3);
         bigBoard = new Board(4);
     }

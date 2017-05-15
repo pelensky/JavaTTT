@@ -49,14 +49,14 @@ public class HumanVSComputer implements Command {
     }
 
     private List<Player> playerTypes() {
-        return Arrays.asList(new HumanPlayer(input, print, "X"), new ComputerPlayer("X", random));
+        return Arrays.asList(new HumanPlayer(input, "X"), new ComputerPlayer("X", random));
     }
 
     private Player setPlayer2(Player player1) {
         if (player1 instanceof HumanPlayer) {
             return new ComputerPlayer("O", random);
         } else {
-            return new HumanPlayer(input, print, "O");
+            return new HumanPlayer(input,"O");
         }
     }
 }

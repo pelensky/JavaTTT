@@ -1,6 +1,7 @@
 package com.pelensky.tictactoe;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Print {
@@ -44,22 +45,25 @@ public class Print {
         output.println(game.currentPlayer.getMarker() + " select a space");
     }
 
-    void board(Game game) {
-        String line = System.lineSeparator() + "-----------" + System.lineSeparator();
-        output.println(formatRow(game, 0, 1, 2)
-                + line
-                + formatRow(game, 3, 4, 5)
-                + line
-                + formatRow(game, 6, 7, 8)
-                + System.lineSeparator());
+    void board(Board board) {
+        String line = System.lineSeparator() + "---------------" + System.lineSeparator();
+        StringBuilder printedBoard = new StringBuilder();
+        ArrayList<ArrayList<String>> rows = board.getRows();
+        for (ArrayList<String> row : rows) {
+            printedBoard.append(formatRow(row)).append(line);
+        }
+        printedBoard.append(System.lineSeparator());
+
+        output.println(printedBoard.substring(0, printedBoard.length() - line.length()));
     }
 
-    private String formatRow(Game game, int a, int b, int c) {
-        return " " + getSpace(game, a) + " | " + getSpace(game, b) + " | " + getSpace(game, c);
-    }
-
-    private String getSpace(Game game, int index) {
-        return game.board.getSpaces().get(index);
+    private String formatRow(List<String> row) {
+        String separator = " | ";
+        StringBuilder formattedRow = new StringBuilder(" ");
+        for (String aRow : row) {
+            formattedRow.append(aRow).append(separator);
+        }
+        return String.valueOf(formattedRow.substring(0, formattedRow.length() - separator.length()));
     }
 
     void outcome(Game game) {

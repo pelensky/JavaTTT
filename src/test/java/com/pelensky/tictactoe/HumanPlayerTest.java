@@ -17,7 +17,7 @@ public class HumanPlayerTest {
   public void setUp() {
     Print print = new Print(new PrintStream(System.out));
     Input input = new Input(new Scanner(System.in), print);
-    human = new HumanPlayer(input, print,  "X");
+    human = new HumanPlayer(input,  "X");
   }
 
   @Test

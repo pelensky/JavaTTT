@@ -53,50 +53,12 @@ public class Game {
         return board.getAvailableSpaces().size() == 0 && !isGameWonBy(player1) && !isGameWonBy(player2);
     }
 
-    private ArrayList<ArrayList<String>> getRows() {
-        ArrayList<ArrayList<String>> rows = new ArrayList<>(numberOfRows);
-        for (int i = 0; i < numberOfRows; i++) {
-            rows.add(
-                    new ArrayList<>(
-                            board.getSpaces().subList(i * numberOfRows, (numberOfRows * i) + numberOfRows)));
-        }
-        return rows;
-    }
-
-    private ArrayList<ArrayList<String>> getColumns() {
-        ArrayList<ArrayList<String>> columns = new ArrayList<>(numberOfRows);
-        for (int i = 0; i < numberOfRows; i++) {
-            ArrayList<String> column = new ArrayList<>(numberOfRows);
-            for (int j = 0; j < numberOfRows; j++) {
-                column.add(getRows().get(j).get(i));
-            }
-            columns.add(column);
-        }
-        return columns;
-    }
-
-    private ArrayList<String> getLeftDiagonal() {
-        ArrayList<String> leftDiagonal = new ArrayList<>(numberOfRows);
-        for (int i = 0; i < numberOfRows; i++) {
-            leftDiagonal.add(getRows().get(i).get(i));
-        }
-        return leftDiagonal;
-    }
-
-    private ArrayList<String> getRightDiagonal() {
-        ArrayList<String> rightDiagonal = new ArrayList<>(numberOfRows);
-        for (int i = 0; i < numberOfRows; i++) {
-            rightDiagonal.add(getRows().get(i).get(numberOfRows - (i + 1)));
-        }
-        return rightDiagonal;
-    }
-
     private ArrayList<ArrayList<String>> winningCombinations() {
         ArrayList<ArrayList<String>> winningCombinations = new ArrayList<>();
-        winningCombinations.addAll(getRows());
-        winningCombinations.addAll(getColumns());
-        winningCombinations.add(getLeftDiagonal());
-        winningCombinations.add(getRightDiagonal());
+        winningCombinations.addAll(board.getRows());
+        winningCombinations.addAll(board.getColumns());
+        winningCombinations.add(board.getLeftDiagonal());
+        winningCombinations.add(board.getRightDiagonal());
         return winningCombinations;
     }
 }
