@@ -1,9 +1,8 @@
-package com.pelensky.tictactoe.Commands;
+package com.pelensky.tictactoe.PlayAgainOptions;
 
 import com.pelensky.tictactoe.AppRunner;
-import com.pelensky.tictactoe.Game;
 
-public class Quit implements Command {
+public class Quit implements Options {
 
     private final AppRunner appRunner;
 
@@ -12,9 +11,8 @@ public class Quit implements Command {
     }
 
     @Override
-    public Game execute() {
+    public void execute() {
         appRunner.quitApp();
-        return null;
     }
 
     @Override

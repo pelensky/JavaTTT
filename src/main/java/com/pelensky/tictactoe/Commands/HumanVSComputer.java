@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class HumanVSComputer implements Command {
+public class HumanVSComputer implements GameType {
 
     private final Input input;
     private final Print print;
@@ -25,10 +25,9 @@ public class HumanVSComputer implements Command {
     }
 
     @Override
-    public Game execute() {
+    public Game execute(Board board) {
         Player player1 = selectFirstPlayer();
         Player player2 = setPlayer2(player1);
-        Board board = new Board(3);
         return new Game(board, player1, player2);
     }
 
