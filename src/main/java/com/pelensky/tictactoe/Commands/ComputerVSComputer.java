@@ -7,7 +7,7 @@ import com.pelensky.tictactoe.Players.Player;
 
 import java.util.Random;
 
-public class ComputerVSComputer implements Command {
+public class ComputerVSComputer implements GameType {
     private final Random random;
 
     public ComputerVSComputer(Random random) {
@@ -15,10 +15,9 @@ public class ComputerVSComputer implements Command {
     }
 
     @Override
-    public Game execute() {
+    public Game execute(Board board) {
         Player player1 = new ComputerPlayer("X", random);
         Player player2 = new ComputerPlayer("O", random);
-        Board board = new Board(3);
         return new Game(board, player1, player2);
     }
 

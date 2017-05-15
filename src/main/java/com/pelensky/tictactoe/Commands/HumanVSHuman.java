@@ -7,7 +7,7 @@ import com.pelensky.tictactoe.Players.HumanPlayer;
 import com.pelensky.tictactoe.Players.Player;
 import com.pelensky.tictactoe.Board;
 
-public class HumanVSHuman implements Command {
+public class HumanVSHuman implements GameType {
 
   private final Input input;
   private final Print print;
@@ -18,10 +18,9 @@ public class HumanVSHuman implements Command {
   }
 
   @Override
-  public Game execute() {
-    Player player1 = new HumanPlayer(input, print, "X");
-    Player player2 = new HumanPlayer(input, print, "O");
-    Board board = new Board(3);
+  public Game execute(Board board) {
+    Player player1 = new HumanPlayer(input, "X");
+    Player player2 = new HumanPlayer(input, "O");
     return new Game(board, player1, player2);
   }
 
