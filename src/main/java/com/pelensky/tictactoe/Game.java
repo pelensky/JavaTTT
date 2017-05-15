@@ -9,7 +9,6 @@ public class Game {
     final Board board;
     final Player player1;
     final Player player2;
-    private final int numberOfRows;
     Player currentPlayer;
     private Player winner;
 
@@ -18,7 +17,6 @@ public class Game {
         this.player1 = player1;
         this.player2 = player2;
         this.currentPlayer = player1;
-        this.numberOfRows = board.getNumberOfRows();
     }
 
     void takeTurn() {

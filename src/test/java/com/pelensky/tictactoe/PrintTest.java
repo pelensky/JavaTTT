@@ -30,9 +30,9 @@ public class PrintTest {
         assertThat(
                 out.toString(),
                 containsString(" 1 | 2 | 3" + System.lineSeparator() +
-                        "---------------" + System.lineSeparator() +
+                        "-----------" + System.lineSeparator() +
                         " 4 | 5 | 6" + System.lineSeparator() +
-                        "---------------" + System.lineSeparator() +
+                        "-----------" + System.lineSeparator() +
                         " 7 | 8 | 9" ));
     }
 

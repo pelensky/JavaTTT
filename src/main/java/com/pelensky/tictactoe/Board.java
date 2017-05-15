@@ -27,13 +27,8 @@ public class Board {
         }
     }
 
-
     List<String> getSpaces() {
         return spaces;
-    }
-
-    int getNumberOfRows() {
-        return numberOfRows;
     }
 
     public List<Integer> getAvailableSpaces() {
