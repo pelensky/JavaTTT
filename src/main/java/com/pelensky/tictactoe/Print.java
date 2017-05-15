@@ -14,7 +14,15 @@ public class Print {
     }
 
     void welcome() {
-        output.println("Tic Tac Toe" + System.lineSeparator() + "Select Game Type");
+        output.println("Tic Tac Toe");
+    }
+
+    void gameType() {
+        output.println("Select Game Type");
+    }
+
+    void boardSize(){
+        output.println("Select Board Size");
     }
 
     public void whoPlaysFirst() {
@@ -55,6 +63,15 @@ public class Print {
         output.println(printedBoard.substring(0, printedBoard.length() - getLine(board).length()));
     }
 
+    private String formatRow(List<String> row) {
+        String separator = " | ";
+        StringBuilder formattedRow = new StringBuilder(" ");
+        for (String aRow : row) {
+            formattedRow.append(aRow).append(separator);
+        }
+        return String.valueOf(formattedRow.substring(0, formattedRow.length() - separator.length()));
+    }
+
     private String getLine(Board board) {
         final String line;
         if (board.getRows().size() == 3) {
@@ -63,15 +80,6 @@ public class Print {
             line = System.lineSeparator() + "---------------" + System.lineSeparator();
         }
         return line;
-    }
-
-    private String formatRow(List<String> row) {
-        String separator = " | ";
-        StringBuilder formattedRow = new StringBuilder(" ");
-        for (String aRow : row) {
-            formattedRow.append(aRow).append(separator);
-        }
-        return String.valueOf(formattedRow.substring(0, formattedRow.length() - separator.length()));
     }
 
     void outcome(Game game) {

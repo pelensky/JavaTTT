@@ -38,15 +38,24 @@ public class AppRunnerTest {
 
   @Test
   public void welcomesUser() {
-    run("3\n2\n");
+    run("1\n3\n2\n");
     assertThat(
         out.toString(),
-        containsString("Tic Tac Toe" + System.lineSeparator() + "Select Game Type"));
+        containsString("Tic Tac Toe" + System.lineSeparator() + "Select Board Size" + System.lineSeparator() + "1) Normal (3x3)" + System.lineSeparator() + "2) Large (4x4)"));
   }
 
   @Test
+  public void selectsBoardSize(){
+    run("1\n3\n2\n");
+    assertThat(
+            out.toString(),
+            containsString("Select Game Type" + System.lineSeparator() + "1) Human VS Human" + System.lineSeparator() + "2) Human VS Computer" + System.lineSeparator() + "3) Computer VS Computer"));
+  }
+
+
+  @Test
   public void selectGameType() {
-    run("3\n2\n");
+    run("1\n3\n2\n");
     assertThat(
         out.toString(),
         containsString(
@@ -59,7 +68,7 @@ public class AppRunnerTest {
 
   @Test
   public void quitGame() {
-    run("3\n2\n");
+    run("1\n3\n2\n");
     assertThat(
         out.toString(),
         containsString(
@@ -74,31 +83,31 @@ public class AppRunnerTest {
 
   @Test
   public void humanVShuman() {
-    run("1\n1\n5\n3\n9\n2\n2\n");
+    run("1\n1\n1\n5\n3\n9\n2\n2\n");
     assertThat(out.toString(), containsString("X is the winner"));
   }
 
   @Test
   public void humanVShumanInvalidSelection() {
-    run("1\n1\n5\n3\n9\n9\n2\n2\n");
+    run("1\n1\n1\n5\n3\n9\n9\n2\n2\n");
     assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 
   @Test
   public void humanVShumanTiedGame() {
-    run("1\n1\n5\n3\n2\n8\n4\n6\n9\n7\n2\n");
+    run("1\n1\n1\n5\n3\n2\n8\n4\n6\n9\n7\n2\n");
     assertThat(out.toString(), containsString("Game tied"));
   }
 
   @Test
   public void computerVScomputer() {
-    run("3\n2");
+    run("1\n3\n2");
     assertThat(out.toString(), containsString("Exiting"));
   }
 
   @Test
   public void humanVScomputerHumanFirst() {
-    run("2\n1\n6\n7\n8\n1\n3\n2\n");
+    run("1\n2\n1\n6\n7\n8\n1\n1\n3\n2\n");
     assertThat(
         out.toString(),
         containsString(
@@ -111,19 +120,19 @@ public class AppRunnerTest {
 
   @Test
   public void humanVScomputerComputerFirst() {
-    run("2\n2\n9\n8\n2\n");
+    run("1\n2\n2\n9\n8\n2\n");
     assertThat(out.toString(), containsString("Exiting"));
   }
 
   @Test
   public void invalidSelection() {
-    run("10\n3\n2\n");
+    run("10\n1\n3\n2\n");
     assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 
   @Test
   public void stringSelected() {
-    run("dan\n3\n2\n");
+    run("dan\n1\n3\n2\n");
     assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 }
