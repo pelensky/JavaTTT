@@ -29,11 +29,11 @@ public class PrintTest {
         print.board(board);
         assertThat(
                 out.toString(),
-                containsString(" 1 | 2 | 3" + System.lineSeparator() +
-                        "-----------" + System.lineSeparator() +
-                        " 4 | 5 | 6" + System.lineSeparator() +
-                        "-----------" + System.lineSeparator() +
-                        " 7 | 8 | 9" ));
+                containsString("  1 |  2 |  3" + System.lineSeparator() +
+                        "--------------" + System.lineSeparator() +
+                        "  4 |  5 |  6" + System.lineSeparator() +
+                        "--------------" + System.lineSeparator() +
+                        "  7 |  8 |  9" ));
     }
 
     @Test
@@ -41,12 +41,12 @@ public class PrintTest {
         print.board(bigBoard);
         assertThat(
                 out.toString(),
-                containsString(" 1 | 2 | 3 | 4" + System.lineSeparator() +
-                        "---------------" + System.lineSeparator() +
-                        " 5 | 6 | 7 | 8" + System.lineSeparator() +
-                        "---------------" + System.lineSeparator() +
-                        " 9 | 10 | 11 | 12" + System.lineSeparator() +
-                        "---------------" + System.lineSeparator() +
+                containsString("  1 |  2 |  3 |  4" + System.lineSeparator() +
+                        "-------------------" + System.lineSeparator() +
+                        "  5 |  6 |  7 |  8" + System.lineSeparator() +
+                        "-------------------" + System.lineSeparator() +
+                        "  9 | 10 | 11 | 12" + System.lineSeparator() +
+                        "-------------------" + System.lineSeparator() +
                         " 13 | 14 | 15 | 16"));
     }
 }

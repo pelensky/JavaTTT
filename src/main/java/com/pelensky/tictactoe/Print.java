@@ -66,8 +66,14 @@ public class Print {
     private String formatRow(List<String> row) {
         String separator = " | ";
         StringBuilder formattedRow = new StringBuilder(" ");
-        for (String aRow : row) {
-            formattedRow.append(aRow).append(separator);
+        for (String space : row) {
+            String paddedSpace;
+            if (space.length() == 1){
+                paddedSpace = " " + space;
+            } else {
+                paddedSpace = space;
+            }
+            formattedRow.append(paddedSpace).append(separator);
         }
         return String.valueOf(formattedRow.substring(0, formattedRow.length() - separator.length()));
     }
@@ -75,9 +81,9 @@ public class Print {
     private String getLine(Board board) {
         final String line;
         if (board.getRows().size() == 3) {
-            line = System.lineSeparator() + "-----------" + System.lineSeparator();
+            line = System.lineSeparator() + "--------------" + System.lineSeparator();
         } else {
-            line = System.lineSeparator() + "---------------" + System.lineSeparator();
+            line = System.lineSeparator() + "-------------------" + System.lineSeparator();
         }
         return line;
     }
