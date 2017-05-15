@@ -38,7 +38,7 @@ public class AppRunnerTest {
 
   @Test
   public void welcomesUser() {
-    run("1\n3\n2\n");
+    run("2\n3\n2\n");
     assertThat(
         out.toString(),
         containsString("Tic Tac Toe" + System.lineSeparator() + "Select Board Size" + System.lineSeparator() + "1) Normal (3x3)" + System.lineSeparator() + "2) Large (4x4)"));
