@@ -65,22 +65,29 @@ public class Print {
 
     private String formatRow(List<String> row) {
         String separator = " | ";
-        StringBuilder formattedRow = new StringBuilder(" ");
+        String offset = " ";
+        StringBuilder formattedRow = new StringBuilder(offset);
         for (String space : row) {
-            String paddedSpace;
-            if (space.length() == 1){
-                paddedSpace = " " + space;
-            } else {
-                paddedSpace = space;
-            }
+            String paddedSpace = padSpace(offset, space);
             formattedRow.append(paddedSpace).append(separator);
         }
         return String.valueOf(formattedRow.substring(0, formattedRow.length() - separator.length()));
     }
 
+    private String padSpace(String offset, String space) {
+        String paddedSpace;
+        if (space.length() == 1){
+            paddedSpace = offset + space;
+        } else {
+            paddedSpace = space;
+        }
+        return paddedSpace;
+    }
+
     private String getLine(Board board) {
         final String line;
-        if (board.getRows().size() == 3) {
+        int normalBoard = 3;
+        if (board.getRows().size() == normalBoard) {
             line = System.lineSeparator() + "--------------" + System.lineSeparator();
         } else {
             line = System.lineSeparator() + "-------------------" + System.lineSeparator();
