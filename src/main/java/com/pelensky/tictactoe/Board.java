@@ -7,7 +7,6 @@ public class Board {
 
     private final int numberOfRows;
     private final int totalSpaces;
-
     private final int offset;
     List<String> spaces;
 

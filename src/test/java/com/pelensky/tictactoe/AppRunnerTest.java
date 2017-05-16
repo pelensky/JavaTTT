@@ -33,7 +33,7 @@ public class AppRunnerTest {
 
   private List<GameType> commands() {
     return Arrays.asList(
-        new HumanVSHuman(input, print), new HumanVSComputer(input, print, new FakeRandom()), new ComputerVSComputer(new FakeRandom()));
+        new HumanVSHuman(input), new HumanVSComputer(input, print, new FakeRandom()), new ComputerVSComputer(new FakeRandom()));
   }
 
   @Test

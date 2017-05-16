@@ -1,20 +1,17 @@
 package com.pelensky.tictactoe.Commands;
 
-import com.pelensky.tictactoe.Input;
-import com.pelensky.tictactoe.Print;
+import com.pelensky.tictactoe.Board;
 import com.pelensky.tictactoe.Game;
+import com.pelensky.tictactoe.Input;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 import com.pelensky.tictactoe.Players.Player;
-import com.pelensky.tictactoe.Board;
 
 public class HumanVSHuman implements GameType {
 
   private final Input input;
-  private final Print print;
 
-  public HumanVSHuman(Input input, Print print) {
+  public HumanVSHuman(Input input) {
     this.input = input;
-    this.print = print;
   }
 
   @Override
