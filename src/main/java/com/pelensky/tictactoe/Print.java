@@ -7,7 +7,6 @@ import java.util.List;
 public class Print {
 
     private final PrintStream output;
-    private final String CLEAR_SCREEN = "\033[H\033[2J";
 
     Print(PrintStream output) {
         this.output = output;
@@ -108,7 +107,9 @@ public class Print {
     }
 
     public void clearScreen() {
+        final String CLEAR_SCREEN = "\033[H\033[2J";
         output.print(CLEAR_SCREEN);
         output.flush();
     }
 }
+
