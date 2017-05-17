@@ -40,15 +40,19 @@ public class AppRunner {
         print.welcome();
         print.selectBoard();
         print.optionsNew(boardFactory.boardTypes());
-        Board board = boardFactory.createBoard(input.validateSelection(input.optionCount(boardFactory.boardTypes())));
+        Board board = boardFactory.createBoard(getSelectionNew(boardFactory.boardTypes()));
         print.gameType();
         print.optionsNew(gameFactory.gameTypes());
-        game = gameFactory.createGame(input.validateSelection(input.optionCount(gameFactory.gameTypes())), board);
+        game = gameFactory.createGame(getSelectionNew(gameFactory.gameTypes()), board);
     }
 
 
     private int getSelection(List<? extends Menu> options) {
         return input.validateSelection(input.validSelections(options));
+    }
+
+    private int getSelectionNew(List<String> options) {
+        return input.validateSelection(input.optionCount(options));
     }
 
     private boolean gameInProgress() {

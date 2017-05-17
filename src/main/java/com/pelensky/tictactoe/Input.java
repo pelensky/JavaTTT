@@ -15,8 +15,6 @@ public class Input {
         this.print = print;
     }
 
-
-
     int getInteger() {
         try {
             return input.nextInt();
