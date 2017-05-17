@@ -21,8 +21,9 @@ public class Print {
     }
 
     void boardSize(List<Integer> options){
-        output.println("Select Board Size");
-        output.println(options);
+        for (int option : options) {
+            output.println("Select '" + option + "' for a " + option + "x" + option + " board" );
+        }
     }
 
     public void whoPlaysFirst() {

@@ -41,7 +41,7 @@ public class AppRunnerTest {
     run("4\n3\n2\n");
     assertThat(
         out.toString(),
-        containsString("Tic Tac Toe" + System.lineSeparator() + "Select Board Size" + System.lineSeparator() ));
+        containsString("Tic Tac Toe" ));
   }
 
   @Test
