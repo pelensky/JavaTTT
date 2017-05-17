@@ -1,8 +1,5 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.Boards.BigBoard;
-import com.pelensky.tictactoe.Boards.Boards;
-import com.pelensky.tictactoe.Boards.NormalBoard;
 import com.pelensky.tictactoe.Commands.GameType;
 import com.pelensky.tictactoe.PlayAgainOptions.Options;
 import com.pelensky.tictactoe.PlayAgainOptions.PlayAgain;
@@ -17,11 +14,13 @@ public class AppRunner {
     private Game game;
     private Input input;
     private Print print;
+    private BoardFactory boardFactory;
     private boolean appRunning = true;
 
-    AppRunner(Input input, Print print, List<GameType> gameTypes) {
+    AppRunner(Input input, Print print, List<GameType> gameTypes, BoardFactory boardFactory) {
         this.input = input;
         this.print = print;
+        this.boardFactory = boardFactory;
         this.gameTypes = gameTypes;
     }
 
@@ -40,9 +39,9 @@ public class AppRunner {
     private void startGame() {
         print.clearScreen();
         print.welcome();
-        print.boardSize();
-        print.options(boardTypes());
-        Board board = selectBoardSize(getSelection(boardTypes()));
+        print.boardSize(boardTypes());
+//        print.options(boardTypes());
+        Board board = boardFactory.createBoard(input.validateSelection(boardTypes()));
         print.gameType();
         print.options(gameTypes);
         game = startNewGame(getSelection(gameTypes), board);
@@ -57,10 +56,10 @@ public class AppRunner {
         return newGame.execute(board);
     }
 
-    private Board selectBoardSize(int choice) {
-        Boards board = boardTypes().get(choice - 1);
-        return board.execute();
-    }
+//    private Board selectBoardSize(int choice) {
+//        Boards board = boardTypes().get(choice - 1);
+//        return board.execute();
+//    }
 
     private boolean gameInProgress() {
         return !game.isGameOver();
@@ -91,8 +90,8 @@ public class AppRunner {
         return Arrays.asList(new PlayAgain(), new Quit(this));
     }
 
-    private List<Boards> boardTypes() {
-        return Arrays.asList(new NormalBoard(), new BigBoard());
+    private List<Integer> boardTypes() {
+        return Arrays.asList(3, 4);
     }
 
     private void playAgainCommand(int selection) {

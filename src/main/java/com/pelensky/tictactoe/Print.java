@@ -20,8 +20,9 @@ public class Print {
         output.println("Select Game Type");
     }
 
-    void boardSize(){
+    void boardSize(List<Integer> options){
         output.println("Select Board Size");
+        output.println(options);
     }
 
     public void whoPlaysFirst() {

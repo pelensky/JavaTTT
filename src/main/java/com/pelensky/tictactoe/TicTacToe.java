@@ -21,7 +21,8 @@ public class TicTacToe {
         print = new Print(new PrintStream(System.out));
         input = new Input(new Scanner(System.in), print);
         random = new Random();
-        AppRunner appRunner = new AppRunner(input, print, commands());
+        BoardFactory boardFactory = new BoardFactory();
+        AppRunner appRunner = new AppRunner(input, print, commands(), boardFactory);
         appRunner.run();
     }
 
