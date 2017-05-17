@@ -25,11 +25,6 @@ public class ComputerPlayer implements Player {
         return selectRandomAvailableSpace(board);
     }
 
-    @Override
-    public String title() {
-        return "Computer";
-    }
-
     private int selectRandomAvailableSpace(Board board) {
         List<Integer> spaces = board.getAvailableSpaces();
         return spaces.get(random.nextInt(spaces.size()));

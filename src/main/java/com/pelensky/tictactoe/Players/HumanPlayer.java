@@ -23,9 +23,4 @@ public class HumanPlayer implements Player {
         return input.validateSelection(board.getAvailableSpaces());
     }
 
-
-    @Override
-    public String title() {
-        return "Human";
-    }
 }
