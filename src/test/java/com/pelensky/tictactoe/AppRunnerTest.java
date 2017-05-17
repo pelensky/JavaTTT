@@ -1,15 +1,9 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.Commands.GameType;
-import com.pelensky.tictactoe.Commands.ComputerVSComputer;
-import com.pelensky.tictactoe.Commands.HumanVSComputer;
-import com.pelensky.tictactoe.Commands.HumanVSHuman;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -27,18 +21,13 @@ public class AppRunnerTest {
     PrintStream output = new PrintStream(out);
     print = new Print(output);
     input = new Input(scanner, print);
-    AppRunner appRunner = new AppRunner(input, print, commands(), new BoardFactory());
+    AppRunner appRunner = new AppRunner(input, print, new BoardFactory(), new GameFactory(input, new FakeRandom()));
     appRunner.run();
-  }
-
-  private List<GameType> commands() {
-    return Arrays.asList(
-        new HumanVSHuman(input), new HumanVSComputer(input, print, new FakeRandom()), new ComputerVSComputer(new FakeRandom()));
   }
 
   @Test
   public void welcomesUser() {
-    run("4\n3\n2\n");
+    run("4\n4\n2\n");
     assertThat(
         out.toString(),
         containsString("Tic Tac Toe" ));
@@ -46,29 +35,25 @@ public class AppRunnerTest {
 
   @Test
   public void selectsBoardSize(){
-    run("3\n3\n2\n");
+    run("3\n4\n2\n");
     assertThat(
             out.toString(),
-            containsString("Select Game Type" + System.lineSeparator() + "1) Human VS Human" + System.lineSeparator() + "2) Human VS Computer" + System.lineSeparator() + "3) Computer VS Computer"));
+            containsString("Select Game Type"));
   }
 
 
   @Test
   public void selectGameType() {
-    run("3\n3\n2\n");
+    run("3\n4\n1\n4\n4\n2\n");
     assertThat(
         out.toString(),
         containsString(
-            "1) Human VS Human"
-                + System.lineSeparator()
-                + "2) Human VS Computer"
-                + System.lineSeparator()
-                + "3) Computer VS Computer"));
+            "1) Human vs Human"));
   }
 
   @Test
   public void quitGame() {
-    run("3\n3\n2\n");
+    run("3\n4\n1\n3\n4\n2\n");
     assertThat(
         out.toString(),
         containsString(
@@ -101,38 +86,25 @@ public class AppRunnerTest {
 
   @Test
   public void computerVScomputer() {
-    run("3\n3\n2");
+    run("3\n4\n2");
     assertThat(out.toString(), containsString("Exiting"));
   }
 
   @Test
-  public void humanVScomputerHumanFirst() {
-    run("3\n2\n1\n6\n7\n8\n1\n3\n3\n2\n");
-    assertThat(
-        out.toString(),
-        containsString(
-            "Who plays first?"
-                + System.lineSeparator()
-                + "1) Human"
-                + System.lineSeparator()
-                + "2) Computer"));
-  }
-
-  @Test
   public void humanVScomputerComputerFirst() {
-    run("3\n2\n2\n9\n8\n2\n");
+    run("3\n3\n9\n8\n2\n");
     assertThat(out.toString(), containsString("Exiting"));
   }
 
   @Test
   public void invalidSelection() {
-    run("10\n3\n3\n2\n");
+    run("10\n3\n4\n2\n");
     assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 
   @Test
   public void stringSelected() {
-    run("dan\n3\n3\n2\n");
+    run("dan\n3\n4\n2\n");
     assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 }

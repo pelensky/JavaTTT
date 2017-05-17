@@ -1,13 +1,6 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.Commands.ComputerVSComputer;
-import com.pelensky.tictactoe.Commands.GameType;
-import com.pelensky.tictactoe.Commands.HumanVSComputer;
-import com.pelensky.tictactoe.Commands.HumanVSHuman;
-
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -22,12 +15,9 @@ public class TicTacToe {
         input = new Input(new Scanner(System.in), print);
         random = new Random();
         BoardFactory boardFactory = new BoardFactory();
-        AppRunner appRunner = new AppRunner(input, print, commands(), boardFactory);
+        GameFactory gameFactory = new GameFactory(input, random);
+        AppRunner appRunner = new AppRunner(input, print, boardFactory, gameFactory);
         appRunner.run();
     }
 
-    private static List<GameType> commands() {
-        return Arrays.asList(
-                new HumanVSHuman(input), new HumanVSComputer(input, print, random), new ComputerVSComputer(random));
-    }
 }

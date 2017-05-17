@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Print {
+class Print {
 
     private final PrintStream output;
 
@@ -26,10 +26,6 @@ public class Print {
         }
     }
 
-    public void whoPlaysFirst() {
-        output.println("Who plays first?");
-    }
-
     void invalidSelection() {
         output.println("Select a Valid Number");
     }
@@ -38,7 +34,7 @@ public class Print {
         output.println("Exiting");
     }
 
-    public void options(List<? extends Menu> options) {
+    void options(List<? extends Menu> options) {
         StringBuilder instructions = new StringBuilder();
         for (int i = 0; i < options.size(); i++) {
             instructions
@@ -49,6 +45,20 @@ public class Print {
         }
         output.println(instructions.toString().trim());
     }
+
+    void optionsNew(List<String> options) {
+        StringBuilder instructions = new StringBuilder();
+        for (int i = 0; i < options.size(); i++) {
+            instructions
+                    .append(i + 1)
+                    .append(") ")
+                    .append(options.get(i))
+                    .append(System.lineSeparator());
+        }
+        output.println(instructions.toString().trim());
+    }
+
+
 
     void selectSpace(Game game) {
         output.println(game.currentPlayer.getMarker() + " select a space");
@@ -108,7 +118,7 @@ public class Print {
         output.println("Play again?");
     }
 
-    public void clearScreen() {
+    void clearScreen() {
         final String CLEAR_SCREEN = "\033[H\033[2J";
         output.print(CLEAR_SCREEN);
         output.flush();

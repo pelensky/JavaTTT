@@ -1,6 +1,5 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.Commands.GameType;
 import com.pelensky.tictactoe.PlayAgainOptions.Options;
 import com.pelensky.tictactoe.PlayAgainOptions.PlayAgain;
 import com.pelensky.tictactoe.PlayAgainOptions.Quit;
@@ -10,18 +9,18 @@ import java.util.List;
 
 public class AppRunner {
 
-    private final List<GameType> gameTypes;
     private Game game;
     private Input input;
     private Print print;
     private BoardFactory boardFactory;
+    private GameFactory gameFactory;
     private boolean appRunning = true;
 
-    AppRunner(Input input, Print print, List<GameType> gameTypes, BoardFactory boardFactory) {
+    AppRunner(Input input, Print print, BoardFactory boardFactory, GameFactory gameFactory) {
         this.input = input;
         this.print = print;
         this.boardFactory = boardFactory;
-        this.gameTypes = gameTypes;
+        this.gameFactory = gameFactory;
     }
 
     void run() {
@@ -40,26 +39,15 @@ public class AppRunner {
         print.clearScreen();
         print.welcome();
         print.boardSize(boardTypes());
-//        print.options(boardTypes());
         Board board = boardFactory.createBoard(input.validateSelection(boardTypes()));
         print.gameType();
-        print.options(gameTypes);
-        game = startNewGame(getSelection(gameTypes), board);
+        print.optionsNew(gameFactory.gameTypes());
+        game = gameFactory.createGame(input.validateSelection(gameFactory.gameTypesCount()), board);
     }
 
     private int getSelection(List<? extends Menu> options) {
         return input.validateSelection(input.validSelections(options));
     }
-
-    private Game startNewGame(int choice, Board board) {
-        GameType newGame = gameTypes.get(choice - 1);
-        return newGame.execute(board);
-    }
-
-//    private Board selectBoardSize(int choice) {
-//        Boards board = boardTypes().get(choice - 1);
-//        return board.execute();
-//    }
 
     private boolean gameInProgress() {
         return !game.isGameOver();
