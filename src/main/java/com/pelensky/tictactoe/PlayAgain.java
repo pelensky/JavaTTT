@@ -5,15 +5,13 @@ import java.util.List;
 
 class PlayAgain {
 
-    void playAgain(int option, AppRunner appRunner) {
-        if (option == 2) {
-            appRunner.quitApp();
-        }
+  void playAgain(int option, AppRunner appRunner) {
+    if (option == 2) {
+      appRunner.quitApp();
     }
+  }
 
-    List<String> quitOptions() {
-        return Arrays.asList(
-                "Yes", "No");
-    }
-
+  List<String> quitOptions() {
+    return Arrays.asList("Yes", "No");
+  }
 }
