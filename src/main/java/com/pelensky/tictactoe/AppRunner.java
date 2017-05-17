@@ -38,12 +38,20 @@ public class AppRunner {
     private void startGame() {
         print.clearScreen();
         print.welcome();
-        print.selectBoard();
-        print.optionsNew(boardFactory.boardTypes());
-        Board board = boardFactory.createBoard(getSelectionNew(boardFactory.boardTypes()));
+        Board board = createBoard();
+        game = createGame(board);
+    }
+
+    private Game createGame(Board board) {
         print.gameType();
         print.optionsNew(gameFactory.gameTypes());
-        game = gameFactory.createGame(getSelectionNew(gameFactory.gameTypes()), board);
+        return gameFactory.createGame(getSelectionNew(gameFactory.gameTypes()), board);
+    }
+
+    private Board createBoard() {
+        print.selectBoard();
+        print.optionsNew(boardFactory.boardTypes());
+        return boardFactory.createBoard(getSelectionNew(boardFactory.boardTypes()));
     }
 
 
