@@ -38,8 +38,9 @@ public class AppRunner {
     private void startGame() {
         print.clearScreen();
         print.welcome();
-        print.boardSize(boardTypes());
-        Board board = boardFactory.createBoard(input.validateSelection(boardTypes()));
+        print.selectBoard();
+        print.optionsNew(boardFactory.boardTypes());
+        Board board = boardFactory.createBoard(input.validateSelection(boardFactory.boardTypesCount()));
         print.gameType();
         print.optionsNew(gameFactory.gameTypes());
         game = gameFactory.createGame(input.validateSelection(gameFactory.gameTypesCount()), board);

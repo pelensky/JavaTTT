@@ -27,7 +27,7 @@ public class AppRunnerTest {
 
   @Test
   public void welcomesUser() {
-    run("4\n4\n2\n");
+    run("2\n4\n2\n");
     assertThat(
         out.toString(),
         containsString("Tic Tac Toe" ));
@@ -35,7 +35,7 @@ public class AppRunnerTest {
 
   @Test
   public void selectsBoardSize(){
-    run("3\n4\n2\n");
+    run("1\n4\n2\n");
     assertThat(
             out.toString(),
             containsString("Select Game Type"));
@@ -44,7 +44,7 @@ public class AppRunnerTest {
 
   @Test
   public void selectGameType() {
-    run("3\n4\n1\n4\n4\n2\n");
+    run("1\n4\n1\n2\n4\n2\n");
     assertThat(
         out.toString(),
         containsString(
@@ -53,7 +53,7 @@ public class AppRunnerTest {
 
   @Test
   public void quitGame() {
-    run("3\n4\n1\n3\n4\n2\n");
+    run("1\n4\n1\n1\n4\n2\n");
     assertThat(
         out.toString(),
         containsString(
@@ -68,43 +68,43 @@ public class AppRunnerTest {
 
   @Test
   public void humanVShuman() {
-    run("3\n1\n1\n5\n3\n9\n2\n2\n");
+    run("1\n1\n1\n5\n3\n9\n2\n2\n");
     assertThat(out.toString(), containsString("X is the winner"));
   }
 
   @Test
   public void humanVShumanInvalidSelection() {
-    run("3\n1\n1\n5\n3\n9\n9\n2\n2\n");
+    run("1\n1\n1\n5\n3\n9\n9\n2\n2\n");
     assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 
   @Test
   public void humanVShumanTiedGame() {
-    run("3\n1\n1\n5\n3\n2\n8\n4\n6\n9\n7\n2\n");
+    run("1\n1\n1\n5\n3\n2\n8\n4\n6\n9\n7\n2\n");
     assertThat(out.toString(), containsString("Game tied"));
   }
 
   @Test
   public void computerVScomputer() {
-    run("3\n4\n2");
+    run("1\n4\n2");
     assertThat(out.toString(), containsString("Exiting"));
   }
 
   @Test
   public void humanVScomputerComputerFirst() {
-    run("3\n3\n9\n8\n2\n");
+    run("1\n3\n9\n8\n2\n");
     assertThat(out.toString(), containsString("Exiting"));
   }
 
   @Test
   public void invalidSelection() {
-    run("10\n3\n4\n2\n");
+    run("10\n1\n4\n2\n");
     assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 
   @Test
   public void stringSelected() {
-    run("dan\n3\n4\n2\n");
+    run("dan\n1\n4\n2\n");
     assertThat(out.toString(), containsString("Select a Valid Number"));
   }
 }

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Random;
 
 class GameFactory {
-    private Board board;
     private Input input;
     private Random random;
 

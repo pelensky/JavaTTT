@@ -20,10 +20,8 @@ class Print {
         output.println("Select Game Type");
     }
 
-    void boardSize(List<Integer> options){
-        for (int option : options) {
-            output.println("Select '" + option + "' for a " + option + "x" + option + " board" );
-        }
+    void selectBoard() {
+        output.println("Select Board Size");
     }
 
     void invalidSelection() {
@@ -58,7 +56,13 @@ class Print {
         output.println(instructions.toString().trim());
     }
 
-
+    List<Integer> optionCount(List<String> list) {
+        List<Integer> count = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++){
+            count.add(i + 1);
+        }
+        return count;
+    }
 
     void selectSpace(Game game) {
         output.println(game.currentPlayer.getMarker() + " select a space");
