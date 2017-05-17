@@ -4,7 +4,6 @@ import com.pelensky.tictactoe.Players.ComputerPlayer;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 import com.pelensky.tictactoe.Players.Player;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -46,15 +45,4 @@ class GameFactory {
         return Arrays.asList(
                 "Human vs Human", "Human vs Computer", "Computer vs Human", "Computer vs Computer");
     }
-
-
-    List<Integer> gameTypesCount() {
-        List<Integer> count = new ArrayList<>();
-        for (int i = 0; i < gameTypes().size(); i++){
-            count.add(i + 1);
-        }
-        return count;
-    }
-
-
 }

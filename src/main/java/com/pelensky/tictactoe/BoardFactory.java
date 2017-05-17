@@ -1,6 +1,5 @@
 package com.pelensky.tictactoe;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,14 +21,6 @@ class BoardFactory {
     List<String> boardTypes() {
         return Arrays.asList(
                 "Normal (3x3)", "Large (4x4)");
-    }
-
-    List<Integer> boardTypesCount() {
-        List<Integer> count = new ArrayList<>();
-        for (int i = 0; i < boardTypes().size(); i++){
-            count.add(i + 1);
-        }
-        return count;
     }
 
 }

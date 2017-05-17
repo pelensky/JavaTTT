@@ -40,10 +40,10 @@ public class AppRunner {
         print.welcome();
         print.selectBoard();
         print.optionsNew(boardFactory.boardTypes());
-        Board board = boardFactory.createBoard(input.validateSelection(boardFactory.boardTypesCount()));
+        Board board = boardFactory.createBoard(input.validateSelection(print.optionCount(boardFactory.boardTypes())));
         print.gameType();
         print.optionsNew(gameFactory.gameTypes());
-        game = gameFactory.createGame(input.validateSelection(gameFactory.gameTypesCount()), board);
+        game = gameFactory.createGame(input.validateSelection(print.optionCount(gameFactory.gameTypes())), board);
     }
 
     private int getSelection(List<? extends Menu> options) {
@@ -79,11 +79,7 @@ public class AppRunner {
         return Arrays.asList(new PlayAgain(), new Quit(this));
     }
 
-    private List<Integer> boardTypes() {
-        return Arrays.asList(3, 4);
-    }
-
-    private void playAgainCommand(int selection) {
+     private void playAgainCommand(int selection) {
         Options playOrQuit = playCommands().get(selection - 1);
         playOrQuit.execute();
     }
