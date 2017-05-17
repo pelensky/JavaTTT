@@ -35,15 +35,9 @@ public class Input {
         }
     }
 
-    List<Integer> validSelections(List<? extends Menu> options) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = 1; i < options.size() + 1; i++) {
-            list.add(i);
-        }
-        return list;
-    }
 
-    List<Integer> optionCount(List<String> list) {
+
+    List<Integer> validSelections(List<String> list) {
         List<Integer> count = new ArrayList<>();
         for (int i = 0; i < list.size(); i++){
             count.add(i + 1);

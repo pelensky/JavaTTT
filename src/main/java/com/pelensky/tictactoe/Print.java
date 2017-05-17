@@ -32,19 +32,7 @@ class Print {
         output.println("Exiting");
     }
 
-    void options(List<? extends Menu> options) {
-        StringBuilder instructions = new StringBuilder();
-        for (int i = 0; i < options.size(); i++) {
-            instructions
-                    .append(i + 1)
-                    .append(") ")
-                    .append(options.get(i).title())
-                    .append(System.lineSeparator());
-        }
-        output.println(instructions.toString().trim());
-    }
-
-    void optionsNew(List<String> options) {
+    void options(List<String> options) {
         StringBuilder instructions = new StringBuilder();
         for (int i = 0; i < options.size(); i++) {
             instructions

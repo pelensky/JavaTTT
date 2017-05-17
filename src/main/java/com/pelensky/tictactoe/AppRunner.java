@@ -1,13 +1,8 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.PlayAgainOptions.Options;
-import com.pelensky.tictactoe.PlayAgainOptions.PlayAgain;
-import com.pelensky.tictactoe.PlayAgainOptions.Quit;
-
-import java.util.Arrays;
 import java.util.List;
 
-public class AppRunner {
+class AppRunner {
 
     private Game game;
     private Input input;
@@ -44,23 +39,19 @@ public class AppRunner {
 
     private Game createGame(Board board) {
         print.gameType();
-        print.optionsNew(gameFactory.gameTypes());
-        return gameFactory.createGame(getSelectionNew(gameFactory.gameTypes()), board);
+        print.options(gameFactory.gameTypes());
+        return gameFactory.createGame(getSelection(gameFactory.gameTypes()), board);
     }
 
     private Board createBoard() {
         print.selectBoard();
-        print.optionsNew(boardFactory.boardTypes());
-        return boardFactory.createBoard(getSelectionNew(boardFactory.boardTypes()));
+        print.options(boardFactory.boardTypes());
+        return boardFactory.createBoard(getSelection(boardFactory.boardTypes()));
     }
 
 
-    private int getSelection(List<? extends Menu> options) {
+      private int getSelection(List<String> options) {
         return input.validateSelection(input.validSelections(options));
-    }
-
-    private int getSelectionNew(List<String> options) {
-        return input.validateSelection(input.optionCount(options));
     }
 
     private boolean gameInProgress() {
@@ -82,21 +73,13 @@ public class AppRunner {
     }
 
     private void playAgain() {
+        PlayAgain playAgain = new PlayAgain();
         print.playAgain();
-        print.options(playCommands());
-        playAgainCommand(getSelection(playCommands()));
+        print.options(playAgain.quitOptions());
+        playAgain.playAgain(getSelection(playAgain.quitOptions()), this);
     }
 
-    private List<Options> playCommands() {
-        return Arrays.asList(new PlayAgain(), new Quit(this));
-    }
-
-     private void playAgainCommand(int selection) {
-        Options playOrQuit = playCommands().get(selection - 1);
-        playOrQuit.execute();
-    }
-
-    public void quitApp() {
+    void quitApp() {
         appRunning = false;
         print.exiting();
     }
