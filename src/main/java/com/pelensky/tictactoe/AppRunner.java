@@ -40,11 +40,12 @@ public class AppRunner {
         print.welcome();
         print.selectBoard();
         print.optionsNew(boardFactory.boardTypes());
-        Board board = boardFactory.createBoard(input.validateSelection(print.optionCount(boardFactory.boardTypes())));
+        Board board = boardFactory.createBoard(input.validateSelection(input.optionCount(boardFactory.boardTypes())));
         print.gameType();
         print.optionsNew(gameFactory.gameTypes());
-        game = gameFactory.createGame(input.validateSelection(print.optionCount(gameFactory.gameTypes())), board);
+        game = gameFactory.createGame(input.validateSelection(input.optionCount(gameFactory.gameTypes())), board);
     }
+
 
     private int getSelection(List<? extends Menu> options) {
         return input.validateSelection(input.validSelections(options));
@@ -72,7 +73,6 @@ public class AppRunner {
         print.playAgain();
         print.options(playCommands());
         playAgainCommand(getSelection(playCommands()));
-
     }
 
     private List<Options> playCommands() {
