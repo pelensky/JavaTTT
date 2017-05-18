@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Random;
 
 class GameFactory {
-  private Input input;
-  private Random random;
+  private final Input input;
+  private final Random random;
 
   GameFactory(Input input, Random random) {
     this.input = input;
