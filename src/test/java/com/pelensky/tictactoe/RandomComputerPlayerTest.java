@@ -1,22 +1,22 @@
 package com.pelensky.tictactoe;
 
-import com.pelensky.tictactoe.Players.ComputerPlayer;
+import com.pelensky.tictactoe.Players.RandomComputerPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class ComputerPlayerTest {
+public class RandomComputerPlayerTest {
 
   private FakeRandom fakeRandom;
-  private ComputerPlayer computer;
+  private RandomComputerPlayer computer;
   private Board board;
 
   @Before
   public void setUp() {
     fakeRandom = new FakeRandom();
-    computer = new ComputerPlayer("O", fakeRandom);
+    computer = new RandomComputerPlayer("O", fakeRandom);
     board = new Board(3);
   }
 

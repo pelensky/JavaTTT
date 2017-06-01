@@ -3,7 +3,7 @@ package com.pelensky.tictactoe.Commands;
 import com.pelensky.tictactoe.Board;
 import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Input;
-import com.pelensky.tictactoe.Players.ComputerPlayer;
+import com.pelensky.tictactoe.Players.RandomComputerPlayer;
 import com.pelensky.tictactoe.Players.HumanPlayer;
 import com.pelensky.tictactoe.Players.Player;
 import com.pelensky.tictactoe.Print;
@@ -48,12 +48,12 @@ public class HumanVSComputer implements GameType {
     }
 
     private List<Player> playerTypes() {
-        return Arrays.asList(new HumanPlayer(input, "X"), new ComputerPlayer("X", random));
+        return Arrays.asList(new HumanPlayer(input, "X"), new RandomComputerPlayer("X", random));
     }
 
     private Player setPlayer2(Player player1) {
         if (player1 instanceof HumanPlayer) {
-            return new ComputerPlayer("O", random);
+            return new RandomComputerPlayer("O", random);
         } else {
             return new HumanPlayer(input,"O");
         }

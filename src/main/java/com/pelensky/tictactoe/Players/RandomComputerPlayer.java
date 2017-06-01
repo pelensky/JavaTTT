@@ -5,12 +5,12 @@ import com.pelensky.tictactoe.Board;
 import java.util.List;
 import java.util.Random;
 
-public class ComputerPlayer implements Player {
+public class RandomComputerPlayer implements Player {
 
     private final Random random;
     private final String marker;
 
-    public ComputerPlayer(String marker, Random random) {
+    public RandomComputerPlayer(String marker, Random random) {
         this.marker = marker;
         this.random = random;
     }
