@@ -17,7 +17,7 @@ public class UnbeatableComputerPlayer implements Player {
 
     @Override
     public int getMove(Board board) {
-        return 0;
+       return board.getAvailableSpaces().get(0);
     }
 
     @Override
