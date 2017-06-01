@@ -24,21 +24,16 @@ public class UnbeatableComputerPlayerTest {
 
     @Test
     public void computerPlaysInOnlyAvailableSpace() {
-        lastMove();
+        setUpBoard("1O2O3X4X5X6O7O8X");
         assertEquals(computer.getMove(board), 9);
-
     }
 
-    private void lastMove() {
-        board.placeMarker(1, "O");
-        board.placeMarker(2, "O");
-        board.placeMarker(3, "X");
-        board.placeMarker(4, "X");
-        board.placeMarker(5, "X");
-        board.placeMarker(6, "O");
-        board.placeMarker(7, "O");
-        board.placeMarker(8, "X");
-
+    private void setUpBoard(String move) {
+        for (int turn = 0; turn < move.length(); turn += 2) {
+            String space = String.valueOf(move.charAt(turn));
+            String marker = String.valueOf(move.charAt(turn + 1));
+            board.placeMarker(Integer.valueOf(space), marker);
+        }
     }
 
 
