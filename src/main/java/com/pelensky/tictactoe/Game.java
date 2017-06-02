@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Game {
 
-    final Board board;
+    public final Board board;
     final Player player1;
     final Player player2;
     Player currentPlayer;
@@ -20,7 +20,7 @@ public class Game {
     }
 
     void takeTurn() {
-        board.placeMarker(currentPlayer.getMove(board), currentPlayer.getMarker());
+        board.placeMarker(currentPlayer.getMove(this), currentPlayer.getMarker());
         changeCurrentPlayer();
     }
 

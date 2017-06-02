@@ -10,24 +10,26 @@ import static org.junit.Assert.assertTrue;
 public class RandomComputerPlayerTest {
 
   private FakeRandom fakeRandom;
-  private RandomComputerPlayer computer;
-  private Board board;
+  private RandomComputerPlayer player2;
+  private Game game;
 
   @Before
   public void setUp() {
     fakeRandom = new FakeRandom();
-    computer = new RandomComputerPlayer("O", fakeRandom);
-    board = new Board(3);
+    RandomComputerPlayer player1 = new RandomComputerPlayer("X", fakeRandom);
+    player2 = new RandomComputerPlayer("O", fakeRandom);
+    Board board = new Board(3);
+    game = new Game(board, player1, player2);
   }
 
   @Test
   public void markerIsStored() {
-    assertEquals("O", computer.getMarker());
+    assertEquals("O", player2.getMarker());
   }
 
   @Test
   public void computerSelectsASpot() {
-    computer.getMove(board);
+    player2.getMove(game);
     assertTrue(fakeRandom.getHasComputerPlayed());
   }
 }

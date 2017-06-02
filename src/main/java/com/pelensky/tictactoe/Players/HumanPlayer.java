@@ -1,6 +1,6 @@
 package com.pelensky.tictactoe.Players;
 
-import com.pelensky.tictactoe.Board;
+import com.pelensky.tictactoe.Game;
 import com.pelensky.tictactoe.Input;
 
 public class HumanPlayer implements Player {
@@ -19,8 +19,8 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public int getMove(Board board) {
-        return input.validateSelection(board.getAvailableSpaces());
+    public int getMove(Game game) {
+        return input.validateSelection(game.board.getAvailableSpaces());
     }
 
 

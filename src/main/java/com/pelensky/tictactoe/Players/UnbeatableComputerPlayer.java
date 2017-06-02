@@ -1,6 +1,6 @@
 package com.pelensky.tictactoe.Players;
 
-import com.pelensky.tictactoe.Board;
+import com.pelensky.tictactoe.Game;
 
 public class UnbeatableComputerPlayer implements Player {
 
@@ -16,8 +16,9 @@ public class UnbeatableComputerPlayer implements Player {
     }
 
     @Override
-    public int getMove(Board board) {
-       return board.getAvailableSpaces().get(0);
+    public int getMove(Game game) {
+      return game.board.getAvailableSpaces().get(0);
+
     }
 
     @Override
