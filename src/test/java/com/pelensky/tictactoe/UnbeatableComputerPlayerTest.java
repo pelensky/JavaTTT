@@ -30,9 +30,9 @@ public class UnbeatableComputerPlayerTest {
 
     private void setUpBoard(String move) {
         for (int turn = 0; turn < move.length(); turn += 2) {
-            String space = String.valueOf(move.charAt(turn));
+            Integer space = Character.getNumericValue(move.charAt(turn));
             String marker = String.valueOf(move.charAt(turn + 1));
-            board.placeMarker(Integer.valueOf(space), marker);
+            board.placeMarker(space, marker);
         }
     }
 
