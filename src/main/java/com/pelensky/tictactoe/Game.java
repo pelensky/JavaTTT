@@ -9,14 +9,25 @@ public class Game {
     public final Board board;
     final Player player1;
     final Player player2;
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
     Player currentPlayer;
+    Player currentOpponenet;
     private Player winner;
+
+    public Player getCurrentOpponenet() {
+        return currentOpponenet;
+    }
 
     public Game(Board board, Player player1, Player player2) {
         this.board = board;
         this.player1 = player1;
         this.player2 = player2;
         this.currentPlayer = player1;
+        this.currentOpponenet = player2;
     }
 
     void takeTurn() {
@@ -27,9 +38,10 @@ public class Game {
     private void changeCurrentPlayer() {
         currentPlayer =
                 (currentPlayer.equals(player1)) ? (currentPlayer = player2) : (currentPlayer = player1);
+        currentOpponenet = (currentOpponenet.equals(player2)) ? (currentOpponenet = player1) : (currentOpponenet = player2);
     }
 
-    boolean isGameOver() {
+    public boolean isGameOver() {
         return isGameWonBy(player1) || isGameWonBy(player2) || isGameTied();
     }
 
@@ -37,7 +49,7 @@ public class Game {
         return winner;
     }
 
-    private boolean isGameWonBy(Player player) {
+    public boolean isGameWonBy(Player player) {
         for (ArrayList<String> line : winningCombinations()) {
             if (line.stream().allMatch(space -> space.equals(player.getMarker()))) {
                 winner = player;
@@ -47,7 +59,7 @@ public class Game {
         return false;
     }
 
-    private boolean isGameTied() {
+    public boolean isGameTied() {
         return board.getAvailableSpaces().size() == 0 && !isGameWonBy(player1) && !isGameWonBy(player2);
     }
 

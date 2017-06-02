@@ -28,12 +28,12 @@ public class UnbeatableComputerPlayerTest {
         assertEquals("X", player1.getMarker());
     }
 
-    @Test
-    public void computerPlaysInOnlyAvailableSpace() {
-        setUpBoard("1O2O3X4X5X6O7O8X");
-        assertEquals(player2.getMove(game), 9);
-    }
-
+//    @Test
+//    public void computerPlaysInOnlyAvailableSpace() {
+//        setUpBoard("1O2O3X4X5X6O7O8X");
+//        assertEquals(player2.getMove(game), 9);
+//    }
+//
 //    @Test
 //    public void computerWinsGameIfItGetsTheOpportunity() {
 //        setUpBoard("1X4O5O7X8X");
