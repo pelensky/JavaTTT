@@ -2,7 +2,7 @@ package com.pelensky.tictactoe.Commands;
 
 import com.pelensky.tictactoe.Board;
 import com.pelensky.tictactoe.Game;
-import com.pelensky.tictactoe.Players.ComputerPlayer;
+import com.pelensky.tictactoe.Players.RandomComputerPlayer;
 import com.pelensky.tictactoe.Players.Player;
 
 import java.util.Random;
@@ -16,8 +16,8 @@ public class ComputerVSComputer implements GameType {
 
     @Override
     public Game execute(Board board) {
-        Player player1 = new ComputerPlayer("X", random);
-        Player player2 = new ComputerPlayer("O", random);
+        Player player1 = new RandomComputerPlayer("X", random);
+        Player player2 = new RandomComputerPlayer("O", random);
         return new Game(board, player1, player2);
     }
 

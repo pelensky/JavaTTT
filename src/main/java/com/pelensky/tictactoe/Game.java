@@ -6,9 +6,13 @@ import java.util.ArrayList;
 
 public class Game {
 
-    final Board board;
+    public final Board board;
     final Player player1;
     final Player player2;
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
     Player currentPlayer;
     private Player winner;
 
@@ -20,16 +24,16 @@ public class Game {
     }
 
     void takeTurn() {
-        board.placeMarker(currentPlayer.getMove(board), currentPlayer.getMarker());
+        board.placeMarker(currentPlayer.getMove(this), currentPlayer.getMarker());
         changeCurrentPlayer();
     }
 
-    private void changeCurrentPlayer() {
+    public void changeCurrentPlayer() {
         currentPlayer =
                 (currentPlayer.equals(player1)) ? (currentPlayer = player2) : (currentPlayer = player1);
     }
 
-    boolean isGameOver() {
+    public boolean isGameOver() {
         return isGameWonBy(player1) || isGameWonBy(player2) || isGameTied();
     }
 
@@ -47,7 +51,7 @@ public class Game {
         return false;
     }
 
-    private boolean isGameTied() {
+    public boolean isGameTied() {
         return board.getAvailableSpaces().size() == 0 && !isGameWonBy(player1) && !isGameWonBy(player2);
     }
 
