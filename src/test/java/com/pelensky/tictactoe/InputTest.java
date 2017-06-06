@@ -23,24 +23,6 @@ public class InputTest {
     }
 
     @Test
-    public void integerIsGivenWhenOne(){
-        setUp("1\n");
-        assertEquals(1, input.getInteger());
-    }
-
-    @Test
-    public void integerIsGivenWhenTwo(){
-        setUp("2\n");
-        assertEquals(2, input.getInteger());
-    }
-
-    @Test
-    public void wontReturnUntilValidInteger(){
-        setUp("dan\n2\n");
-        assertEquals(2, input.getInteger());
-    }
-
-    @Test
     public void selectionIsValidWhenItExists(){
         setUp("1\n");
         assertEquals(1, input.validateSelection(list));
@@ -49,6 +31,12 @@ public class InputTest {
     @Test
     public void selectionInvalidWhenNotOnList(){
         setUp("2\n1\n");
+        assertEquals(1, input.validateSelection(list));
+    }
+
+    @Test
+    public void wontReturnUntilValidInteger(){
+        setUp("dan\n1\n");
         assertEquals(1, input.validateSelection(list));
     }
 }

@@ -40,12 +40,20 @@ public class AppRunner {
     private void startGame() {
         print.clearScreen();
         print.welcome();
-        print.boardSize();
-        print.options(boardTypes());
-        Board board = selectBoardSize(getSelection(boardTypes()));
+        Board board = createBoard();
+        createGame(board);
+    }
+
+    private void createGame(Board board) {
         print.gameType();
         print.options(gameTypes);
         game = startNewGame(getSelection(gameTypes), board);
+    }
+
+    private Board createBoard() {
+        print.boardSize();
+        print.options(boardTypes());
+        return selectBoardSize(getSelection(boardTypes()));
     }
 
     private int getSelection(List<? extends Menu> options) {
