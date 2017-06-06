@@ -3,6 +3,7 @@ package com.pelensky.tictactoe.Players;
 import com.pelensky.tictactoe.Game;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class UnbeatableComputerPlayer implements Player {
 
@@ -19,39 +20,36 @@ public class UnbeatableComputerPlayer implements Player {
 
   @Override
   public int getMove(Game game) {
-    //      return game.board.getAvailableSpaces().get(0);
-    int depth = 0;
-    HashMap bestScore = new HashMap();
-    return calculateBestMove(game, depth, bestScore);
+    Map<Integer, Integer> bestScore = new HashMap<>();
+    return calculateBestMove(game, 0, bestScore);
   }
 
-  private int calculateBestMove(Game game, int depth, HashMap bestScore) {
-    if (game.isGameOver()) {
-      return scoreScenarios(game);
-    }
-    return 0;
-  }
-
-  private int scoreScenarios(Game game) {
-    Player opponent = getOpponent(game);
-    if (game.isGameWonBy(opponent)) {
-      return -1;
-    } else if (game.isGameWonBy(this)) {
-      return 1;
-    } else {
+  private int calculateBestMove(Game game, int depth, Map<Integer, Integer> bestScore) {
+    System.out.println("Start of method: " + game.board.getSpaces());
+    if (game.isGameTied()) {
       return 0;
+    } else if (game.isGameOver()){
+      return -1;
+    } else {
+      for (int space : game.board.getAvailableSpaces()) {
+        game.board.placeMarker(space, game.getCurrentPlayer().getMarker());
+        game.changeCurrentPlayer();
+        bestScore.put(space, (-1 * calculateBestMove(game, depth + 1, new HashMap<>())));
+        game.board.resetSpace(space);
+        game.changeCurrentPlayer();
+      }
+      System.out.println(depth);
+      System.out.println(bestScore);
+      if (depth == 0) {
+        System.out.println();
+        System.out.println("When choosing move: " + game.board.getSpaces());
+        return bestScore.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+      } else {
+        return bestScore.entrySet().stream().max(Map.Entry.comparingByValue()).get().getValue();
+      }
     }
   }
 
-  private Player getOpponent(Game game) {
-    Player opponent;
-    if (marker.equals(game.getCurrentPlayer().getMarker())) {
-      opponent = game.getCurrentOpponenet();
-    } else {
-      opponent = game.getCurrentPlayer();
-    }
-    return opponent;
-  }
 
   @Override
   public String title() {

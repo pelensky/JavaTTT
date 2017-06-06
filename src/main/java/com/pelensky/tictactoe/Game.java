@@ -13,21 +13,14 @@ public class Game {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-
     Player currentPlayer;
-    Player currentOpponenet;
     private Player winner;
-
-    public Player getCurrentOpponenet() {
-        return currentOpponenet;
-    }
 
     public Game(Board board, Player player1, Player player2) {
         this.board = board;
         this.player1 = player1;
         this.player2 = player2;
         this.currentPlayer = player1;
-        this.currentOpponenet = player2;
     }
 
     void takeTurn() {
@@ -35,10 +28,9 @@ public class Game {
         changeCurrentPlayer();
     }
 
-    private void changeCurrentPlayer() {
+    public void changeCurrentPlayer() {
         currentPlayer =
                 (currentPlayer.equals(player1)) ? (currentPlayer = player2) : (currentPlayer = player1);
-        currentOpponenet = (currentOpponenet.equals(player2)) ? (currentOpponenet = player1) : (currentOpponenet = player2);
     }
 
     public boolean isGameOver() {
@@ -49,7 +41,7 @@ public class Game {
         return winner;
     }
 
-    public boolean isGameWonBy(Player player) {
+    private boolean isGameWonBy(Player player) {
         for (ArrayList<String> line : winningCombinations()) {
             if (line.stream().allMatch(space -> space.equals(player.getMarker()))) {
                 winner = player;

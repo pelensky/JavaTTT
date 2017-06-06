@@ -18,7 +18,7 @@ public class Board {
         assignValuesToSpaces();
     }
 
-    void placeMarker(int space, String marker) {
+    public void placeMarker(int space, String marker) {
         if (isMoveAllowed(space)) {
             getSpaces().set(space - offset, marker);
         } else {
@@ -26,7 +26,11 @@ public class Board {
         }
     }
 
-    List<String> getSpaces() {
+  public void resetSpace(int space) {
+        spaces.set(space - 1, String.valueOf(space));
+  }
+
+    public List<String> getSpaces() {
         return spaces;
     }
 
