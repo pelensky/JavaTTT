@@ -25,31 +25,39 @@ public class UnbeatableComputerPlayer implements Player {
   }
 
   private int calculateBestMove(Game game, int depth, Map<Integer, Integer> bestScore) {
-    System.out.println("Start of method: " + game.board.getSpaces());
+    int tiedGame = 0;
+    int wonGame = -1;
     if (game.isGameTied()) {
-      return 0;
+      return tiedGame;
     } else if (game.isGameOver()){
-      return -1;
+      return wonGame;
     } else {
-      for (int space : game.board.getAvailableSpaces()) {
-        game.board.placeMarker(space, game.getCurrentPlayer().getMarker());
-        game.changeCurrentPlayer();
-        bestScore.put(space, (-1 * calculateBestMove(game, depth + 1, new HashMap<>())));
-        game.board.resetSpace(space);
-        game.changeCurrentPlayer();
-      }
-      System.out.println(depth);
-      System.out.println(bestScore);
+      checkPossibilities(game, depth, bestScore);
       if (depth == 0) {
-        System.out.println();
-        System.out.println("When choosing move: " + game.board.getSpaces());
-        return bestScore.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+        return getBestMove(bestScore);
       } else {
-        return bestScore.entrySet().stream().max(Map.Entry.comparingByValue()).get().getValue();
+        return getTopScore(bestScore);
       }
     }
   }
 
+  private void checkPossibilities(Game game, int depth, Map<Integer, Integer> bestScore) {
+    for (int space : game.board.getAvailableSpaces()) {
+      game.board.placeMarker(space, game.getCurrentPlayer().getMarker());
+      game.changeCurrentPlayer();
+      bestScore.put(space, (-1 * calculateBestMove(game, depth + 1, new HashMap<>())));
+      game.board.resetSpace(space);
+      game.changeCurrentPlayer();
+    }
+  }
+
+  private int getBestMove(Map<Integer, Integer> bestScore) {
+    return bestScore.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+  }
+
+  private int getTopScore(Map<Integer, Integer> bestScore) {
+    return bestScore.entrySet().stream().max(Map.Entry.comparingByValue()).get().getValue();
+  }
 
   @Override
   public String title() {
